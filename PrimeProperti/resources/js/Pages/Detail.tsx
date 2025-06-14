@@ -29,7 +29,7 @@ export default function ProductDetail() {
             <Header />
             <HighlightSection />
            <div className="products py-12 px-4 md:px-8"  id="detail">
-        <h2 className="text-2xl font-bold text-center mb-6">DeDtail Properti</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Detail Properti</h2>
 
 
             <main id="detail" className="product-detail">
