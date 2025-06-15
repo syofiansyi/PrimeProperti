@@ -2,12 +2,12 @@ import { Link } from "@inertiajs/react";
 import { FaBed, FaBath, FaCar, FaHome } from "react-icons/fa";
 
 interface ProductCardProps {
-    title: string;
-    location: string;
-    price: string;
-    image: string;
-    features: string[];
-    badge?: string;
+    title: any;
+    location: any;
+    price: any;
+    image: any;
+    features: any;
+    badge?: any;
 }
 
 export default function ProductCard({
