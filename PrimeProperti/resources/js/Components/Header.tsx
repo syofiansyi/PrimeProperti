@@ -15,10 +15,10 @@ export default function Header() {
 
       <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
         <li><Link href="/">Home</Link></li>
-        <li><Link href="/#produk">Properti</Link></li>
-        <li><Link href="/#artikel">Artikel</Link></li>
-        <li><Link href="/#testimoni">Testimoni</Link></li>
-        <li><Link href="/#kontak">Kontak</Link></li>
+        <li><Link href="#produk">Properti</Link></li>
+        <li><Link href="#artikel">Artikel</Link></li>
+        <li><Link href="#testimoni">Testimoni</Link></li>
+        <li><Link href="#kontak">Kontak</Link></li>
       </ul>
     </nav>
     </header>
