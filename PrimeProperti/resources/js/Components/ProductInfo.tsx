@@ -3,15 +3,7 @@ interface ProductInfoProps {
 }
 
 export default function ProductInfo({ whatsappLink }: ProductInfoProps) {
-    const features = [
-        "Carport untuk 1 mobil",
-        "Taman minimalis depan rumah",
-        "Kamar mandi dalam",
-        "2 Kamar Tidur",
-        "Ruang keluarga luas",
-        "Dapur dengan kitchen set",
-        "Listrik 1300 watt",
-    ];
+  
     return (
         <div className="product-info">
             <div className="status-badge">
@@ -25,25 +17,12 @@ export default function ProductInfo({ whatsappLink }: ProductInfoProps) {
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31693.22181806355!2d106.8224306!3d-6.2000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1e4b1f3b0b1%3A0x52ffb646e25c123b!2sJakarta%2C%20Indonesia!5e0!3m2!1sen!2sid!4v1718533159423!5m2!1sen!2sid"
                         width="100%"
                         height="100%"
-                        allowFullScreen=""
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
                         className="w-full h-full border-0"
                     ></iframe>
                 </div>
             </div>
-
-            <div className="features mt-4">
-                <h3 className="text-lg font-semibold mb-2">
-                    Fasilitas Properti:
-                </h3>
-                <ul className="pl-4 list-disc text-sm text-gray-700 space-y-1">
-                    {features.map((f, i) => (
-                        <li key={i}>{f}</li>
-                    ))}
-                </ul>
-            </div>
-
             <a
                 href={whatsappLink}
                 className="whatsapp-button"
