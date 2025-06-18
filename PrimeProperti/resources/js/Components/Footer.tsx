@@ -1,8 +1,13 @@
-import { FaInstagram, FaTwitter, FaFacebookF } from "react-icons/fa";
+import {
+    FaInstagram,
+    FaTwitter,
+    FaFacebookF,
+    FaWhatsapp,
+} from "react-icons/fa";
 
 export default function Footer() {
     return (
-        <footer className="bg-[#3b2f2a] text-white text-sm">
+        <footer className="bg-[#3b2f2a] text-white text-sm" id="kontak">
             {/* CTA Section */}
             <div className="text-center py-10 border-b border-[#4e413b] px-4">
                 <h3 className="text-xl font-semibold mb-2">
@@ -29,8 +34,8 @@ export default function Footer() {
                 <div>
                     <div className="text-2xl font-bold mb-4">MyProperti</div>
                     <p className="text-gray-300 leading-relaxed">
-                        At MyProperti Real Estate, we guide you through your next
-                        property investment with confidence and expertise.
+                        At MyProperti Real Estate, we guide you through your
+                        next property investment with confidence and expertise.
                     </p>
                     <div className="flex gap-6 mt-6 text-2xl">
                         <a
@@ -56,6 +61,14 @@ export default function Footer() {
                             className="hover:text-blue-600 transition-colors"
                         >
                             <FaFacebookF />
+                        </a>
+                        <a
+                            href="https://wa.me/62895424010064?text=Halo, saya tertarik dengan layanan Anda"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-600 transition-colors"
+                        >
+                            <FaWhatsapp />
                         </a>
                     </div>
                 </div>

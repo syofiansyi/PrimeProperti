@@ -63,7 +63,7 @@ export default function ArticlesSection() {
   const visibleArticles = articles.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <section className="py-12 px-4 bg-gray-50">
+    <section className="py-12 px-4 bg-gray-50" id="artikel">
       <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8">
         Artikel & Tips Properti
       </h2>
