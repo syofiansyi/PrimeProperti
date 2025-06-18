@@ -27,9 +27,9 @@ export default function Footer() {
             <div className="max-w-screen-xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
                 {/* Column 1 - About */}
                 <div>
-                    <div className="text-2xl font-bold mb-4">MyPrime</div>
+                    <div className="text-2xl font-bold mb-4">MyProperti</div>
                     <p className="text-gray-300 leading-relaxed">
-                        At MyPrime Real Estate, we guide you through your next
+                        At MyProperti Real Estate, we guide you through your next
                         property investment with confidence and expertise.
                     </p>
                     <div className="flex gap-6 mt-6 text-2xl">

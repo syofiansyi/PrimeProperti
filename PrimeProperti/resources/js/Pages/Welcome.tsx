@@ -12,6 +12,7 @@ export default function Welcome() {
     return (
         <div>
             <Header />
+            <main className="pt-20">
             <HighlightSection />
             <ProductSection />
             <HighlighProduct />
@@ -19,6 +20,7 @@ export default function Welcome() {
             <About />
             <Contact />
             <RatingsSection />
+            </main>
             <Footer />
         </div>
     );

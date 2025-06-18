@@ -21,7 +21,7 @@ export default function Header() {
     <header className="bg-black fixed top-0 left-0 w-full z-50 shadow-md">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-2xl font-bold text-[#8B5E4D]">MyProperty</div>
+        <div className="text-2xl font-bold text-[#f7f5f5]">MyProperty</div>
 
         {/* Hamburger Button (Mobile Only) */}
         <button
