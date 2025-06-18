@@ -18,7 +18,7 @@ export default function AgencyExpertiseSection() {
           <div className="w-full lg:w-1/2">
             <img
               src="https://media.istockphoto.com/id/1019219898/photo/real-estate-or-property-investment-home-mortgage-loan-rate-saving-money-for-retirement.webp?a=1&b=1&s=612x612&w=0&k=20&c=ZaOpdD6_mEBEqI4pU2py_7sSeLItzMi2Rz2XEFlSLbQ=" alt="Agency Room"
-              alt="Agency Room"
+         
               className="rounded-lg shadow-md w-full object-cover"
             />
           </div>
