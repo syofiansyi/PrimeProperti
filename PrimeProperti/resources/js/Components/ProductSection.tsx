@@ -177,138 +177,171 @@ export default function ProductSection() {
 
     return (
         <>
-            <section className="search-section">
-                <div className="search-container">
-                    <h2 className="search-title">Cari Properti Impian Anda</h2>
-                    <form
-                        className="search-form"
-                        id="propertySearch"
-                        onSubmit={handleSearch}
-                    >
-                        <div className="form-group">
-                            <label htmlFor="location">Lokasi</label>
-                            <select
-                                id="location"
-                                name="location"
-                                value={searchFilters.location}
-                                onChange={handleFilterChange}
-                            >
-                                <option value="">Semua Lokasi</option>
-                                {lokasi.map((i) => (
-                                    <option key={i} value={i}>
-                                        {i}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="type">Tipe Properti</label>
-                            <select
-                                id="type"
-                                name="type"
-                                value={searchFilters.type}
-                                onChange={handleFilterChange}
-                            >
-                                 <option value="">Semua Lokasi</option>
-                                {TipeApart.map((i) => (
-                                    <option key={i} value={i}>
-                                        {i}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="price">Harga Maksimal</label>
-                            <select
-                                id="price"
-                                name="price"
-                                value={searchFilters.price}
-                                onChange={handleFilterChange}
-                            >
-                                <option value="">Semua Harga</option>
-                              {Harga.map((i) => (
-                                    <option key={i} value={i}>
-                                        {i}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="bedrooms"> Tidur</label>
-                            <select
-                                id="bedrooms"
-                                name="bedrooms"
-                                value={searchFilters.bedrooms}
-                                onChange={handleFilterChange}
-                            >
-                                <option value="">Semua</option>
-                               {KamarTidur.map((i) => (
-                                    <option key={i} value={i}>
-                                        {i}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <button type="submit" className="search-button">
-                            Cari Properti
-                        </button>
-                    </form>
-                </div>
-            </section>
+        <section className="bg-gray-50 py-10 px-4">
+  <div className="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+      Cari Properti Impian Anda
+    </h2>
 
-            <section id="produk" className="products py-12 px-4 md:px-8">
-                <h2 className="text-2xl font-bold text-center mb-6">
-                    Properti Unggulan Kami
-                </h2>
+    <form
+      id="propertySearch"
+      onSubmit={handleSearch}
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+    >
+      {/* Lokasi */}
+      <div className="flex flex-col">
+        <label htmlFor="location" className="text-sm font-medium mb-1">
+          Lokasi
+        </label>
+        <select
+          id="location"
+          name="location"
+          value={searchFilters.location}
+          onChange={handleFilterChange}
+          className="border border-gray-300 rounded px-3 py-2"
+        >
+          <option value="">Semua Lokasi</option>
+          {lokasi.map((i) => (
+            <option key={i} value={i}>
+              {i}
+            </option>
+          ))}
+        </select>
+      </div>
 
-                <div className="product-filters flex flex-wrap gap-4 justify-center mb-8">
-                    <div className="filter-group flex items-center gap-2">
-                        <label htmlFor="sort" className="font-medium">
-                            Urutkan:
-                        </label>
-                        <select
-                            id="sort"
-                            name="sort"
-                            value={sortOption}
-                            onChange={(e) => setSortOption(e.target.value)}
-                            className="border border-gray-300 rounded px-3 py-2"
-                        >
-                            <option value="latest">Terbaru</option>
-                            <option value="price-asc">Harga Terendah</option>
-                            <option value="price-desc">Harga Tertinggi</option>
-                            <option value="popular">Paling Populer</option>
-                        </select>
-                    </div>
+      {/* Tipe Properti */}
+      <div className="flex flex-col">
+        <label htmlFor="type" className="text-sm font-medium mb-1">
+          Tipe Properti
+        </label>
+        <select
+          id="type"
+          name="type"
+          value={searchFilters.type}
+          onChange={handleFilterChange}
+          className="border border-gray-300 rounded px-3 py-2"
+        >
+          <option value="">Semua Tipe</option>
+          {TipeApart.map((i) => (
+            <option key={i} value={i}>
+              {i}
+            </option>
+          ))}
+        </select>
+      </div>
 
-                    <div className="filter-group flex items-center gap-2">
-                        <label htmlFor="view" className="font-medium">
-                            Tampilkan:
-                        </label>
-                        <select
-                            id="view"
-                            name="view"
-                            value={viewCount}
-                            onChange={(e) =>
-                                setViewCount(parseInt(e.target.value))
-                            }
-                            className="border border-gray-300 rounded px-3 py-2"
-                        >
-                            <option value={12}>12 per halaman</option>
-                            <option value={24}>24 per halaman</option>
-                            <option value={36}>36 per halaman</option>
-                        </select>
-                    </div>
-                </div>
+      {/* Harga Maksimal */}
+      <div className="flex flex-col">
+        <label htmlFor="price" className="text-sm font-medium mb-1">
+          Harga Maksimal
+        </label>
+        <select
+          id="price"
+          name="price"
+          value={searchFilters.price}
+          onChange={handleFilterChange}
+          className="border border-gray-300 rounded px-3 py-2"
+        >
+          <option value="">Semua Harga</option>
+          {Harga.map((i) => (
+            <option key={i} value={i}>
+              {i}
+            </option>
+          ))}
+        </select>
+      </div>
 
-                <div
-                    className="product-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-                    id="propertyResults"
-                >
-                    {displayedProperties.map((p, i) => (
-                        <ProductCard key={i} {...p} />
-                    ))}
-                </div>
-            </section>
+      {/* Jumlah Kamar Tidur */}
+      <div className="flex flex-col">
+        <label htmlFor="bedrooms" className="text-sm font-medium mb-1">
+          Kamar Tidur
+        </label>
+        <select
+          id="bedrooms"
+          name="bedrooms"
+          value={searchFilters.bedrooms}
+          onChange={handleFilterChange}
+          className="border border-gray-300 rounded px-3 py-2"
+        >
+          <option value="">Semua</option>
+          {KamarTidur.map((i) => (
+            <option key={i} value={i}>
+              {i}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Tombol Cari */}
+      <div className="md:col-span-2 lg:col-span-3">
+        <button
+          type="submit"
+          className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded transition"
+        >
+          Cari Properti
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+         <section id="produk" className="py-12 px-4 md:px-8">
+  <h2 className="text-2xl font-bold text-center mb-6">
+    Properti Unggulan Kami
+  </h2>
+
+  {/* Filter */}
+  <div className="flex flex-wrap gap-4 justify-center mb-8">
+    <div className="flex items-center gap-2">
+      <label htmlFor="sort" className="font-medium">
+        Urutkan:
+      </label>
+      <select
+        id="sort"
+        name="sort"
+        value={sortOption}
+        onChange={(e) => setSortOption(e.target.value)}
+        className="border border-gray-300 rounded px-3 py-2"
+      >
+        <option value="latest">Terbaru</option>
+        <option value="price-asc">Harga Terendah</option>
+        <option value="price-desc">Harga Tertinggi</option>
+        <option value="popular">Paling Populer</option>
+      </select>
+    </div>
+
+    <div className="flex items-center gap-2">
+      <label htmlFor="view" className="font-medium">
+        Tampilkan:
+      </label>
+      <select
+        id="view"
+        name="view"
+        value={viewCount}
+        onChange={(e) => setViewCount(parseInt(e.target.value))}
+        className="border border-gray-300 rounded px-3 py-2"
+      >
+        <option value={12}>12 per halaman</option>
+        <option value={24}>24 per halaman</option>
+        <option value={36}>36 per halaman</option>
+      </select>
+    </div>
+  </div>
+
+  {/* Grid Produk */}
+  <div className="max-w-7xl mx-auto">
+    <div
+      id="propertyResults"
+      className="flex justify-center flex-wrap gap-6"
+    >
+      {displayedProperties.map((p, i) => (
+        <ProductCard key={i} {...p} />
+      ))}
+    </div>
+  </div>
+</section>
+
         </>
     );
 }

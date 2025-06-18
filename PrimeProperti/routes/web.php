@@ -17,6 +17,9 @@ Route::get('/', function () {
 Route::get('/detail', function () {
     return Inertia::render('Detail');
 });
+Route::get('/blog', function () {
+    return Inertia::render('Blog');
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

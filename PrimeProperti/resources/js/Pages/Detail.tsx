@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
 import HighlightSection from "@/Components/HighlightSection";
+import ProductHiglight from "@/Components/ProductHiglight";
 import ArticlesSection from "@/Components/ArticlesSection";
 import RatingsSection from "@/Components/RatingsSection";
 import ProductGallery from "@/Components/ProductGallery";
@@ -28,21 +29,51 @@ export default function ProductDetail() {
         <>
             <Header />
             <HighlightSection />
-           <div className="products py-12 px-4 md:px-8"  id="detail">
-        <h2 className="text-2xl font-bold text-center mb-6">Detail Properti</h2>
 
+            <section
+                id="produk"
+                className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50"
+            >
+                <div className="max-w-6xl mx-auto">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-10">
+                        Detail Properti
+                    </h2>
+                    <div className="mb-4 flex flex-wrap gap-2">
+                        <span className="px-3 py-1 text-sm bg-green-100 text-green-800 rounded-full font-semibold">
+                            Baru
+                        </span>
+                        <span className="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-full font-semibold">
+                            Eksklusif
+                        </span>
+                    </div>
 
-            <main id="detail" className="product-detail">
-                <div className="product-container">
-                    <ProductGallery
-                        mainImage={mainImage}
-                        changeImage={changeImage}
-                    />
-                    <ProductInfo whatsappLink={whatsappLink} />
+                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">
+                        Rumah Modern Minimalis
+                    </h1>
+
+                    {/* Responsive Layout */}
+                    <div className="flex flex-col lg:flex-row gap-8 mb-10">
+                        {/* Galeri Gambar */}
+                        <div className="w-full lg:w-1/2">
+                            <ProductGallery
+                                mainImage={mainImage}
+                                changeImage={changeImage}
+                            />
+                        </div>
+
+                        {/* Info Properti */}
+                        <div className="w-full lg:w-1/2">
+                            <ProductInfo whatsappLink={whatsappLink} />
+                        </div>
+                    </div>
+
+                    {/* Tabs */}
+                    <ProductTabs activeTab={activeTab} openTab={openTab} />
                 </div>
-                <ProductTabs activeTab={activeTab} openTab={openTab} />
-            </main>
-            </div>
+            </section>
+
+            {/* Komponen Lain */}
+            <ProductHiglight />
             <ArticlesSection />
             <RatingsSection />
             <Footer />
