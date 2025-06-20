@@ -33,14 +33,6 @@ interface Props {
 }
 
 export default function Welcome({ PropertiProd, users }: Props) {
-     const DetailUsers = users.map((item) => {
-
-        return {
-            id: item.id,
-            nowhatsap: item.nowhatsap,
-            maps: item.maps,
-        };
-    });
        
 
   return (
@@ -52,10 +44,10 @@ export default function Welcome({ PropertiProd, users }: Props) {
         <HighlighProduct />
         <ArticlesSection />
         <About />
-        <Contact DetailUsers={DetailUsers} />
+        <Contact users={users} />
         <RatingsSection />
       </main>
-      <Footer DetailUsers={DetailUsers} />
+      <Footer users={users} />
     </div>
   );
 }

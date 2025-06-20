@@ -80,13 +80,13 @@ export default function RatingsSection() {
         {/* Navigasi */}
         <button
           onClick={() => handleScroll("prev")}
-          className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 bg-white border p-2 rounded-full shadow hover:bg-gray-100 z-10"
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full z-10 hover:bg-opacity-70"
         >
           ◀
         </button>
         <button
           onClick={() => handleScroll("next")}
-          className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 bg-white border p-2 rounded-full shadow hover:bg-gray-100 z-10"
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full z-10 hover:bg-opacity-70"
         >
           ▶
         </button>

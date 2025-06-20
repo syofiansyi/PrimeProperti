@@ -36,11 +36,13 @@ class ProductPagesController extends Controller
      */
     public function show(string $id)
     {
-         $DetailProd = DB::table('products')->where('id',$id)->get();
+        $DetailProd = DB::table('products')->where('id',$id)->get();
+        $allprod = DB::table('products')->get();
         $Users = DB::table('users')->get();
         return Inertia::render('Detail', [
             'DetailProd' => $DetailProd,
-            'users' => $Users
+            'users' => $Users,
+             'allprod' =>$allprod
         ]);
     }
 

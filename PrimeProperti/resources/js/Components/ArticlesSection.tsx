@@ -68,48 +68,51 @@ export default function ArticlesSection() {
         Artikel & Tips Properti
       </h2>
 
-      <div className="flex items-center justify-center gap-4 flex-wrap lg:flex-nowrap">
-        <button
-          onClick={handlePrev}
-          disabled={startIndex === 0}
-          className="p-2 bg-white rounded-full shadow hover:bg-blue-100 disabled:opacity-30"
-        >
-          ◀
-        </button>
+    <div className="relative">
+  {/* Tombol Kiri */}
+  <button
+    onClick={handlePrev}
+    disabled={startIndex === 0}
+    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-black bg-opacity-50 rounded-full shadow hover:bg-opacity-70 "
+  >
+    ◀
+  </button>
 
-        <div className="flex gap-6 justify-center flex-wrap transition-all duration-300">
-          {visibleArticles.map((item, idx) => (
-            <div
-              key={idx}
-              className="w-full sm:w-[300px] bg-white rounded-lg shadow-md overflow-hidden"
-            >
-              <img
-                src={item.img}
-                alt={item.title}
-                className="h-40 w-full object-cover"
-              />
-              <div className="p-4">
-                <h3 className="font-semibold text-lg">{item.title}</h3>
-                <p className="text-sm text-gray-600 mb-3">{item.desc}</p>
-                <Link
-                  href="/blog"
-                  className="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700 transition"
-                >
-                  Baca Selengkapnya
-                </Link>
-              </div>
-            </div>
-          ))}
+  {/* Artikel */}
+  <div className="flex gap-6 justify-center flex-wrap transition-all duration-300 px-10">
+    {visibleArticles.map((item, idx) => (
+      <div
+        key={idx}
+        className="w-full sm:w-[300px] bg-white rounded-lg shadow-md overflow-hidden"
+      >
+        <img
+          src={item.img}
+          alt={item.title}
+          className="h-40 w-full object-cover"
+        />
+        <div className="p-4">
+          <h3 className="font-semibold text-lg">{item.title}</h3>
+          <p className="text-sm text-gray-600 mb-3">{item.desc}</p>
+          <Link
+            href="/blog"
+            className="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
+            Baca Selengkapnya
+          </Link>
         </div>
-
-        <button
-          onClick={handleNext}
-          disabled={startIndex + itemsPerPage >= articles.length}
-          className="p-2 bg-white rounded-full shadow hover:bg-blue-100 disabled:opacity-30"
-        >
-          ▶
-        </button>
       </div>
+    ))}
+  </div>
+
+  {/* Tombol Kanan */}
+  <button
+    onClick={handleNext}
+    disabled={startIndex + itemsPerPage >= articles.length}
+    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-black bg-opacity-50 rounded-full shadow hover:bg-opacity-70 ">
+    ▶
+  </button>
+</div>
+
     </section>
   );
 }

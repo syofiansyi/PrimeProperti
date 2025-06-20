@@ -1,8 +1,28 @@
-import { useRef } from "react";
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useRef } from "react";
 import { Link } from "@inertiajs/react";
 import { FaMapMarkerAlt, FaBed, FaBath, FaRulerCombined, FaExpand } from "react-icons/fa";
+interface SimilarProducts {
+   id: number;
+    title: string;
+    location: string;
+    price: number;
+    image?: string[] | string;
+    features: string;
+    badge: string;
+    maps: string;
+    properti_detail: string;
+    properti_pembayaran: string;
+    properti_fasilitas: string;
+    popular:boolean;
+    date:string;
+    deskripsi:string;
+    tipe:string;
+}
 
-export default function ProductHighlight() {
+interface Props {
+  allprod:SimilarProducts[]
+}
+export default function ProductHighlight({ allprod }: Props) {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = (direction: "prev" | "next") => {
@@ -18,58 +38,24 @@ export default function ProductHighlight() {
 
   const icons = [<FaBed />, <FaBath />, <FaRulerCombined />, <FaExpand />];
 
-  const allProperties = [
-    {
-      title: "Modern Minimalis",
-      location: "Jakarta Selatan",
-      price: 1200000000,
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-      features: ["3 ", "2", "120m²", "90m²"],
-      badge: ["Baru", "Premium"],
-      popular: true,
-      date: "2025-06-10",
-    },
-    {
-      title: "Apartemen City View",
-      location: "Bandung",
-      price: 850000000,
-      image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6",
-      features: ["2 ", "1", "80m²", "70m²"],
-      badge: ["Baru", "Premium"],
-      popular: false,
-      date: "2025-06-01",
-    },
-    {
-      title: "Ruko Strategis Pusat",
-      location: "Surabaya",
-      price: 1500000000,
-      image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf",
-      features: ["2 Lantai", "1 KM", "100m²", "150m²"],
-      badge: ["Baru"],
-      popular: true,
-      date: "2025-05-28",
-    },
-    {
-      title: "Villa Pantai Eksklusif",
-      location: "Bali",
-      price: 4500000000,
-      image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf",
-      features: ["4 ", "3 KM", "250m²", "500m²"],
-      badge: ["Baru"],
-      popular: true,
-      date: "2025-06-05",
-    },
-    {
-      title: "Tanah Kavling Murah",
-      location: "Bogor",
-      price: 400000000,
-      image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d",
-      features: ["-", "-", "-", "120m²"],
-      badge: ["Baru"],
-      popular: false,
-      date: "2025-05-20",
-    },
-  ];
+ const allProperties = allprod.map((item) => {
+  const imageArray =
+    typeof item.image === "string" ? JSON.parse(item.image) : item.image;
+
+  return {
+    id:item.id,
+    title: item.title,
+    location: item.location,
+    price: item.price,
+    image: imageArray?.[0] ? `${imageArray[0]}` : null,
+    features: typeof item.features === "string" ? JSON.parse(item.features) : item.features,
+    badge: typeof item.badge === "string" ? JSON.parse(item.badge) : item.badge,
+    popular: !!item.popular,
+    date: item.date,
+    tipe: item.tipe,
+  };
+});
+
 
   return (
     <section id="artikel" className="py-10 px-4">
@@ -87,7 +73,7 @@ export default function ProductHighlight() {
         {/* Carousel Container */}
         <div
           ref={carouselRef}
-          className="flex overflow-hidden gap-4 scroll-smooth px-2"
+          className="flex gap-6 justify-center flex-wrap transition-all duration-300"
         >
           {allProperties.map((item, idx) => (
             <div
@@ -97,7 +83,7 @@ export default function ProductHighlight() {
               {/* Badge */}
               {item.badge.length > 0 && (
                 <div className="absolute z-10 p-3 flex gap-2">
-                  {item.badge.map((b, i) => (
+                  {item.badge.map((b: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined, i: Key | null | undefined) => (
                     <span
                       key={i}
                       className="bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow"
@@ -131,12 +117,13 @@ export default function ProductHighlight() {
                 </div>
 
                 <div className="flex flex-wrap gap-4 text-gray-600 text-sm mt-2">
-                  {item.features.map((f, i) => (
-                    <div key={i} className="flex items-center gap-1">
-                      <span>{icons[i % icons.length]}</span>
-                      <span>{f}</span>
-                    </div>
-                  ))}
+                 {item.features.map((f: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined, i: number) => (
+  <div key={i} className="flex items-center gap-1">
+    <span>{icons[i % icons.length]}</span>
+    <span>{f}</span>
+  </div>
+))}
+
                 </div>
               </div>
             </div>

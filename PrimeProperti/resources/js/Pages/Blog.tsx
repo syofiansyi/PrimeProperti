@@ -104,7 +104,6 @@ export default function Blog() {
         </div>
       </section>
 
-      <ProductHiglight />
       <ArticlesSection />
       <RatingsSection />
       {/* <Footer /> */}

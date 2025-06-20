@@ -1,13 +1,14 @@
-interface userInfoProps {
-DetailUsers: {
+interface users {
     id: number;
-    nowhatsap: string;
-    maps: string;
-  }[];
-
+    nowhatsap:string;
+    maps:string;
 }
-export default function Contact({  DetailUsers }: userInfoProps) {
-  const wausers =  DetailUsers.map((item) => item.nowhatsap);
+
+interface ProductInfoProps {
+   users: users[];
+}
+
+export default function Contact({ users }: ProductInfoProps) {
   return (
     <section className="relative h-[400px] bg-cover bg-center flex items-center justify-center text-white"
       style={{
@@ -25,7 +26,7 @@ export default function Contact({  DetailUsers }: userInfoProps) {
           Hubungi kami untuk layanan properti terbaik di Bali
         </p>
         <a
-          href={`https://wa.me/${wausers}?text=Halo, saya tertarik dengan layanan Anda`}
+          href={`https://wa.me/${users[0].nowhatsap}?text=Halo, saya tertarik dengan layanan Anda`}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full text-sm font-medium transition duration-300"

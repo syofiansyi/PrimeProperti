@@ -5,19 +5,18 @@ import {
     FaWhatsapp,
 } from "react-icons/fa";
 
-interface DetailUsers {
+interface users {
     id: number;
-    nowhatsap: string;
-    maps: string;
+    nowhatsap:string;
+    maps:string;
 }
 
-interface userInfoProps {
-    DetailUsers: DetailUsers[];
+interface ProductInfoProps {
+   users: users[];
 }
-export default function Footer({ DetailUsers }: userInfoProps) {
-    const wausers = DetailUsers.map((item) => item.nowhatsap);
-const mapusers = DetailUsers[0]?.maps ?? "";
 
+
+export default function Footer({ users }: ProductInfoProps) {
     return (
         <footer className="bg-[#3b2f2a] text-white text-sm" id="kontak">
             {/* CTA Section */}
@@ -30,7 +29,7 @@ const mapusers = DetailUsers[0]?.maps ?? "";
                     team will provide top-notch assistance.
                 </p>
                 <a
-                    href={`https://wa.me/${wausers}?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20properti%20Anda.`}
+                    href={`https://wa.me/${users[0].nowhatsap}?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20properti%20Anda.`}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -75,7 +74,7 @@ const mapusers = DetailUsers[0]?.maps ?? "";
                             <FaFacebookF />
                         </a>
                         <a
-                            href={`https://wa.me/${wausers}?text=Halo, saya tertarik dengan properti anda`}
+                            href="https://wa.me/62895424010064?text=Halo, saya tertarik dengan layanan Anda"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:text-blue-600 transition-colors"
@@ -105,7 +104,7 @@ const mapusers = DetailUsers[0]?.maps ?? "";
                     </h2>
                     <div>
                         <iframe
-                            src={mapusers}
+                            src={users[0].maps}
                             width="100%"
                             height="200"
                             className="w-full rounded-md"
