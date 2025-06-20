@@ -5,7 +5,19 @@ import {
     FaWhatsapp,
 } from "react-icons/fa";
 
-export default function Footer() {
+interface DetailUsers {
+    id: number;
+    nowhatsap: string;
+    maps: string;
+}
+
+interface userInfoProps {
+    DetailUsers: DetailUsers[];
+}
+export default function Footer({ DetailUsers }: userInfoProps) {
+    const wausers = DetailUsers.map((item) => item.nowhatsap);
+const mapusers = DetailUsers[0]?.maps ?? "";
+
     return (
         <footer className="bg-[#3b2f2a] text-white text-sm" id="kontak">
             {/* CTA Section */}
@@ -18,7 +30,7 @@ export default function Footer() {
                     team will provide top-notch assistance.
                 </p>
                 <a
-                    href="https://wa.me/62895424010064?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20properti%20Anda."
+                    href={`https://wa.me/${wausers}?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20properti%20Anda.`}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -63,7 +75,7 @@ export default function Footer() {
                             <FaFacebookF />
                         </a>
                         <a
-                            href="https://wa.me/62895424010064?text=Halo, saya tertarik dengan layanan Anda"
+                            href={`https://wa.me/${wausers}?text=Halo, saya tertarik dengan properti anda`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:text-blue-600 transition-colors"
@@ -93,7 +105,7 @@ export default function Footer() {
                     </h2>
                     <div>
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31734.08960852051!2d106.83865929381153!3d-6.162727486711344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5a67f1668f7%3A0xcbffcecd3c26b8d1!2sKec.%20Kemayoran%2C%20Kota%20Jakarta%20Pusat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1745389196077!5m2!1sid!2sid"
+                            src={mapusers}
                             width="100%"
                             height="200"
                             className="w-full rounded-md"

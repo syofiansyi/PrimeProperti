@@ -1,254 +1,599 @@
 import { useForm, router } from "@inertiajs/react";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useState, useEffect } from "react";
+import DataTable from "react-data-table-component";
+import AppLayout from "@/Layouts/AppLayout";
+import { Head } from "@inertiajs/react";
 
 interface Product {
-  id: number;
-  title: string;
-  location: string[] | string;
-  description: string;
-  image?: string[] | string;
+    id: number | null;
+    title: string;
+    location: string;
+    deskripsi: string;
+    features: string[] | string;
+    badge: string[] | string;
+    price: number;
+    image?: string[] | string;
+    properti_detail: string[] | string;
+    properti_pembayaran: string[] | string;
+    properti_fasilitas: string[] | string;
+    tipe: string;
 }
 
 interface PageProps {
-  products: Product[];
+    products: Product[];
 }
 
 export default function Index({ products }: PageProps) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [editing, setEditing] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [editing, setEditing] = useState(false);
+    const [search, setSearch] = useState("");
+    const [filteredProducts, setFilteredProducts] =
+        useState<Product[]>(products);
 
-  const { data, setData, post, reset } = useForm({
-    id: null,
-    title: "",
-    location: [""],
-    description: "",
-    images: [] as File[],
-  });
-
-  const openModal = (product?: Product) => {
-    if (product) {
-      setEditing(true);
-      setData({
-        id: product.id,
-        title: product.title,
-        location: Array.isArray(product.location)
-          ? product.location
-          : [product.location],
-        description: product.description,
-        images: [],
-      });
-    } else {
-      setEditing(false);
-      resetForm();
-    }
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    resetForm();
-  };
-
-  const resetForm = () => {
-    setData({
-      id: null,
-      title: "",
-      location: [""],
-      description: "",
-      images: [],
-    });
-    setEditing(false);
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    const formData = new FormData();
-
-    formData.append("title", data.title);
-    formData.append("description", data.description);
-    data.location.forEach((loc, i) => {
-      formData.append(`location[${i}]`, loc);
-    });
-    data.images.forEach((file, i) => {
-      formData.append(`images[${i}]`, file);
+    const { data, setData, post, reset } = useForm({
+        id: null as number | null, // ✅ tambahkan ini
+        title: "",
+        location: "",
+        deskripsi: "",
+        features: [""],
+        badge: [""],
+        properti_detail: [""],
+        properti_pembayaran: [""],
+        properti_fasilitas: [""],
+        tipe: "",
+        price: "",
+        images: [] as File[],
     });
 
-    const url = editing ? `/products/${data.id}` : "/products";
-    if (editing) formData.append("_method", "PUT");
+    useEffect(() => {
+        const keyword = search.toLowerCase();
+        const filtered = products.filter(
+            (product) =>
+                product.title.toLowerCase().includes(keyword) ||
+                product.location.toLowerCase().includes(keyword) ||
+                String(product.price).includes(keyword)
+        );
+        setFilteredProducts(filtered);
+    }, [search, products]);
 
-    router.post(url, formData, {
-      onSuccess: () => {
-        closeModal();
-      },
-    });
-  };
+    const openModal = (product?: Product) => {
+        if (product) {
+            setEditing(true);
+            setData({
+                id: product.id,
+                title: product.title,
+                location: product.location,
+                deskripsi: product.deskripsi,
+                features: Array.isArray(product.features)
+                    ? product.features
+                    : [product.features],
+                badge: Array.isArray(product.badge)
+                    ? product.badge
+                    : [product.badge],
+                properti_detail: Array.isArray(product.properti_detail)
+                    ? product.properti_detail
+                    : [product.properti_detail],
+                properti_pembayaran: Array.isArray(product.properti_pembayaran)
+                    ? product.properti_pembayaran
+                    : [product.properti_pembayaran],
+                properti_fasilitas: Array.isArray(product.properti_fasilitas)
+                    ? product.properti_fasilitas
+                    : [product.properti_fasilitas],
+                tipe: product.tipe,
+                price: String(product.price), // ✅ ubah jadi string
+                images: [],
+            });
+        } else {
+            setEditing(false);
+            resetForm();
+        }
+        setModalOpen(true);
+    };
 
-  const handleDelete = (id: number) => {
-    if (confirm("Are you sure you want to delete this product?")) {
-      router.delete(`/products/${id}`);
-    }
-  };
+    const closeModal = () => {
+        setModalOpen(false);
+        resetForm();
+    };
 
-  return (
-    <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Product Management</h1>
+    const resetForm = () => {
+        setData({
+            id: null,
+            title: "",
+            location: "",
+            deskripsi: "",
+            features: [""],
+            badge: [""],
+            properti_detail: [""],
+            properti_pembayaran: [""],
+            properti_fasilitas: [""],
+            tipe: "",
+            price: "",
+            images: [],
+        });
+        setEditing(false);
+    };
 
-      <button
-        onClick={() => openModal()}
-        className="mb-4 bg-green-600 text-white px-4 py-2 rounded"
-      >
-        + Add Product
-      </button>
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        const formData = new FormData();
 
-      {/* Modal */}
-      {modalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded shadow w-full max-w-lg">
-            <h2 className="text-lg font-semibold mb-4">
-              {editing ? "Edit Product" : "Add Product"}
-            </h2>
+        formData.append("title", data.title);
+        formData.append("location", data.location);
+        formData.append("deskripsi", data.deskripsi);
+        formData.append("price", data.price);
+        formData.append("tipe", data.tipe);
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                placeholder="Title"
-                value={data.title}
-                onChange={(e) => setData("title", e.target.value)}
-                className="w-full border px-4 py-2"
-              />
+        data.features.forEach((fet, i) => {
+            formData.append(`features[${i}]`, fet);
+        });
+        data.badge.forEach((bad, i) => {
+            formData.append(`badge[${i}]`, bad);
+        });
+        data.images.forEach((file, i) => {
+            formData.append(`images[${i}]`, file);
+        });
+        data.properti_detail.forEach((prodet, i) => {
+            formData.append(`properti_detail[${i}]`, prodet);
+        });
+        data.properti_pembayaran.forEach((propem, i) => {
+            formData.append(`properti_pembayaran[${i}]`, propem);
+        });
+        data.properti_fasilitas.forEach((profas, i) => {
+            formData.append(`properti_fasilitas[${i}]`, profas);
+        });
 
-              {data.location.map((loc, index) => (
-                <input
-                  key={index}
-                  type="text"
-                  value={loc}
-                  onChange={(e) => {
-                    const newLocs = [...data.location];
-                    newLocs[index] = e.target.value;
-                    setData("location", newLocs);
-                  }}
-                  className="w-full border px-2 py-1 mb-2"
-                  placeholder={`Location ${index + 1}`}
-                />
-              ))}
+        const url = editing ? `/products/${data.id}` : "/products";
+        if (editing) formData.append("_method", "PUT");
 
-              <button
-                type="button"
-                onClick={() => setData("location", [...data.location, ""])}
-                className="text-blue-600 text-sm"
-              >
-                + Add Location
-              </button>
+        router.post(url, formData, {
+            onSuccess: () => {
+                closeModal();
+            },
+        });
+    };
 
-              <textarea
-                placeholder="Description"
-                value={data.description}
-                onChange={(e) => setData("description", e.target.value)}
-                className="w-full border px-4 py-2"
-              ></textarea>
+    const handleDelete = (id: number) => {
+        if (confirm("Are you sure you want to delete this product?")) {
+            router.delete(`/products/${id}`);
+        }
+    };
 
-              <input
-                type="file"
-                multiple
-                onChange={(e) => {
-                  if (e.target.files) {
-                    setData("images", Array.from(e.target.files));
-                  }
-                }}
-              />
-
-              <div className="flex gap-2 justify-end mt-4">
-                <button
-                  type="button"
-                  onClick={closeModal}
-                  className="text-gray-600 px-4 py-2 border rounded"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="bg-blue-600 text-white px-4 py-2 rounded"
-                >
-                  {editing ? "Update" : "Create"}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* DataTable */}
-      <div className="overflow-x-auto">
-        <table className="table-auto w-full border-collapse border border-gray-300 text-sm">
-          <thead>
-            <tr className="bg-gray-100 text-left">
-              <th className="border px-4 py-2">#</th>
-              <th className="border px-4 py-2">Title</th>
-              <th className="border px-4 py-2">Location</th>
-              <th className="border px-4 py-2">Description</th>
-              <th className="border px-4 py-2">Images</th>
-              <th className="border px-4 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product, i) => (
-              <tr key={product.id}>
-                <td className="border px-4 py-2">{i + 1}</td>
-                <td className="border px-4 py-2">{product.title}</td>
-                <td className="border px-4 py-2">
-                  <ul className="list-disc list-inside">
-                    {(Array.isArray(product.location)
-                      ? product.location
-                      : [product.location]
-                    ).map((loc, i) => (
-                      <li key={i}>{loc}</li>
+    const columns = [
+        {
+            name: "Nomor",
+            cell: (_: Product, index: number) => <span>{index + 1}</span>,
+            width: "8%",
+        },
+        {
+            name: "Title",
+            selector: (row: Product) => row.title,
+            sortable: true,
+        },
+        {
+            name: "Location",
+            selector: (row: Product) => row.location,
+            sortable: true,
+        },
+        {
+            name: "Deskripsi",
+            selector: (row: Product) => row.deskripsi,
+            sortable: true,
+        },
+        {
+            name: "Features",
+            cell: (row: Product) => (
+                <ul className="list-disc pl-4">
+                    {(Array.isArray(row.features)
+                        ? row.features
+                        : [row.features]
+                    ).map((fet, i) => (
+                        <li key={i}>{fet}</li>
                     ))}
-                  </ul>
-                </td>
-                <td className="border px-4 py-2">{product.description}</td>
-                <td className="border px-4 py-2">
-                  <div className="flex gap-1 flex-wrap">
-                    {Array.isArray(product.image) ? (
-                      product.image.map((img, idx) => (
-                        <img
-                          key={idx}
-                          src={`/storage/${img}`}
-                          alt={`img-${idx}`}
-                          className="w-12 h-12 object-cover rounded"
-                        />
-                      ))
-                    ) : product.image ? (
-                      <img
-                        src={`/storage/${product.image}`}
-                        alt="img"
-                        className="w-12 h-12 object-cover rounded"
-                      />
-                    ) : (
-                      "-"
+                </ul>
+            ),
+        },
+        {
+            name: "Badge",
+            cell: (row: Product) => (
+                <ul className="list-disc pl-4">
+                    {(Array.isArray(row.badge) ? row.badge : [row.badge]).map(
+                        (bad, i) => (
+                            <li key={i}>{bad}</li>
+                        )
                     )}
-                  </div>
-                </td>
-                <td className="border px-4 py-2">
-                  <div className="flex gap-2">
+                </ul>
+            ),
+        },
+        {
+            name: "Properti Detail",
+            cell: (row: Product) => (
+                <ul className="list-disc pl-4">
+                    {(Array.isArray(row.properti_detail)
+                        ? row.properti_detail
+                        : [row.properti_detail]
+                    ).map((prodet, i) => (
+                        <li key={i}>{prodet}</li>
+                    ))}
+                </ul>
+            ),
+        },
+        {
+            name: "Properti Pembayaran",
+            cell: (row: Product) => (
+                <ul className="list-disc pl-4">
+                    {(Array.isArray(row.properti_pembayaran)
+                        ? row.properti_pembayaran
+                        : [row.properti_pembayaran]
+                    ).map((propem, i) => (
+                        <li key={i}>{propem}</li>
+                    ))}
+                </ul>
+            ),
+        },
+        {
+            name: "Properti Fasilitas",
+            cell: (row: Product) => (
+                <ul className="list-disc pl-4">
+                    {(Array.isArray(row.properti_fasilitas)
+                        ? row.properti_fasilitas
+                        : [row.properti_fasilitas]
+                    ).map((profas, i) => (
+                        <li key={i}>{profas}</li>
+                    ))}
+                </ul>
+            ),
+        },
+        {
+            name: "Tipe",
+            selector: (row: Product) => row.tipe,
+            sortable: true,
+        },
+        {
+            name: "Price",
+            selector: (row: Product) => row.price,
+            sortable: true,
+        },
+        {
+            name: "Images",
+            cell: (row: Product) => (
+                <div className="flex gap-1 flex-wrap">
+                    {Array.isArray(row.image) ? (
+                        row.image.map((img, i) => (
+                            <img
+                                key={i}
+                                src={`/storage/${img}`}
+                                alt={`img-${i}`}
+                                className="w-10 h-10 object-cover rounded"
+                            />
+                        ))
+                    ) : row.image ? (
+                        <img
+                            src={`/storage/${row.image}`}
+                            alt="img"
+                            className="w-10 h-10 object-cover rounded"
+                        />
+                    ) : (
+                        "-"
+                    )}
+                </div>
+            ),
+        },
+        {
+            name: "Actions",
+            cell: (row: Product) => (
+                <div className="flex gap-2">
                     <button
-                      onClick={() => openModal(product)}
-                      className="text-blue-600 hover:underline"
+                        onClick={() => openModal(row)}
+                        className="text-blue-600 hover:underline"
                     >
-                      Edit
+                        Edit
                     </button>
                     <button
-                      onClick={() => handleDelete(product.id)}
-                      className="text-red-600 hover:underline"
+                        onClick={() => row.id !== null && handleDelete(row.id)}
+                        className="text-red-600 hover:underline"
                     >
-                      Delete
+                        Delete
                     </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+                </div>
+            ),
+        },
+    ];
+
+    return (
+        <>
+            <Head title="Dashboard" />
+            <AppLayout>
+                <div className="max-w-6xl mx-auto p-6">
+                    <h1 className="text-2xl font-bold mb-4">
+                        Product Management
+                    </h1>
+
+                    <button
+                        onClick={() => openModal()}
+                        className="mb-4 bg-green-600 text-white px-4 py-2 rounded"
+                    >
+                        + Add Product
+                    </button>
+
+                    {/* Modal */}
+                    {modalOpen && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                            <div className="bg-white w-full max-w-lg max-h-[80vh] overflow-y-auto rounded shadow p-6">
+                                <h2 className="text-lg font-semibold mb-4">
+                                    {editing ? "Edit Product" : "Add Product"}
+                                </h2>
+
+                                <form
+                                    onSubmit={handleSubmit}
+                                    className="space-y-4"
+                                >
+                                    <input
+                                        type="text"
+                                        placeholder="Title"
+                                        value={data.title}
+                                        onChange={(e) =>
+                                            setData("title", e.target.value)
+                                        }
+                                        className="w-full border px-4 py-2"
+                                    />
+
+                                    <input
+                                        type="text"
+                                        placeholder="Location"
+                                        value={data.location}
+                                        onChange={(e) =>
+                                            setData("location", e.target.value)
+                                        }
+                                        className="w-full border px-4 py-2"
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder="Deskripsi"
+                                        value={data.deskripsi}
+                                        onChange={(e) =>
+                                            setData("deskripsi", e.target.value)
+                                        }
+                                        className="w-full border px-4 py-2"
+                                    />
+
+                                    {data.features.map((fet, index) => (
+                                        <input
+                                            key={index}
+                                            type="text"
+                                            value={fet}
+                                            onChange={(e) => {
+                                                const newFets = [
+                                                    ...data.features,
+                                                ];
+                                                newFets[index] = e.target.value;
+                                                setData("features", newFets);
+                                            }}
+                                            className="w-full border px-2 py-1 mb-2"
+                                            placeholder={`Features ${
+                                                index + 1
+                                            }`}
+                                        />
+                                    ))}
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setData("features", [
+                                                ...data.features,
+                                                "",
+                                            ])
+                                        }
+                                        className="text-blue-600 text-sm"
+                                    >
+                                        + Add Features
+                                    </button>
+
+                                    {data.badge.map((bad, index) => (
+                                        <input
+                                            key={index}
+                                            type="text"
+                                            value={bad}
+                                            onChange={(e) => {
+                                                const newBads = [...data.badge];
+                                                newBads[index] = e.target.value;
+                                                setData("badge", newBads);
+                                            }}
+                                            className="w-full border px-2 py-1 mb-2"
+                                            placeholder={`Badge ${index + 1}`}
+                                        />
+                                    ))}
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setData("badge", [
+                                                ...data.badge,
+                                                "",
+                                            ])
+                                        }
+                                        className="text-blue-600 text-sm"
+                                    >
+                                        + Add Badge
+                                    </button>
+
+                                    {data.properti_detail.map(
+                                        (prodet, index) => (
+                                            <input
+                                                key={index}
+                                                type="text"
+                                                value={prodet}
+                                                onChange={(e) => {
+                                                    const newProdet = [
+                                                        ...data.properti_detail,
+                                                    ];
+                                                    newProdet[index] =
+                                                        e.target.value;
+                                                    setData(
+                                                        "properti_detail",
+                                                        newProdet
+                                                    );
+                                                }}
+                                                className="w-full border px-2 py-1 mb-2"
+                                                placeholder={`Properti Detail ${
+                                                    index + 1
+                                                }`}
+                                            />
+                                        )
+                                    )}
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setData("properti_detail", [
+                                                ...data.properti_detail,
+                                                "",
+                                            ])
+                                        }
+                                        className="text-blue-600 text-sm"
+                                    >
+                                        + Add Properti Detail
+                                    </button>
+
+                                    {data.properti_pembayaran.map(
+                                        (propem, index) => (
+                                            <input
+                                                key={index}
+                                                type="text"
+                                                value={propem}
+                                                onChange={(e) => {
+                                                    const newPropem = [
+                                                        ...data.properti_pembayaran,
+                                                    ];
+                                                    newPropem[index] =
+                                                        e.target.value;
+                                                    setData(
+                                                        "properti_pembayaran",
+                                                        newPropem
+                                                    );
+                                                }}
+                                                className="w-full border px-2 py-1 mb-2"
+                                                placeholder={`Properti Pembayaran ${
+                                                    index + 1
+                                                }`}
+                                            />
+                                        )
+                                    )}
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setData("properti_pembayaran", [
+                                                ...data.properti_pembayaran,
+                                                "",
+                                            ])
+                                        }
+                                        className="text-blue-600 text-sm"
+                                    >
+                                        + Add Properti Pembayaran
+                                    </button>
+                                    {data.properti_fasilitas.map(
+                                        (profas, index) => (
+                                            <input
+                                                key={index}
+                                                type="text"
+                                                value={profas}
+                                                onChange={(e) => {
+                                                    const newProfas = [
+                                                        ...data.properti_fasilitas,
+                                                    ];
+                                                    newProfas[index] =
+                                                        e.target.value;
+                                                    setData(
+                                                        "properti_fasilitas",
+                                                        newProfas
+                                                    );
+                                                }}
+                                                className="w-full border px-2 py-1 mb-2"
+                                                placeholder={`Properti Fasilitas ${
+                                                    index + 1
+                                                }`}
+                                            />
+                                        )
+                                    )}
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            setData("properti_fasilitas", [
+                                                ...data.properti_fasilitas,
+                                                "",
+                                            ])
+                                        }
+                                        className="text-blue-600 text-sm"
+                                    >
+                                        + Add Properti Fasilitas
+                                    </button>
+
+                                    <input
+                                        placeholder="Price"
+                                        value={data.price}
+                                        onChange={(e) =>
+                                            setData("price", e.target.value)
+                                        }
+                                        className="w-full border px-4 py-2"
+                                    />
+                                    <input
+                                        placeholder="Tipe"
+                                        value={data.tipe}
+                                        onChange={(e) =>
+                                            setData("tipe", e.target.value)
+                                        }
+                                        className="w-full border px-4 py-2"
+                                    />
+                                    <input
+                                        type="file"
+                                        multiple
+                                        onChange={(e) => {
+                                            if (e.target.files) {
+                                                setData(
+                                                    "images",
+                                                    Array.from(e.target.files)
+                                                );
+                                            }
+                                        }}
+                                    />
+
+                                    <div className="flex gap-2 justify-end mt-4">
+                                        <button
+                                            type="button"
+                                            onClick={closeModal}
+                                            className="text-gray-600 px-4 py-2 border rounded"
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            className="bg-blue-600 text-white px-4 py-2 rounded"
+                                        >
+                                            {editing ? "Update" : "Create"}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Search & Table */}
+                    <div className="mt-4">
+                        <input
+                            type="text"
+                            placeholder="Search by title, location, or price..."
+                            className="mb-4 border px-4 py-2 w-full max-w-md rounded"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+
+                        <DataTable
+                            columns={columns}
+                            data={filteredProducts}
+                            pagination
+                            highlightOnHover
+                            responsive
+                            dense
+                        />
+                    </div>
+                </div>
+            </AppLayout>
+        </>
+    );
 }

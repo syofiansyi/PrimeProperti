@@ -107,7 +107,7 @@ export default function Blog() {
       <ProductHiglight />
       <ArticlesSection />
       <RatingsSection />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

@@ -1,4 +1,6 @@
-import { Link } from "@inertiajs/react";
+import { Link,router } from "@inertiajs/react";
+import { route } from 'ziggy-js'; // ✅ Benar
+
 import {
   FaBed,
   FaBath,
@@ -8,6 +10,7 @@ import {
 } from "react-icons/fa";
 
 interface ProductCardProps {
+  id:number;
   title: string;
   location: string;
   price: string | number;
@@ -17,6 +20,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({
+  id,
   title,
   location,
   price,
@@ -29,6 +33,7 @@ export default function ProductCard({
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden max-w-sm w-full">
       {/* Badge */}
+      
       {badge && Object.values(badge).length > 0 && (
         <div className="absolute z-10 p-3 flex gap-2">
           {Object.values(badge).map((b, i) => (
@@ -43,7 +48,8 @@ export default function ProductCard({
       )}
 
       {/* Image */}
-      <Link href="/detail#produk" className="block">
+<Link href={route('products.show', id)} className="block">
+
         <div
           className="h-52 bg-cover bg-center w-full"
           style={{ backgroundImage: `url(${image})` }}

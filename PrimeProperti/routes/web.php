@@ -5,16 +5,26 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductPagesController;
 
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+
+Route::get('/', [ProductPagesController::class, 'index'])->name('products.index');
+
+// Tampilkan detail produk (sudah ada)
+Route::get('/products/{id}', [ProductPagesController::class, 'show'])->name('products.show');
+
+
+// Hapus produk
+Route::delete('/products/{id}', [ProductPagesController::class, 'destroy'])->name('products.destroy');
 
 Route::get('/detail', function () {
     return Inertia::render('Detail');
