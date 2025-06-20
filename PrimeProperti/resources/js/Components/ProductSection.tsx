@@ -87,7 +87,7 @@ const lokasi = [...new Set(PropertiProd.map((item) => item.location))];
             !appliedFilters.bedrooms ||
             parseInt(
                 p.features
-                    .find((f) => f.toLowerCase().includes("kamar"))
+                    .find((f: string) => f.toLowerCase().includes("kamar"))
                     ?.split(" ")[0] || "0"
             ) >= parseInt(appliedFilters.bedrooms);
 
@@ -270,9 +270,14 @@ const lokasi = [...new Set(PropertiProd.map((item) => item.location))];
       id="propertyResults"
       className="flex justify-center flex-wrap gap-6"
     >
-      {displayedProperties.map((p, i) => (
-        <ProductCard key={i} {...p} />
-      ))}
+     {displayedProperties.map((p, i) => (
+  <ProductCard
+    key={i}
+    {...p}
+    image={p.image ?? ""} // jika null, fallback ke string kosong
+  />
+))}
+
     </div>
   </div>
 </section>

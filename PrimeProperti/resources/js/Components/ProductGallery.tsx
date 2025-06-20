@@ -15,7 +15,7 @@ export default function ProductGallery({
   secondImage,
 }: ProductGalleryProps) {
 
-const thumbnails = secondImage.flat().map((img: any, index: number) => ({
+const thumbnails = secondImage.flat().map((img, index) => ({
   src: img,
   alt: `Gambar ${index + 1}`,
 }));

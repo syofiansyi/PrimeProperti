@@ -117,7 +117,6 @@ export default function ProductDetail({ DetailProd, users }: Props) {
     return (
         <>
             <Header />
-              <main className="pt-20">
             <HighlightSection />
 
             <section
@@ -172,7 +171,6 @@ export default function ProductDetail({ DetailProd, users }: Props) {
             <ArticlesSection />
             <Contact DetailUsers={DetailUsers} />
             <RatingsSection />
-             </main>
             <Footer DetailUsers={DetailUsers} />
         </>
     );
