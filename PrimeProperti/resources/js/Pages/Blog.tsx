@@ -31,7 +31,7 @@ export default function Blog({ blog,users }: Props) {
                 <HighlightSection />
 
                 {/* Blog Section */}
-                <section className="max-w-4xl mx-auto px-4 py-12 bg-white mt-6 rounded-2xl shadow-md">
+                <section className=" mx-auto px-4 py-12 bg-white mt-6 rounded-2xl shadow-md">
                     <div className="mb-8">
                         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
                             {blog.title}

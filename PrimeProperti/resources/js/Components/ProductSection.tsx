@@ -20,6 +20,11 @@ interface Props {
 }
 export default function ProductSection({ PropertiProd }: Props) {
 
+  const [minPrice, setMinPrice] = useState(0);
+const [maxPrice, setMaxPrice] = useState(10000000); // misalnya
+
+
+
 const allProperties = PropertiProd.map((item) => {
   const imageArray =
     typeof item.image === "string" ? JSON.parse(item.image) : item.image;
@@ -43,20 +48,22 @@ const allProperties = PropertiProd.map((item) => {
 const lokasi = [...new Set(PropertiProd.map((item) => item.location))];
     const TipeApart = [...new Set(PropertiProd.map((item) => item.tipe))];
     const Harga =[...new Set(PropertiProd.map((item) => item.price))];
-    const KamarTidur = [...new Set(PropertiProd.map((item) => item.features))];
+    const KamarTidur = PropertiProd.map((item) => item.features);
 
-
+console.log(KamarTidur)
 
     const [sortOption, setSortOption] = useState("latest");
     const [viewCount, setViewCount] = useState(12);
 
     // State form input (belum diterapkan)
-    const [searchFilters, setSearchFilters] = useState({
-        location: "",
-        type: "",
-        price: "",
-        bedrooms: "",
-    });
+const [searchFilters, setSearchFilters] = useState({
+    location: "",
+    tipe: "",
+    price: "",
+    bedrooms: "",
+    minPrice: 0,
+    maxPrice: 10000000,
+});
 
     // State filter yang diterapkan saat tombol search ditekan
     const [appliedFilters, setAppliedFilters] = useState(searchFilters);
@@ -71,28 +78,28 @@ const lokasi = [...new Set(PropertiProd.map((item) => item.location))];
         setAppliedFilters(searchFilters);
     };
 
-    const filteredProperties = allProperties.filter((p) => {
-        const locationMatch =
-            !appliedFilters.location ||
-            p.location
-                .toLowerCase()
-                .includes(appliedFilters.location.toLowerCase());
-        const typeMatch =
-            !appliedFilters.type ||
-            p.title.toLowerCase().includes(appliedFilters.type.toLowerCase());
-        const priceMatch =
-            !appliedFilters.price ||
-            p.price <= parseInt(appliedFilters.price) * 1000000;
-        const bedroomMatch =
-            !appliedFilters.bedrooms ||
-            parseInt(
-                p.features
-                    .find((f: string) => f.toLowerCase().includes("kamar"))
-                    ?.split(" ")[0] || "0"
-            ) >= parseInt(appliedFilters.bedrooms);
+const filteredProperties = allProperties.filter((p) => {
+  const locationMatch =
+    !appliedFilters.location ||
+    p.location.toLowerCase().includes(appliedFilters.location.toLowerCase());
 
-        return locationMatch && typeMatch && priceMatch && bedroomMatch;
-    });
+  const typeMatch =
+    !appliedFilters.tipe ||
+    p.tipe.toLowerCase().includes(appliedFilters.tipe.toLowerCase());
+
+  const priceMatch =
+    p.price >= appliedFilters.minPrice && p.price <= appliedFilters.maxPrice;
+
+  const bedroomMatch =
+    !appliedFilters.bedrooms ||
+    parseInt(
+      p.features
+        .find((f: string) => f.toLowerCase().includes("kamar"))
+        ?.split(" ")[0] || "0"
+    ) >= parseInt(appliedFilters.bedrooms);
+
+  return locationMatch && typeMatch && priceMatch && bedroomMatch;
+});
 
     const sortedProperties = [...filteredProperties].sort((a, b) => {
         switch (sortOption) {
@@ -150,9 +157,9 @@ const lokasi = [...new Set(PropertiProd.map((item) => item.location))];
           Tipe Properti
         </label>
         <select
-          id="type"
-          name="type"
-          value={searchFilters.type}
+          id="tipe"
+          name="tipe"
+          value={searchFilters.tipe}
           onChange={handleFilterChange}
           className="border border-gray-300 rounded px-3 py-2"
         >
@@ -165,26 +172,40 @@ const lokasi = [...new Set(PropertiProd.map((item) => item.location))];
         </select>
       </div>
 
-      {/* Harga Maksimal */}
-      <div className="flex flex-col">
-        <label htmlFor="price" className="text-sm font-medium mb-1">
-          Harga Maksimal
-        </label>
-        <select
-          id="price"
-          name="price"
-          value={searchFilters.price}
-          onChange={handleFilterChange}
-          className="border border-gray-300 rounded px-3 py-2"
-        >
-          <option value="">Semua Harga</option>
-          {Harga.map((i) => (
-            <option key={i} value={i}>
-              {i}
-            </option>
-          ))}
-        </select>
-      </div>
+{/* Rentang Harga */}
+<div className="flex flex-col">
+  <label className="text-sm font-medium mb-1">Rentang Harga (Rp)</label>
+  <div className="flex gap-2">
+    <input
+      type="number"
+      name="minPrice"
+      value={searchFilters.minPrice}
+      onChange={(e) =>
+        setSearchFilters((prev) => ({
+          ...prev,
+          minPrice: Number(e.target.value),
+        }))
+      }
+      placeholder="Minimum"
+      className="w-full border border-gray-300 rounded px-3 py-2"
+    />
+    <input
+      type="number"
+      name="maxPrice"
+      value={searchFilters.maxPrice}
+      onChange={(e) =>
+        setSearchFilters((prev) => ({
+          ...prev,
+          maxPrice: Number(e.target.value),
+        }))
+      }
+      placeholder="Maksimum"
+      className="w-full border border-gray-300 rounded px-3 py-2"
+    />
+  </div>
+</div>
+
+
 
       {/* Jumlah Kamar Tidur */}
       <div className="flex flex-col">

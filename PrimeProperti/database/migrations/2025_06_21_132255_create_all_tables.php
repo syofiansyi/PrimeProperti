@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void {
         // Blogs
         Schema::create('blogs', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->text('content')->nullable();
@@ -18,7 +18,7 @@ return new class extends Migration {
 
         // Products
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('title');
             $table->text('location');
             $table->text('deskripsi');
@@ -32,24 +32,22 @@ return new class extends Migration {
             $table->text('properti_detail')->nullable();
             $table->text('properti_fasilitas')->nullable();
             $table->text('properti_pembayaran')->nullable();
-            $table->integer('price')->nullable();
+            $table->bigInteger('price')->nullable();
             $table->timestamps();
         });
 
         // Ratings
         Schema::create('ratings', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama');
             $table->text('ulasan');
-           $table->unsignedTinyInteger('total_rate');
+            $table->unsignedTinyInteger('total_rate');
             $table->timestamps();
-// Validasi dilakukan di model / controller, bukan di schema
-
         });
 
         // Sosmeds
         Schema::create('sosmeds', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('username', 50);
             $table->string('medsos', 50);
             $table->text('icon')->nullable();
@@ -58,7 +56,7 @@ return new class extends Migration {
 
         // Users
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -69,14 +67,9 @@ return new class extends Migration {
             $table->string('nowhatsap')->nullable();
             $table->text('maps')->nullable();
         });
-
-      
-        
-
     }
 
     public function down(): void {
-       
         Schema::dropIfExists('users');
         Schema::dropIfExists('sosmeds');
         Schema::dropIfExists('ratings');
