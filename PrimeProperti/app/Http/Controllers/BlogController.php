@@ -48,17 +48,19 @@ Blog::create($validated);
     }
 
     public function show(Blog $blog)
-    {
+    {   
         return Inertia::render('Blogs/Show', [
             'blog' => $blog,
+            
         ]);
     }
    public function showPages(string $id)
-    {        
+    {        $Users = DB::table('users')->get();
         $blog = DB::table('blogs')->where('id', $id)->first();
 
         return Inertia::render('Blog', [
             'blog' => $blog,
+             'users' => $Users,
         ]);
 
      

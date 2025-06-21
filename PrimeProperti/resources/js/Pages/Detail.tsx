@@ -185,6 +185,7 @@ export default function ProductDetail({
     return (
         <>
             <Header />
+             <main className="pt-20">
             <HighlightSection />
 
             <section
@@ -241,6 +242,7 @@ export default function ProductDetail({
             <ArticlesSection Blog={Blog} />
             <Contact users={users} />
             <RatingsSection Rating={Rating} />
+            </main>
             <Footer users={users} />
         </>
     );
