@@ -20,6 +20,7 @@ class ProductController extends Controller
         $data = $request->validate([
             'title' => 'required|string',
             'location' => 'required|string',
+            'maps' => 'required|string',
             'features' => 'required|array',
             'features.*' => 'string',
             'badge' => 'required|array',
@@ -81,6 +82,7 @@ class ProductController extends Controller
         $request->validate([
            'title' => 'required|string',
             'location' => 'required|string',
+             'maps' => 'required|string',
             'features' => 'required|array',
             'features.*' => 'string',
             'badge' => 'required|array',
@@ -97,7 +99,7 @@ class ProductController extends Controller
             'images.*' => 'nullable|image|max:2048',
         ]);
 
-        $data = $request->only(['title', 'price', 'location', 'features','badge','properti_detail','properti_pembayaran','properti_fasilitas','tipe','tipe','deskripsi']);
+        $data = $request->only(['title', 'price', 'location','maps', 'features','badge','properti_detail','properti_pembayaran','properti_fasilitas','tipe','tipe','deskripsi']);
 
         // 🔁 Hapus gambar lama kalau ada file baru
         if ($request->hasFile('images')) {

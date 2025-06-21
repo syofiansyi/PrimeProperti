@@ -8,6 +8,7 @@ interface Product {
     id: number | null;
     title: string;
     location: string;
+    maps: string;
     deskripsi: string;
     features: string[] | string;
     badge: string[] | string;
@@ -34,6 +35,7 @@ export default function Index({ products }: PageProps) {
         id: null as number | null, // ✅ tambahkan ini
         title: "",
         location: "",
+        maps:"",
         deskripsi: "",
         features: [""],
         badge: [""],
@@ -63,6 +65,7 @@ export default function Index({ products }: PageProps) {
                 id: product.id,
                 title: product.title,
                 location: product.location,
+                maps: product.maps,
                 deskripsi: product.deskripsi,
                 features: Array.isArray(product.features)
                     ? product.features
@@ -100,6 +103,7 @@ export default function Index({ products }: PageProps) {
             id: null,
             title: "",
             location: "",
+            maps:"",
             deskripsi: "",
             features: [""],
             badge: [""],
@@ -119,6 +123,7 @@ export default function Index({ products }: PageProps) {
 
         formData.append("title", data.title);
         formData.append("location", data.location);
+         formData.append("maps", data.maps);
         formData.append("deskripsi", data.deskripsi);
         formData.append("price", data.price);
         formData.append("tipe", data.tipe);
@@ -346,6 +351,15 @@ export default function Index({ products }: PageProps) {
                                         value={data.location}
                                         onChange={(e) =>
                                             setData("location", e.target.value)
+                                        }
+                                        className="w-full border px-4 py-2"
+                                    />
+                                      <input
+                                        type="text"
+                                        placeholder="Maps"
+                                        value={data.maps}
+                                        onChange={(e) =>
+                                            setData("maps", e.target.value)
                                         }
                                         className="w-full border px-4 py-2"
                                     />

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 // app/Models/Product.php
 class Product extends Model
 {
-    protected $fillable = ['title', 'location', 'price', 'image', 'features', 'badge', 'properti_detail', 'properti_pembayaran', 'properti_fasilitas', 'tipe','deskripsi'];
+    protected $fillable = ['title', 'location', 'maps', 'price', 'image', 'features', 'badge', 'properti_detail', 'properti_pembayaran', 'properti_fasilitas', 'tipe','deskripsi'];
     protected $casts = [
         'image' => 'array',
         'features' => 'array',
