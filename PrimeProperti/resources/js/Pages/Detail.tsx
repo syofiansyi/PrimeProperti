@@ -52,14 +52,23 @@ interface users {
     maps:string;
 }
 
+interface Rating {
+    id: number;
+    nama:string;
+    ulasan:string;
+    total_rate:number;
+}
+
+
 interface Props {
   DetailProd: DetailProd[]; // <- array!
   allprod:SimilarProducts[]
   users: users[];
+  Rating: Rating[];
 }
 
-export default function ProductDetail({ DetailProd, users, allprod }: Props) {
-
+export default function ProductDetail({ DetailProd, users, allprod, Rating }: Props) {
+console.log(Rating)
 
 const filterLocation = DetailProd[0].location;
 const filterTipe = DetailProd[0].tipe;
@@ -214,9 +223,8 @@ const filteredProducts = allprod.filter(prod =>
 
             {/* Komponen Lain */}
             <ProductHiglight allprod={SimilarProd} />
-            <ArticlesSection />
              <Contact users={users} />
-            <RatingsSection />
+            <RatingsSection Rating={Rating} />
             <Footer users={users} />
         </>
     );

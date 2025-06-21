@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductPagesController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\SosmedController;
+
+
 
 
 // Route::get('/', function () {
@@ -24,7 +29,7 @@ Route::get('/products/{id}', [ProductPagesController::class, 'show'])->name('pro
 
 
 // Hapus produk
-Route::delete('/products/{id}', [ProductPagesController::class, 'destroy'])->name('products.destroy');
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 Route::get('/detail', function () {
     return Inertia::render('Detail');
@@ -44,6 +49,29 @@ Route::middleware('auth')->group(function () {
     // routes/web.php
 
 Route::resource('products', ProductController::class);
+
+
+Route::resource('blogs', BlogController::class);
+
+Route::post('/upload-quill-image', function (Request $request) {
+    if ($request->hasFile('image')) {
+        $path = $request->file('image')->store('uploads', 'public');
+        return response()->json([
+            'url' => asset("storage/" . $path),
+        ]);
+    }
+
+    return response()->json(['error' => 'Upload gagal'], 400);
+});
+Route::get('/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+Route::put('/blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+Route::get('/blogsPages/{id}', [BlogController::class, 'showPages'])->name('blogsPages.show');
+Route::get('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
+
+
+Route::resource('ratings', RatingController::class);
+Route::resource('sosmeds', SosmedController::class);
+
 
 });
 

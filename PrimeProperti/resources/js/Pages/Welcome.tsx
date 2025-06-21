@@ -20,21 +20,38 @@ interface PropertiProd {
   date:string;
   tipe:string;
 }
+
+interface Blog {
+  id: number;
+  title: string;
+  description:string;
+  content:string;
+  thumbnail?: string;
+
+}
 interface users {
     id: number;
     nowhatsap:string;
     maps:string;
 }
 
+interface Rating {
+    id: number;
+    nama:string;
+    ulasan:string;
+    total_rate:number;
+}
+
 
 interface Props {
   PropertiProd: PropertiProd[];
   users: users[];
+  Blog: Blog[];
+  Rating:Rating[];
 }
 
-export default function Welcome({ PropertiProd, users }: Props) {
+export default function Welcome({ PropertiProd, users, Blog, Rating }: Props) {
        
-
   return (
     <div>
       <Header />
@@ -42,10 +59,10 @@ export default function Welcome({ PropertiProd, users }: Props) {
         <HighlightSection />
         <ProductSection PropertiProd={PropertiProd} />
         <HighlighProduct />
-        <ArticlesSection />
+        <ArticlesSection Blog={Blog}/>
         <About />
         <Contact users={users} />
-        <RatingsSection />
+        <RatingsSection Rating={Rating}/>
       </main>
       <Footer users={users} />
     </div>

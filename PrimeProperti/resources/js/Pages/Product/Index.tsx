@@ -156,6 +156,7 @@ export default function Index({ products }: PageProps) {
         if (confirm("Are you sure you want to delete this product?")) {
             router.delete(`/products/${id}`);
         }
+        
     };
 
     const columns = [
@@ -301,20 +302,22 @@ export default function Index({ products }: PageProps) {
 
     return (
         <>
-            <Head title="Dashboard" />
+  
             <AppLayout>
-                <div className="max-w-6xl mx-auto p-6">
-                    <h1 className="text-2xl font-bold mb-4">
-                        Product Management
-                    </h1>
+      <div className="">
+        <div>
+           <div className="flex justify-between">
+
+         
+        <h1 className="text-2xl font-bold">Product</h1>
 
                     <button
                         onClick={() => openModal()}
                         className="mb-4 bg-green-600 text-white px-4 py-2 rounded"
                     >
-                        + Add Product
+                        + Product
                     </button>
-
+                      </div>
                     {/* Modal */}
                     {modalOpen && (
                         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -574,24 +577,28 @@ export default function Index({ products }: PageProps) {
                     )}
 
                     {/* Search & Table */}
-                    <div className="mt-4">
-                        <input
-                            type="text"
-                            placeholder="Search by title, location, or price..."
-                            className="mb-4 border px-4 py-2 w-full max-w-md rounded"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                        />
+                <div className="mt-4 overflow-x-auto">
+  <input
+    type="text"
+    placeholder="Search by title, location, or price..."
+    className="mb-4 border px-4 py-2 w-full max-w-md rounded"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
 
-                        <DataTable
-                            columns={columns}
-                            data={filteredProducts}
-                            pagination
-                            highlightOnHover
-                            responsive
-                            dense
-                        />
-                    </div>
+  <div className="min-w-[1000px]">
+    <DataTable
+      columns={columns}
+      data={filteredProducts}
+      pagination
+      highlightOnHover
+      responsive
+      dense
+    />
+  </div>
+</div>
+
+                </div>
                 </div>
             </AppLayout>
         </>

@@ -16,10 +16,14 @@ class ProductPagesController extends Controller
     public function index()
     {
          $Users = DB::table('users')->get();
+         $Blog = DB::table('blogs')->get();
+         $Rating = DB::table('ratings')->get();
          $PropertiProd = DB::table('products')->get();
         return Inertia::render('Welcome', [
             'PropertiProd' => $PropertiProd,
-             'users' => $Users
+             'users' => $Users,
+            'Blog' => $Blog,
+            'Rating' => $Rating,
         ]);
     }
 
