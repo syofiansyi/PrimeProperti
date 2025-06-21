@@ -42,11 +42,17 @@ class ProductPagesController extends Controller
     {
         $DetailProd = DB::table('products')->where('id',$id)->get();
         $allprod = DB::table('products')->get();
+                 $Blog = DB::table('blogs')->get();
+
         $Users = DB::table('users')->get();
+         $Rating = DB::table('ratings')->get();
+         $PropertiProd = DB::table('products')->get();
         return Inertia::render('Detail', [
             'DetailProd' => $DetailProd,
             'users' => $Users,
-             'allprod' =>$allprod
+            'allprod' =>$allprod,
+            'Blog' => $Blog,
+            'Rating' => $Rating,
         ]);
     }
 

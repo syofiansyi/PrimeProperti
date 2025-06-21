@@ -31,9 +31,9 @@ Route::get('/products/{id}', [ProductPagesController::class, 'show'])->name('pro
 // Hapus produk
 Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-Route::get('/detail', function () {
-    return Inertia::render('Detail');
-});
+// Route::get('/detail', function () {
+//     return Inertia::render('Detail');
+// });
 Route::get('/blog', function () {
     return Inertia::render('Blog');
 });

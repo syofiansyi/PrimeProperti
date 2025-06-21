@@ -9,9 +9,10 @@ import RatingsSection from "@/Components/RatingsSection";
 import ProductGallery from "@/Components/ProductGallery";
 import ProductInfo from "@/Components/ProductInfo";
 import ProductTabs from "@/Components/ProductTabs";
+import About from "@/Components/About";
 
 interface DetailProd {
-   id: number;
+    id: number;
     title: string;
     location: string;
     price: number;
@@ -22,14 +23,14 @@ interface DetailProd {
     properti_detail: string;
     properti_pembayaran: string;
     properti_fasilitas: string;
-    popular:boolean;
-    date:string;
-    deskripsi:string;
-    tipe:string;
+    popular: boolean;
+    date: string;
+    deskripsi: string;
+    tipe: string;
 }
 
 interface SimilarProducts {
-   id: number;
+    id: number;
     title: string;
     location: string;
     price: number;
@@ -40,128 +41,137 @@ interface SimilarProducts {
     properti_detail: string;
     properti_pembayaran: string;
     properti_fasilitas: string;
-    popular:boolean;
-    date:string;
-    deskripsi:string;
-    tipe:string;
+    popular: boolean;
+    date: string;
+    deskripsi: string;
+    tipe: string;
 }
 
 interface users {
     id: number;
-    nowhatsap:string;
-    maps:string;
+    nowhatsap: string;
+    maps: string;
 }
 
 interface Rating {
     id: number;
-    nama:string;
-    ulasan:string;
-    total_rate:number;
+    nama: string;
+    ulasan: string;
+    total_rate: number;
 }
 
+interface Blog {
+    id: number;
+    title: string;
+    description: string;
+    content: string;
+    thumbnail?: string;
+}
 
 interface Props {
-  DetailProd: DetailProd[]; // <- array!
-  allprod:SimilarProducts[]
-  users: users[];
-  Rating: Rating[];
+    DetailProd: DetailProd[]; // <- array!
+    allprod: SimilarProducts[];
+    users: users[];
+    Rating: Rating[];
+    Blog: Blog[];
 }
 
-export default function ProductDetail({ DetailProd, users, allprod, Rating }: Props) {
-console.log(Rating)
+export default function ProductDetail({
+    DetailProd,
+    users,
+    allprod,
+    Rating,
+    Blog,
+}: Props) {
+    console.log(Rating);
 
-const filterLocation = DetailProd[0].location;
-const filterTipe = DetailProd[0].tipe;
+    const filterLocation = DetailProd[0].location;
+    const filterTipe = DetailProd[0].tipe;
 
-const filteredProducts = allprod.filter(prod =>
-  prod.location === filterLocation
-);
-
-
-
-
- const DetailProdProp = DetailProd.map((item) => {
-          const imageArray =
-              typeof item.image === "string"
-                  ? JSON.parse(item.image)
-                  : item.image;
-  
-          return {
-              id: item.id,
-              title: item.title,
-              location: item.location,
-              deskripsi: item.deskripsi,
-              price: item.price,
-              popular: item.popular,
-              date:item.date,
-              tipe:item.tipe,
-              image: imageArray?.map((img: string) => `/storage/${img}`) ?? [],
-              features:
-                  typeof item.features === "string"
-                      ? JSON.parse(item.features)
-                      : item.features,
-              badge:
-                  typeof item.badge === "string"
-                      ? JSON.parse(item.badge)
-                      : item.badge,
-              properti_detail:
-                  typeof item.properti_detail=== "string"
-                      ? JSON.parse(item.properti_detail)
-                      : item.properti_detail,
-               properti_pembayaran:
-                  typeof item.properti_pembayaran === "string"
-                      ? JSON.parse(item.properti_pembayaran)
-                      : item.properti_pembayaran,
-              properti_fasilitas:
-                  typeof item.properti_fasilitas === "string"
-                      ? JSON.parse(item.properti_fasilitas)
-                      : item.properti_fasilitas,
-              maps: item.maps,
-          };
-      });
- const SimilarProd = filteredProducts.map((item) => {
-          const imageArray =
-              typeof item.image === "string"
-                  ? JSON.parse(item.image)
-                  : item.image;
-  
-          return {
-              id: item.id,
-              title: item.title,
-              location: item.location,
-              deskripsi: item.deskripsi,
-              price: item.price,
-              popular: item.popular,
-              date:item.date,
-              tipe:item.tipe,
-              image: imageArray?.map((img: string) => `/storage/${img}`) ?? [],
-              features:
-                  typeof item.features === "string"
-                      ? JSON.parse(item.features)
-                      : item.features,
-              badge:
-                  typeof item.badge === "string"
-                      ? JSON.parse(item.badge)
-                      : item.badge,
-              properti_detail:
-                  typeof item.properti_detail=== "string"
-                      ? JSON.parse(item.properti_detail)
-                      : item.properti_detail,
-               properti_pembayaran:
-                  typeof item.properti_pembayaran === "string"
-                      ? JSON.parse(item.properti_pembayaran)
-                      : item.properti_pembayaran,
-              properti_fasilitas:
-                  typeof item.properti_fasilitas === "string"
-                      ? JSON.parse(item.properti_fasilitas)
-                      : item.properti_fasilitas,
-              maps: item.maps,
-          };
-      });
-
-    const [mainImage, setMainImage] = useState(
-        DetailProdProp[0].image[0]
+    const filteredProducts = allprod.filter(
+        (prod) => prod.location === filterLocation
     );
+
+    const DetailProdProp = DetailProd.map((item) => {
+        const imageArray =
+            typeof item.image === "string"
+                ? JSON.parse(item.image)
+                : item.image;
+
+        return {
+            id: item.id,
+            title: item.title,
+            location: item.location,
+            deskripsi: item.deskripsi,
+            price: item.price,
+            popular: item.popular,
+            date: item.date,
+            tipe: item.tipe,
+            image: imageArray?.map((img: string) => `/storage/${img}`) ?? [],
+            features:
+                typeof item.features === "string"
+                    ? JSON.parse(item.features)
+                    : item.features,
+            badge:
+                typeof item.badge === "string"
+                    ? JSON.parse(item.badge)
+                    : item.badge,
+            properti_detail:
+                typeof item.properti_detail === "string"
+                    ? JSON.parse(item.properti_detail)
+                    : item.properti_detail,
+            properti_pembayaran:
+                typeof item.properti_pembayaran === "string"
+                    ? JSON.parse(item.properti_pembayaran)
+                    : item.properti_pembayaran,
+            properti_fasilitas:
+                typeof item.properti_fasilitas === "string"
+                    ? JSON.parse(item.properti_fasilitas)
+                    : item.properti_fasilitas,
+            maps: item.maps,
+        };
+    });
+    const SimilarProd = filteredProducts.map((item) => {
+        const imageArray =
+            typeof item.image === "string"
+                ? JSON.parse(item.image)
+                : item.image;
+
+        return {
+            id: item.id,
+            title: item.title,
+            location: item.location,
+            deskripsi: item.deskripsi,
+            price: item.price,
+            popular: item.popular,
+            date: item.date,
+            tipe: item.tipe,
+            image: imageArray?.map((img: string) => `/storage/${img}`) ?? [],
+            features:
+                typeof item.features === "string"
+                    ? JSON.parse(item.features)
+                    : item.features,
+            badge:
+                typeof item.badge === "string"
+                    ? JSON.parse(item.badge)
+                    : item.badge,
+            properti_detail:
+                typeof item.properti_detail === "string"
+                    ? JSON.parse(item.properti_detail)
+                    : item.properti_detail,
+            properti_pembayaran:
+                typeof item.properti_pembayaran === "string"
+                    ? JSON.parse(item.properti_pembayaran)
+                    : item.properti_pembayaran,
+            properti_fasilitas:
+                typeof item.properti_fasilitas === "string"
+                    ? JSON.parse(item.properti_fasilitas)
+                    : item.properti_fasilitas,
+            maps: item.maps,
+        };
+    });
+
+    const [mainImage, setMainImage] = useState(DetailProdProp[0].image[0]);
     const [activeTab, setActiveTab] = useState("detail");
 
     const changeImage = (src: string) => {
@@ -171,7 +181,6 @@ const filteredProducts = allprod.filter(prod =>
     const openTab = (tab: string) => {
         setActiveTab(tab);
     };
-
 
     return (
         <>
@@ -212,18 +221,25 @@ const filteredProducts = allprod.filter(prod =>
 
                         {/* Info Properti */}
                         <div className="w-full lg:w-1/2">
-                            <ProductInfo users={users}/>
+                            <ProductInfo users={users} />
                         </div>
                     </div>
 
                     {/* Tabs */}
-                    <ProductTabs activeTab={activeTab} openTab={openTab} DetailProd={DetailProdProp} />
+                    <ProductTabs
+                        activeTab={activeTab}
+                        openTab={openTab}
+                        DetailProd={DetailProdProp}
+                    />
                 </div>
             </section>
-
-            {/* Komponen Lain */}
             <ProductHiglight allprod={SimilarProd} />
-             <Contact users={users} />
+
+            <About />
+            {/* Komponen Lain */}
+
+            <ArticlesSection Blog={Blog} />
+            <Contact users={users} />
             <RatingsSection Rating={Rating} />
             <Footer users={users} />
         </>
