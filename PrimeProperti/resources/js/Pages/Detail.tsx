@@ -177,17 +177,22 @@ export default function ProductDetail({
                         <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-10">
                             Detail Properti
                         </h2>
-                        <div className="mb-4 flex flex-wrap gap-2">
-                            <span className="px-3 py-1 text-sm bg-green-100 text-green-800 rounded-full font-semibold">
-                                Baru
-                            </span>
-                            <span className="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-full font-semibold">
-                                Eksklusif
-                            </span>
+
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            {DetailProdProp[0].badge.map(
+                                (item: string, index: number) => (
+                                    <span
+                                        key={index}
+                                        className="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-full font-semibold"
+                                    >
+                                        {item}
+                                    </span>
+                                )
+                            )}
                         </div>
 
                         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">
-                            Rumah Modern Minimalis
+                            {DetailProd[0].title}
                         </h1>
 
                         {/* Responsive Layout */}
