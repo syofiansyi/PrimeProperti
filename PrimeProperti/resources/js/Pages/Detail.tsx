@@ -167,8 +167,9 @@ export default function ProductDetail({
     return (
         <>
             <Header />
+                        <main className="pt-20">
+
             <HighlightSection />
-            <main className="pt-20">
                 <section
                     id="produk"
                     className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50"
