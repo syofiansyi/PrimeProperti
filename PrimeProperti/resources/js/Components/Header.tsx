@@ -47,6 +47,7 @@ export default function Header() {
             { label: 'Artikel', href: '#artikel' },
             { label: 'Testimoni', href: '#testimoni' },
             { label: 'Kontak', href: '#kontak' },
+             { label: 'Login', href: '/login' },
           ].map((item, idx) => (
             <li key={idx}>
               <Link
