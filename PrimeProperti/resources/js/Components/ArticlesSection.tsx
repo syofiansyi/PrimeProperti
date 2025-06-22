@@ -92,7 +92,7 @@ export default function ArticlesSection({ Blog }: Props) {
           ))}
         </div>
 
-        {/* Tombol Next */}
+        {/* Tombol Next Ini */}
         <button
           onClick={() => scroll("right")}
           className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-70"
