@@ -100,24 +100,41 @@ class ProductController extends Controller
         ]);
 
         $data = $request->only(['title', 'price', 'location','maps', 'features','badge','properti_detail','properti_pembayaran','properti_fasilitas','tipe','tipe','deskripsi']);
-
+        
+        //Ini untuk Update Hapus Image Lama
         // 🔁 Hapus gambar lama kalau ada file baru
-        if ($request->hasFile('images')) {
-            // Hapus gambar lama dari storage
-            foreach ((array) $product->image as $oldImage) {
-                if (\Storage::disk('public')->exists($oldImage)) {
-                    \Storage::disk('public')->delete($oldImage);
-                }
-            }
+        // if ($request->hasFile('images')) {
+        //     // Hapus gambar lama dari storage
+        //     foreach ((array) $product->image as $oldImage) {
+        //         if (\Storage::disk('public')->exists($oldImage)) {
+        //             \Storage::disk('public')->delete($oldImage);
+        //         }
+        //     }
 
-            // Simpan gambar baru
-            $newImages = [];
-            foreach ($request->file('images') as $file) {
-                $newImages[] = $file->store('products', 'public');
-            }
-            $data['image'] = $newImages;
+        //     // Simpan gambar baru
+        //     $newImages = [];
+        //     foreach ($request->file('images') as $file) {
+        //         $newImages[] = $file->store('products', 'public');
+        //     }
+        //     $data['image'] = $newImages;
+        // }
+      //Sampai Sini Untuk Hapus Image Lama
+
+      //Ini untuk simpan Image Lama
+    $oldImages = is_array($product->image) ? $product->image : [];
+
+    // Tambah gambar baru jika ada
+    if ($request->hasFile('images')) {
+        $newImages = [];
+        foreach ($request->file('images') as $file) {
+            $newImages[] = $file->store('products', 'public');
         }
-
+        // Gabungkan gambar lama dan baru
+        $data['image'] = array_merge($oldImages, $newImages);
+    } else {
+        // Jika tidak ada gambar baru, gunakan gambar lama
+        $data['image'] = $oldImages;
+    }
         $product->update($data);
 
         return redirect()->back()->with('success', 'Product updated.');
