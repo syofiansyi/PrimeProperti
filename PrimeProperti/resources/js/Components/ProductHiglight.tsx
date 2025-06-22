@@ -124,7 +124,7 @@ export default function ProductHighlight({ allprod }: Props) {
                             {/* Badge */}
                             {item.badge.length > 0 && (
                                 <div className="absolute z-10 p-3 flex gap-2">
-                                    {item.badge.map((b, i) => (
+                                    {item.badge.map((b: string, i: number) => (
                                         <span
                                             key={i}
                                             className="bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow"
