@@ -22,7 +22,7 @@ export default function HighlightSection() {
           Mulai perjalanan properti Anda bersama kami.
         </p>
           <Link
-            href={route("productsPages.index")}
+            href='/#produk'
           className="inline-block bg-white text-[#8B5E4D] font-semibold px-6 py-3 rounded-full shadow hover:bg-gray-100 transition duration-300"
             
 
