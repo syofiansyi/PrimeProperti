@@ -40,10 +40,16 @@ class ProductPagesController extends Controller
      */
     public function show(string $id)
     {
-        $DetailProd = DB::table('products')->where('id',$id)->get();
-        $allprod = DB::table('products')->get();
-                 $Blog = DB::table('blogs')->get();
+       
 
+
+        $DetailProd = DB::table('products')->where('id',$id)->get();
+         $location = $DetailProd[0]->location;
+        $allprod =   DB::table('products')
+    ->where('location', $location)
+    ->where('id', '!=', $id)
+    ->get();
+        $Blog = DB::table('blogs')->get();
         $Users = DB::table('users')->get();
          $Rating = DB::table('ratings')->get();
          $PropertiProd = DB::table('products')->get();

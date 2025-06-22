@@ -22,7 +22,7 @@ use App\Http\Controllers\SosmedController;
 //     ]);
 // });
 
-Route::get('/', [ProductPagesController::class, 'index'])->name('products.index');
+Route::get('/', [ProductPagesController::class, 'index'])->name('productsPages.index');
 
 // Tampilkan detail produk (sudah ada)
 Route::get('/products/{id}', [ProductPagesController::class, 'show'])->name('products.show');
@@ -65,7 +65,6 @@ Route::post('/upload-quill-image', function (Request $request) {
 });
 Route::get('/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
 Route::put('/blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
-Route::get('/blogsPages/{id}', [BlogController::class, 'showPages'])->name('blogsPages.show');
 Route::get('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
 
 
@@ -74,5 +73,6 @@ Route::resource('sosmeds', SosmedController::class);
 
 
 });
+Route::get('/blogsPages/{id}', [BlogController::class, 'showPages'])->name('blogsPages.show');
 
 require __DIR__.'/auth.php';

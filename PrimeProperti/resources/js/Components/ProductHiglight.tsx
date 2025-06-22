@@ -10,7 +10,7 @@ import {
     FaMapMarkerAlt,
     FaBed,
     FaBath,
-    FaRulerCombined,
+    FaHome,
     FaExpand,
 } from "react-icons/fa";
 import { Link, router } from "@inertiajs/react";
@@ -18,20 +18,21 @@ import { route } from "ziggy-js"; // ✅ Benar
 
 interface SimilarProducts {
     id: number;
-    title: string;
-    location: string;
-    price: number;
-    image?: string[] | string;
-    features: string;
-    badge: string;
-    maps: string;
-    properti_detail: string;
-    properti_pembayaran: string;
-    properti_fasilitas: string;
-    popular: boolean;
-    date: string;
-    deskripsi: string;
-    tipe: string;
+  title: string;
+  location: string;
+  price: number;
+  image: any
+  features: string;
+  badge: string;
+  popular: boolean;
+  date: string;
+  tipe: string;
+
+  maps?: any;
+  properti_detail?: any;
+  properti_pembayaran?: any;
+  properti_fasilitas?: any;
+  deskripsi?: string;
 }
 
 interface Props {
@@ -51,7 +52,7 @@ export default function ProductHighlight({ allprod }: Props) {
         });
     };
 
-    const icons = [<FaBed />, <FaBath />, <FaRulerCombined />, <FaExpand />];
+  const icons = [<FaBed />, <FaBath />, <FaExpand />, <FaHome />];
 
     const allProperties = allprod.map((item) => {
         const imageArray =
@@ -163,8 +164,9 @@ export default function ProductHighlight({ allprod }: Props) {
                                         Rp {item.price.toLocaleString()}
                                     </span>
                                 </div>
+<hr className="h-1"></hr>
 
-                                <div className="flex flex-wrap gap-4 text-gray-600 text-sm mt-2">
+                                <div className="flex flex-wrap  justify-between gap-4 text-gray-600 text-sm mt-2">
                                     {item.features.map(
                                         (
                                             f:
@@ -184,9 +186,9 @@ export default function ProductHighlight({ allprod }: Props) {
                                         ) => (
                                             <div
                                                 key={i}
-                                                className="flex items-center gap-1"
-                                            >
-                                                <span>
+                                                className="flex flex-wrap justify-between gap-4 text-gray-600 text-sm mt-2">
+                                            
+                                                <span className="">
                                                     {icons[i % icons.length]}
                                                 </span>
                                                 <span>{f}</span>

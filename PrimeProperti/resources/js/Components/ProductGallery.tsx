@@ -1,26 +1,29 @@
 import { useState } from "react";
+
 interface DetailProd {
-   id: number;
-    title: string;
-    location: string;
-    price: number;
-    image?: string[] | string;
-    features: string;
-    badge: string;
-    maps: string;
-    properti_detail: string;
-    properti_pembayaran: string;
-    properti_fasilitas: string;
-    popular:boolean;
-    date:string;
-    deskripsi:string;
-    tipe:string;
+  id: number;
+  title: string;
+  location: string;
+  price: number;
+  image: any
+  features: string;
+  badge: string;
+  popular: boolean;
+  date: string;
+  tipe: string;
+  maps?: any;
+  properti_detail?: any;
+  properti_pembayaran?: any;
+  properti_fasilitas?: any;
+  deskripsi?: string;
 }
 
+
 interface ProductGalleryProps {
-  mainImage: string;
+  mainImage: string | null;
   changeImage: (src: string) => void;
-   DetailProd:DetailProd[];
+  DetailProd: DetailProd[];
+
 }
 
 export default function ProductGallery({
@@ -29,11 +32,11 @@ export default function ProductGallery({
   DetailProd,
 }: ProductGalleryProps) {
  const thumbnails = (DetailProd[0].image as unknown as string[]).map((img, index) => ({
-  src: `${img}`,
+  src:`/storage/${img}`,
   alt: `Gambar ${index + 1}`, // atau alt dari properti lain jika ada
 }));
 
-   
+
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const handlePrev = () => {
@@ -55,38 +58,23 @@ export default function ProductGallery({
   return (
     <div className="space-y-4">
       {/* Main Image */}
-      <img
-        src={mainImage}
-        alt="Rumah Modern Minimalis"
-        className="w-full max-h-[500px] object-cover rounded-lg shadow"
-      />
+     <img
+  src={`/storage/${mainImage}`}
+  alt="Rumah Modern Minimalis"
+  className="w-full max-h-[500px] object-cover rounded-lg shadow"
+/>
 
       {/* Thumbnails */}
       <div className="flex gap-4 flex-wrap justify-center">
-      {thumbnails.slice(0, 6).map((thumb, idx) => {
-  const isLastVisible = idx === 5 && thumbnails.length > 6;
-  const remaining = thumbnails.length - 6;
-
-  return (
-    <div
-      key={idx}
-      className="relative w-20 h-20 rounded overflow-hidden cursor-pointer border hover:ring-2 ring-[#8B5E4D] transition"
-      onClick={() => setActiveIndex(idx)}
-    >
-      <img
-        src={thumb.src}
-        alt={thumb.alt}
-        className={`w-full h-full object-cover ${isLastVisible ? 'opacity-50' : ''}`}
-      />
-      {isLastVisible && (
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-lg font-semibold">
-          +{remaining}
-        </div>
-      )}
-    </div>
-  );
-})}
-
+        {thumbnails.map((thumb, idx) => (
+          <img
+            key={idx}
+            src={thumb.src}
+            alt={thumb.alt}
+            className="w-20 h-20 object-cover rounded cursor-pointer border hover:ring-2 ring-[#8B5E4D] transition"
+            onClick={() => setActiveIndex(idx)}
+          />
+        ))}
       </div>
 
       {/* Modal */}

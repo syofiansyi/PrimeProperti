@@ -1,3 +1,5 @@
+import { Link } from "@inertiajs/react";
+import { route } from "ziggy-js";
 export default function HighlightSection() {
   return (
     <section
@@ -19,12 +21,14 @@ export default function HighlightSection() {
           Kami menyediakan properti berkualitas dengan harga terbaik di lokasi strategis.
           Mulai perjalanan properti Anda bersama kami.
         </p>
-        <a
-          href="#produk"
+          <Link
+            href={route("productsPages.index")}
           className="inline-block bg-white text-[#8B5E4D] font-semibold px-6 py-3 rounded-full shadow hover:bg-gray-100 transition duration-300"
-        >
-          Lihat Properti
-        </a>
+            
+
+          >          Lihat Properti
+</Link>
+        
       </div>
     </section>
   );

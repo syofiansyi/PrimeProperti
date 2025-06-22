@@ -30,12 +30,13 @@ export default function Index({ products }: PageProps) {
     const [search, setSearch] = useState("");
     const [filteredProducts, setFilteredProducts] =
         useState<Product[]>(products);
+    const TipeProperti = ["Rumah", "Ruko", "Apartemen", "Hotel", "Villa"];
 
     const { data, setData, post, reset } = useForm({
         id: null as number | null, // ✅ tambahkan ini
         title: "",
         location: "",
-        maps:"",
+        maps: "",
         deskripsi: "",
         features: [""],
         badge: [""],
@@ -103,7 +104,7 @@ export default function Index({ products }: PageProps) {
             id: null,
             title: "",
             location: "",
-            maps:"",
+            maps: "",
             deskripsi: "",
             features: [""],
             badge: [""],
@@ -123,7 +124,7 @@ export default function Index({ products }: PageProps) {
 
         formData.append("title", data.title);
         formData.append("location", data.location);
-         formData.append("maps", data.maps);
+        formData.append("maps", data.maps);
         formData.append("deskripsi", data.deskripsi);
         formData.append("price", data.price);
         formData.append("tipe", data.tipe);
@@ -161,7 +162,6 @@ export default function Index({ products }: PageProps) {
         if (confirm("Are you sure you want to delete this product?")) {
             router.delete(`/products/${id}`);
         }
-        
     };
 
     const columns = [
@@ -307,312 +307,366 @@ export default function Index({ products }: PageProps) {
 
     return (
         <>
-  
             <AppLayout>
-      <div className="">
-        <div>
-           <div className="flex justify-between">
+                <div className="">
+                    <div>
+                        <div className="flex justify-between">
+                            <h1 className="text-2xl font-bold">Product</h1>
 
-         
-        <h1 className="text-2xl font-bold">Product</h1>
+                            <button
+                                onClick={() => openModal()}
+                                className="mb-4 bg-green-600 text-white px-4 py-2 rounded"
+                            >
+                                + Product
+                            </button>
+                        </div>
+                        {/* Modal */}
+                        {modalOpen && (
+                            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                                <div className="bg-white w-full max-w-lg max-h-[80vh] overflow-y-auto rounded shadow p-6">
+                                    <h2 className="text-lg font-semibold mb-4">
+                                        {editing
+                                            ? "Edit Product"
+                                            : "Add Product"}
+                                    </h2>
 
-                    <button
-                        onClick={() => openModal()}
-                        className="mb-4 bg-green-600 text-white px-4 py-2 rounded"
-                    >
-                        + Product
-                    </button>
-                      </div>
-                    {/* Modal */}
-                    {modalOpen && (
-                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                            <div className="bg-white w-full max-w-lg max-h-[80vh] overflow-y-auto rounded shadow p-6">
-                                <h2 className="text-lg font-semibold mb-4">
-                                    {editing ? "Edit Product" : "Add Product"}
-                                </h2>
-
-                                <form
-                                    onSubmit={handleSubmit}
-                                    className="space-y-4"
-                                >
-                                    <input
-                                        type="text"
-                                        placeholder="Title"
-                                        value={data.title}
-                                        onChange={(e) =>
-                                            setData("title", e.target.value)
-                                        }
-                                        className="w-full border px-4 py-2"
-                                    />
-
-                                    <input
-                                        type="text"
-                                        placeholder="Location"
-                                        value={data.location}
-                                        onChange={(e) =>
-                                            setData("location", e.target.value)
-                                        }
-                                        className="w-full border px-4 py-2"
-                                    />
-                                      <input
-                                        type="text"
-                                        placeholder="Maps"
-                                        value={data.maps}
-                                        onChange={(e) =>
-                                            setData("maps", e.target.value)
-                                        }
-                                        className="w-full border px-4 py-2"
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder="Deskripsi"
-                                        value={data.deskripsi}
-                                        onChange={(e) =>
-                                            setData("deskripsi", e.target.value)
-                                        }
-                                        className="w-full border px-4 py-2"
-                                    />
-
-                                    {data.features.map((fet, index) => (
+                                    <form
+                                        onSubmit={handleSubmit}
+                                        className="space-y-4"
+                                    >
+                                             <div>
+  <label>Titile</label>
+                                    </div>
                                         <input
-                                            key={index}
                                             type="text"
-                                            value={fet}
-                                            onChange={(e) => {
-                                                const newFets = [
-                                                    ...data.features,
-                                                ];
-                                                newFets[index] = e.target.value;
-                                                setData("features", newFets);
-                                            }}
-                                            className="w-full border px-2 py-1 mb-2"
-                                            placeholder={`Features ${
-                                                index + 1
-                                            }`}
-                                        />
-                                    ))}
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            setData("features", [
-                                                ...data.features,
-                                                "",
-                                            ])
-                                        }
-                                        className="text-blue-600 text-sm"
-                                    >
-                                        + Add Features
-                                    </button>
-
-                                    {data.badge.map((bad, index) => (
-                                        <input
-                                            key={index}
-                                            type="text"
-                                            value={bad}
-                                            onChange={(e) => {
-                                                const newBads = [...data.badge];
-                                                newBads[index] = e.target.value;
-                                                setData("badge", newBads);
-                                            }}
-                                            className="w-full border px-2 py-1 mb-2"
-                                            placeholder={`Badge ${index + 1}`}
-                                        />
-                                    ))}
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            setData("badge", [
-                                                ...data.badge,
-                                                "",
-                                            ])
-                                        }
-                                        className="text-blue-600 text-sm"
-                                    >
-                                        + Add Badge
-                                    </button>
-
-                                    {data.properti_detail.map(
-                                        (prodet, index) => (
-                                            <input
-                                                key={index}
-                                                type="text"
-                                                value={prodet}
-                                                onChange={(e) => {
-                                                    const newProdet = [
-                                                        ...data.properti_detail,
-                                                    ];
-                                                    newProdet[index] =
-                                                        e.target.value;
-                                                    setData(
-                                                        "properti_detail",
-                                                        newProdet
-                                                    );
-                                                }}
-                                                className="w-full border px-2 py-1 mb-2"
-                                                placeholder={`Properti Detail ${
-                                                    index + 1
-                                                }`}
-                                            />
-                                        )
-                                    )}
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            setData("properti_detail", [
-                                                ...data.properti_detail,
-                                                "",
-                                            ])
-                                        }
-                                        className="text-blue-600 text-sm"
-                                    >
-                                        + Add Properti Detail
-                                    </button>
-
-                                    {data.properti_pembayaran.map(
-                                        (propem, index) => (
-                                            <input
-                                                key={index}
-                                                type="text"
-                                                value={propem}
-                                                onChange={(e) => {
-                                                    const newPropem = [
-                                                        ...data.properti_pembayaran,
-                                                    ];
-                                                    newPropem[index] =
-                                                        e.target.value;
-                                                    setData(
-                                                        "properti_pembayaran",
-                                                        newPropem
-                                                    );
-                                                }}
-                                                className="w-full border px-2 py-1 mb-2"
-                                                placeholder={`Properti Pembayaran ${
-                                                    index + 1
-                                                }`}
-                                            />
-                                        )
-                                    )}
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            setData("properti_pembayaran", [
-                                                ...data.properti_pembayaran,
-                                                "",
-                                            ])
-                                        }
-                                        className="text-blue-600 text-sm"
-                                    >
-                                        + Add Properti Pembayaran
-                                    </button>
-                                    {data.properti_fasilitas.map(
-                                        (profas, index) => (
-                                            <input
-                                                key={index}
-                                                type="text"
-                                                value={profas}
-                                                onChange={(e) => {
-                                                    const newProfas = [
-                                                        ...data.properti_fasilitas,
-                                                    ];
-                                                    newProfas[index] =
-                                                        e.target.value;
-                                                    setData(
-                                                        "properti_fasilitas",
-                                                        newProfas
-                                                    );
-                                                }}
-                                                className="w-full border px-2 py-1 mb-2"
-                                                placeholder={`Properti Fasilitas ${
-                                                    index + 1
-                                                }`}
-                                            />
-                                        )
-                                    )}
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            setData("properti_fasilitas", [
-                                                ...data.properti_fasilitas,
-                                                "",
-                                            ])
-                                        }
-                                        className="text-blue-600 text-sm"
-                                    >
-                                        + Add Properti Fasilitas
-                                    </button>
-
-                                    <input
-                                        placeholder="Price"
-                                        value={data.price}
-                                        onChange={(e) =>
-                                            setData("price", e.target.value)
-                                        }
-                                        className="w-full border px-4 py-2"
-                                    />
-                                    <input
-                                        placeholder="Tipe"
-                                        value={data.tipe}
-                                        onChange={(e) =>
-                                            setData("tipe", e.target.value)
-                                        }
-                                        className="w-full border px-4 py-2"
-                                    />
-                                    <input
-                                        type="file"
-                                        multiple
-                                        onChange={(e) => {
-                                            if (e.target.files) {
-                                                setData(
-                                                    "images",
-                                                    Array.from(e.target.files)
-                                                );
+                                            placeholder="Title"
+                                            value={data.title}
+                                            onChange={(e) =>
+                                                setData("title", e.target.value)
                                             }
-                                        }}
-                                    />
-
-                                    <div className="flex gap-2 justify-end mt-4">
+                                            className="w-full border px-4 py-2"
+                                        />
+     <div>
+  <label>Tipe Location</label>
+                                    </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Location"
+                                            value={data.location}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "location",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className="w-full border px-4 py-2"
+                                        />
+                                             <div>
+  <label>Maps</label>
+                                    </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Maps"
+                                            value={data.maps}
+                                            onChange={(e) =>
+                                                setData("maps", e.target.value)
+                                            }
+                                            className="w-full border px-4 py-2"
+                                        />
+                     <div>
+  <label>Deskripsi</label>
+                                    </div>                        
+                                        <input
+                                            type="text"
+                                            placeholder="Deskripsi"
+                                            value={data.deskripsi}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "deskripsi",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className="w-full border px-4 py-2"
+                                        />
+     <div>
+  <label>Features</label>
+                                    </div>
+                                        {data.features.map((fet, index) => (
+                                            <input
+                                                key={index}
+                                                type="text"
+                                                value={fet}
+                                                onChange={(e) => {
+                                                    const newFets = [
+                                                        ...data.features,
+                                                    ];
+                                                    newFets[index] =
+                                                        e.target.value;
+                                                    setData(
+                                                        "features",
+                                                        newFets
+                                                    );
+                                                }}
+                                                className="w-full border px-2 py-1 mb-2"
+                                                placeholder={`Features ${
+                                                    index + 1
+                                                }`}
+                                            />
+                                        ))}
                                         <button
                                             type="button"
-                                            onClick={closeModal}
-                                            className="text-gray-600 px-4 py-2 border rounded"
+                                            onClick={() =>
+                                                setData("features", [
+                                                    ...data.features,
+                                                    "",
+                                                ])
+                                            }
+                                            className="text-blue-600 text-sm"
                                         >
-                                            Cancel
+                                            + Add Features
                                         </button>
-                                        <button
-                                            type="submit"
-                                            className="bg-blue-600 text-white px-4 py-2 rounded"
-                                        >
-                                            {editing ? "Update" : "Create"}
-                                        </button>
+     <div>
+  <label>Badge</label>
                                     </div>
-                                </form>
+                                        {data.badge.map((bad, index) => (
+                                            <input
+                                                key={index}
+                                                type="text"
+                                                value={bad}
+                                                onChange={(e) => {
+                                                    const newBads = [
+                                                        ...data.badge,
+                                                    ];
+                                                    newBads[index] =
+                                                        e.target.value;
+                                                    setData("badge", newBads);
+                                                }}
+                                                className="w-full border px-2 py-1 mb-2"
+                                                placeholder={`Badge ${
+                                                    index + 1
+                                                }`}
+                                            />
+                                        ))}
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                setData("badge", [
+                                                    ...data.badge,
+                                                    "",
+                                                ])
+                                            }
+                                            className="text-blue-600 text-sm"
+                                        >
+                                            + Add Badge
+                                        </button>
+     <div>
+  <label>Detail Properti</label>
+                                    </div>
+                                        {data.properti_detail.map(
+                                            (prodet, index) => (
+                                                <input
+                                                    key={index}
+                                                    type="text"
+                                                    value={prodet}
+                                                    onChange={(e) => {
+                                                        const newProdet = [
+                                                            ...data.properti_detail,
+                                                        ];
+                                                        newProdet[index] =
+                                                            e.target.value;
+                                                        setData(
+                                                            "properti_detail",
+                                                            newProdet
+                                                        );
+                                                    }}
+                                                    className="w-full border px-2 py-1 mb-2"
+                                                    placeholder={`Properti Detail ${
+                                                        index + 1
+                                                    }`}
+                                                />
+                                            )
+                                        )}
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                setData("properti_detail", [
+                                                    ...data.properti_detail,
+                                                    "",
+                                                ])
+                                            }
+                                            className="text-blue-600 text-sm"
+                                        >
+                                            + Add Properti Detail
+                                        </button>
+     <div>
+  <label>Pembayaran</label>
+                                    </div>
+                                        {data.properti_pembayaran.map(
+                                            (propem, index) => (
+                                                <input
+                                                    key={index}
+                                                    type="text"
+                                                    value={propem}
+                                                    onChange={(e) => {
+                                                        const newPropem = [
+                                                            ...data.properti_pembayaran,
+                                                        ];
+                                                        newPropem[index] =
+                                                            e.target.value;
+                                                        setData(
+                                                            "properti_pembayaran",
+                                                            newPropem
+                                                        );
+                                                    }}
+                                                    className="w-full border px-2 py-1 mb-2"
+                                                    placeholder={`Properti Pembayaran ${
+                                                        index + 1
+                                                    }`}
+                                                />
+                                            )
+                                        )}
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                setData("properti_pembayaran", [
+                                                    ...data.properti_pembayaran,
+                                                    "",
+                                                ])
+                                            }
+                                            className="text-blue-600 text-sm"
+                                        >
+                                            + Add Properti Pembayaran
+                                        </button>
+             <div>
+  <label>Fasilitas</label>
+                                    </div>                                
+                                        {data.properti_fasilitas.map(
+                                            (profas, index) => (
+                                                <input
+                                                    key={index}
+                                                    type="text"
+                                                    value={profas}
+                                                    onChange={(e) => {
+                                                        const newProfas = [
+                                                            ...data.properti_fasilitas,
+                                                        ];
+                                                        newProfas[index] =
+                                                            e.target.value;
+                                                        setData(
+                                                            "properti_fasilitas",
+                                                            newProfas
+                                                        );
+                                                    }}
+                                                    className="w-full border px-2 py-1 mb-2"
+                                                    placeholder={`Properti Fasilitas ${
+                                                        index + 1
+                                                    }`}
+                                                />
+                                            )
+                                        )}
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                setData("properti_fasilitas", [
+                                                    ...data.properti_fasilitas,
+                                                    "",
+                                                ])
+                                            }
+                                            className="text-blue-600 text-sm"
+                                        >
+                                            + Add Properti Fasilitas
+                                        </button>
+     <div>
+  <label>Harga</label>
+                                    </div>
+                                        <input
+                                            placeholder="Price"
+                                            value={data.price}
+                                            onChange={(e) =>
+                                                setData("price", e.target.value)
+                                            }
+                                            className="w-full border px-4 py-2"
+                                        />
+           <div>
+  <label>Tipe Properti</label>
+                                    </div>                                  
+                                        <select
+                                            value={data.tipe}
+                                            onChange={(e) =>
+                                                setData("tipe", e.target.value)
+                                            }
+                                            className="w-full border px-4 py-2"
+                                        >
+                                            <option value="">Pilih Tipe</option>
+                                            {TipeProperti.map((item, index) => (
+                                                <option
+                                                    key={index}
+                                                    value={item}
+                                                >
+                                                    {item}
+                                                </option>
+                                            ))}
+                                        </select>
+     <div>
+  <label>Gambar</label>
+                                    </div>
+                                        <input
+                                            type="file"
+                                            multiple
+                                            onChange={(e) => {
+                                                if (e.target.files) {
+                                                    setData(
+                                                        "images",
+                                                        Array.from(
+                                                            e.target.files
+                                                        )
+                                                    );
+                                                }
+                                            }}
+                                        />
+
+                                        <div className="flex gap-2 justify-end mt-4">
+                                            <button
+                                                type="button"
+                                                onClick={closeModal}
+                                                className="text-gray-600 px-4 py-2 border rounded"
+                                            >
+                                                Cancel
+                                            </button>
+                                            <button
+                                                type="submit"
+                                                className="bg-blue-600 text-white px-4 py-2 rounded"
+                                            >
+                                                {editing ? "Update" : "Create"}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Search & Table */}
+                        <div className="mt-4 overflow-x-auto">
+                            <input
+                                type="text"
+                                placeholder="Search by title, location, or price..."
+                                className="mb-4 border px-4 py-2 w-full max-w-md rounded"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                            />
+
+                            <div className="min-w-[1000px]">
+                                <DataTable
+                                    columns={columns}
+                                    data={filteredProducts}
+                                    pagination
+                                    highlightOnHover
+                                    responsive
+                                    dense
+                                />
                             </div>
                         </div>
-                    )}
-
-                    {/* Search & Table */}
-                <div className="mt-4 overflow-x-auto">
-  <input
-    type="text"
-    placeholder="Search by title, location, or price..."
-    className="mb-4 border px-4 py-2 w-full max-w-md rounded"
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-  />
-
-  <div className="min-w-[1000px]">
-    <DataTable
-      columns={columns}
-      data={filteredProducts}
-      pagination
-      highlightOnHover
-      responsive
-      dense
-    />
-  </div>
-</div>
-
-                </div>
+                    </div>
                 </div>
             </AppLayout>
         </>

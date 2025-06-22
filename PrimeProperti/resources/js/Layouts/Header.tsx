@@ -1,5 +1,8 @@
 // resources/js/Components/Header.tsx
 import React from 'react';
+import { Link } from "@inertiajs/react";
+import { route } from "ziggy-js";
+import {FaSignOutAlt } from "react-icons/fa";
 
 interface Props {
   onToggleSidebar: () => void;
@@ -18,7 +21,11 @@ export default function Header({ onToggleSidebar }: Props) {
         </svg>
       </button>
       <h1 className="text-xl font-bold">Dashboard</h1>
-      <div className="text-gray-600">Hi, User</div>
+      <div className="text-gray-600"> <Link href={route("logout")} method="post" as="button">
+ <FaSignOutAlt />
+</Link>
+</div>
+       
     </header>
   );
 }

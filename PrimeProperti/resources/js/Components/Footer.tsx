@@ -17,6 +17,7 @@ interface ProductInfoProps {
 
 
 export default function Footer({ users }: ProductInfoProps) {
+    console.log(users[0].maps)
     return (
         <footer className="bg-[#3b2f2a] text-white text-sm" id="kontak">
             {/* CTA Section */}
