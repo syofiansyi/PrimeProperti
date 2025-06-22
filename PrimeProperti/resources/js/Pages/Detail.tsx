@@ -10,6 +10,7 @@ import ProductInfo from "@/Components/ProductInfo";
 import ProductTabs from "@/Components/ProductTabs";
 import Contact from "@/Components/Contact";
 import About from "@/Components/About";
+import { FaWhatsapp } from "react-icons/fa";
 
 interface DetailProd {
     id: number;
@@ -167,9 +168,16 @@ export default function ProductDetail({
     return (
         <>
             <Header />
-                        <main className="pt-20">
-
-            <HighlightSection />
+            <main className="pt-20">
+                <a
+                    href={`https://wa.me/${users[0].nowhatsap}`} // Ganti dengan nomor WA kamu
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative bottom-[50%] right-5 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg z-50"
+                >
+                    <FaWhatsapp size={24} />
+                </a>
+                <HighlightSection />
                 <section
                     id="produk"
                     className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50"

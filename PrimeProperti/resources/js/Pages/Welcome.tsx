@@ -7,6 +7,7 @@ import ProductSection from "@/Components/ProductSection";
 import ArticlesSection from "@/Components/ArticlesSection";
 import RatingsSection from "@/Components/RatingsSection";
 import Footer from "@/Components/Footer";
+import { FaWhatsapp } from "react-icons/fa";
 
 interface PropertiProd {
     id: number;
@@ -53,6 +54,14 @@ export default function Welcome({ PropertiProd, users, Blog, Rating }: Props) {
         <div>
             <Header />
             <main className="pt-20">
+                <a
+                    href={`https://wa.me/${users[0].nowhatsap}`} // Ganti dengan nomor WA kamu
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative bottom-[50%] right-5 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg z-50"
+                >
+                    <FaWhatsapp size={24} />
+                </a>
                 <HighlightSection />
                 <ProductSection PropertiProd={PropertiProd} />
                 <HighlighProduct />

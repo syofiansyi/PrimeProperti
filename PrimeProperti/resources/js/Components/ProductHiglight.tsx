@@ -1,8 +1,4 @@
-import {
-    JSXElementConstructor,
-    ReactElement,
-    useRef,
-} from "react";
+import { JSXElementConstructor, ReactElement, useRef } from "react";
 import {
     FaMapMarkerAlt,
     FaBed,
@@ -57,15 +53,24 @@ export default function ProductHighlight({ allprod }: Props) {
         let badgeArray = [];
 
         try {
-            imageArray = typeof item.image === "string" ? JSON.parse(item.image) : item.image;
+            imageArray =
+                typeof item.image === "string"
+                    ? JSON.parse(item.image)
+                    : item.image;
         } catch {}
 
         try {
-            featureArray = typeof item.features === "string" ? JSON.parse(item.features) : item.features;
+            featureArray =
+                typeof item.features === "string"
+                    ? JSON.parse(item.features)
+                    : item.features;
         } catch {}
 
         try {
-            badgeArray = typeof item.badge === "string" ? JSON.parse(item.badge) : item.badge;
+            badgeArray =
+                typeof item.badge === "string"
+                    ? JSON.parse(item.badge)
+                    : item.badge;
         } catch {}
 
         return {
@@ -84,7 +89,9 @@ export default function ProductHighlight({ allprod }: Props) {
 
     return (
         <section id="artikel" className="py-10 px-4">
-            <h2 className="text-2xl font-bold mb-6 text-center">Properti Similar</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">
+                Properti Similar
+            </h2>
 
             <div className="relative">
                 {/* Tombol Prev */}
@@ -142,7 +149,9 @@ export default function ProductHighlight({ allprod }: Props) {
                             >
                                 <div
                                     className="h-52 bg-cover bg-center w-full"
-                                    style={{ backgroundImage: `url(${item.image})` }}
+                                    style={{
+                                        backgroundImage: `url(${item.image})`,
+                                    }}
                                 ></div>
                             </Link>
 
@@ -165,13 +174,19 @@ export default function ProductHighlight({ allprod }: Props) {
                                 <hr className="h-1" />
 
                                 <div className="flex  justify-between gap-2 mt-2">
-                                {item.features.map((f: string, i: number) => (
-    <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
-        <span>{icons[i % icons.length]}</span>
-        <span>{f}</span>
-    </div>
-))}
-
+                                    {item.features.map(
+                                        (f: string, i: number) => (
+                                            <div
+                                                key={i}
+                                                className="flex items-center gap-2 text-sm text-gray-600"
+                                            >
+                                                <span>
+                                                    {icons[i % icons.length]}
+                                                </span>
+                                                <span>{f}</span>
+                                            </div>
+                                        )
+                                    )}
                                 </div>
                             </div>
                         </div>
