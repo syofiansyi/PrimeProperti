@@ -173,7 +173,7 @@ export default function ProductDetail({
                     href={`https://wa.me/${users[0].nowhatsap}`} // Ganti dengan nomor WA kamu
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative bottom-[50%] right-5 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg z-50"
+                    className="fixed bottom-[50%] right-5 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg z-50"
                 >
                     <FaWhatsapp size={24} />
                 </a>
