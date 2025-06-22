@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useRef } from "react";
 import { Link } from "@inertiajs/react";
 
 interface Blog {
@@ -14,6 +14,8 @@ interface Props {
 }
 
 export default function ArticlesSection({ Blog }: Props) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   const articles = Blog.map((item) => {
     const cleanedFilename = (item.thumbnail || "").replace(/"/g, "");
     return {
@@ -25,37 +27,26 @@ export default function ArticlesSection({ Blog }: Props) {
     };
   });
 
-  const [startIndex, setStartIndex] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const scroll = (direction: "left" | "right") => {
+    const container = scrollRef.current;
+    if (!container) return;
 
-  useEffect(() => {
-    const updateItems = () => {
-      const width = window.innerWidth;
-      if (width < 640) {
-        setItemsPerPage(1);
-      } else if (width < 1024) {
-        setItemsPerPage(2);
+    const scrollAmount = 300;
+    if (direction === "right") {
+      const isEnd =
+        container.scrollLeft + container.clientWidth >=
+        container.scrollWidth - 10;
+
+      if (isEnd) {
+        // Kembali ke awal
+        container.scrollTo({ left: 0, behavior: "smooth" });
       } else {
-        setItemsPerPage(3);
+        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
       }
-    };
-
-    updateItems();
-    window.addEventListener("resize", updateItems);
-    return () => window.removeEventListener("resize", updateItems);
-  }, []);
-
-  const handlePrev = () => {
-    setStartIndex((prev) => Math.max(0, prev - 1));
+    } else {
+      container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    }
   };
-
-  const handleNext = () => {
-    setStartIndex((prev) =>
-      Math.min(articles.length - itemsPerPage, prev + 1)
-    );
-  };
-
-  const translateX = `-${startIndex * (30 / itemsPerPage)}%`;
 
   return (
     <section className="py-12 px-4 bg-gray-50" id="artikel">
@@ -63,59 +54,48 @@ export default function ArticlesSection({ Blog }: Props) {
         Artikel & Tips Properti
       </h2>
 
-      <div className="relative overflow-hidden">
+      <div className="relative">
         {/* Tombol Prev */}
         <button
-          onClick={handlePrev}
-          disabled={startIndex === 0}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-black bg-opacity-50 rounded-full shadow hover:bg-opacity-70 disabled:opacity-30"
+          onClick={() => scroll("left")}
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-70"
         >
           ◀
         </button>
 
-        {/* Carousel Wrapper */}
-        <div className="w-full overflow-hidden">
-          <div
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{
-              width: `${(articles.length * 30) / itemsPerPage}%`,
-              transform: `translateX(${translateX})`,
-            }}
-          >
-            {articles.map((item, idx) => (
-              <div
-                key={idx}
-                className="w-1/4 sm:w-1/4 lg:w-1/4 px-2 flex-shrink-0"
-              >
-                <div className="bg-white rounded-lg shadow-md overflow-hidden h-full">
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="h-40 w-full object-cover"
-                  />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-lg">{item.title}</h3>
-                    <p className="text-sm text-gray-600 mb-3">
-                      {item.desc}
-                    </p>
-                    <Link
-                      href={route("blogsPages.show", item.id)}
-                      className="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700 transition"
-                    >
-                      Baca Selengkapnya
-                    </Link>
-                  </div>
-                </div>
+        {/* Carousel Scroll */}
+        <div
+          ref={scrollRef}
+          className="overflow-x-auto flex gap-4 px-4 scroll-smooth scrollbar-hide"
+        >
+          {articles.map((item, idx) => (
+            <div
+              key={idx}
+              className="w-[250px] sm:w-[280px] lg:w-[300px] flex-shrink-0 bg-white rounded-lg shadow-md overflow-hidden"
+            >
+              <img
+                src={item.img}
+                alt={item.title}
+                className="h-40 w-full object-cover"
+              />
+              <div className="p-4">
+                <h3 className="font-semibold text-lg">{item.title}</h3>
+                <p className="text-sm text-gray-600 mb-3">{item.desc}</p>
+                <Link
+                  href={route("blogsPages.show", item.id)}
+                  className="inline-block bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700 transition"
+                >
+                  Baca Selengkapnya
+                </Link>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         {/* Tombol Next */}
         <button
-          onClick={handleNext}
-          disabled={startIndex + itemsPerPage >= articles.length}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-black bg-opacity-50 rounded-full shadow hover:bg-opacity-70 disabled:opacity-30"
+          onClick={() => scroll("right")}
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full hover:bg-opacity-70"
         >
           ▶
         </button>
