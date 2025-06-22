@@ -57,10 +57,12 @@ Blog::create($validated);
    public function showPages(string $id)
     {        $Users = DB::table('users')->get();
         $blog = DB::table('blogs')->where('id', $id)->first();
+ $Medsos = DB::table('sosmeds')->get();
 
         return Inertia::render('Blog', [
             'blog' => $blog,
              'users' => $Users,
+              'Medsos' => $Medsos,
         ]);
 
      

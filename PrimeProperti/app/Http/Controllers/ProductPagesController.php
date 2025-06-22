@@ -16,6 +16,7 @@ class ProductPagesController extends Controller
     public function index()
     {
          $Users = DB::table('users')->get();
+        $Medsos = DB::table('sosmeds')->get();
          $Blog = DB::table('blogs')->get();
          $Rating = DB::table('ratings')->get();
          $PropertiProd = DB::table('products')->get();
@@ -24,6 +25,7 @@ class ProductPagesController extends Controller
              'users' => $Users,
             'Blog' => $Blog,
             'Rating' => $Rating,
+            'Medsos' => $Medsos,
         ]);
     }
 
@@ -42,7 +44,7 @@ class ProductPagesController extends Controller
     {
        
 
-
+ $Medsos = DB::table('sosmeds')->get();
         $DetailProd = DB::table('products')->where('id',$id)->get();
          $location = $DetailProd[0]->location;
         $allprod =   DB::table('products')
@@ -59,6 +61,7 @@ class ProductPagesController extends Controller
             'allprod' =>$allprod,
             'Blog' => $Blog,
             'Rating' => $Rating,
+             'Medsos' => $Medsos,
         ]);
     }
 

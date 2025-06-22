@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import {FaSignOutAlt } from "react-icons/fa";
+import {FaSignOutAlt, FaUserAlt } from "react-icons/fa";
 
 interface Props {
   onToggleSidebar: () => void;
@@ -21,8 +21,13 @@ export default function Header({ onToggleSidebar }: Props) {
         </svg>
       </button>
       <h1 className="text-xl font-bold">Dashboard</h1>
-      <div className="text-gray-600"> <Link href={route("logout")} method="post" as="button">
+     
+      <div className="text-gray-600 flex gap-2 mb-3 m-3"> 
+        <Link href={route("logout")} method="post" as="button">
  <FaSignOutAlt />
+</Link>
+<Link href="/profile">
+ <FaUserAlt />
 </Link>
 </div>
        

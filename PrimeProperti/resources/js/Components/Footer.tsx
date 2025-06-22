@@ -7,17 +7,39 @@ import {
 
 interface users {
     id: number;
-    nowhatsap:string;
-    maps:string;
+    nowhatsap: string;
+    maps: string;
 }
+
+type Medsos = {
+  icon: string; // atau mungkin JSON string
+  medsos: string; // link
+  username: string;
+   id: number;
+};
 
 interface ProductInfoProps {
-   users: users[];
+    users: users[];
+    Medsos: Medsos[];
 }
 
+export default function Footer({ users, Medsos }: ProductInfoProps) {
+    const allMedsos = Medsos.map((item) => {
+        const imageArray =
+            typeof item.icon === "string" ? JSON.parse(item.icon) : item.icon;
 
-export default function Footer({ users }: ProductInfoProps) {
-    console.log(users[0].maps)
+        return {
+            id: item.id,
+            username: item.username,
+            medsos: item.medsos,
+            icon:
+                typeof item.icon === "string"
+                    ? JSON.parse(item.icon)
+                    : item.icon,
+            image: imageArray?.[0] ? `/storage/${imageArray[0]}` : null,
+        };
+    });
+
     return (
         <footer className="bg-[#3b2f2a] text-white text-sm" id="kontak">
             {/* CTA Section */}
@@ -49,39 +71,22 @@ export default function Footer({ users }: ProductInfoProps) {
                         At MyProperti Real Estate, we guide you through your
                         next property investment with confidence and expertise.
                     </p>
-                    <div className="flex gap-6 mt-6 text-2xl">
-                        <a
-                            href="https://instagram.com/yourusername"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-pink-400 transition-colors"
-                        >
-                            <FaInstagram />
-                        </a>
-                        <a
-                            href="https://twitter.com/yourusername"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-blue-400 transition-colors"
-                        >
-                            <FaTwitter />
-                        </a>
-                        <a
-                            href="https://facebook.com/yourusername"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-blue-600 transition-colors"
-                        >
-                            <FaFacebookF />
-                        </a>
-                        <a
-                            href="https://wa.me/62895424010064?text=Halo, saya tertarik dengan layanan Anda"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-blue-600 transition-colors"
-                        >
-                            <FaWhatsapp />
-                        </a>
+                    <div className="flex gap-2 mt-6 text-2xl">
+                        {allMedsos.map((item, index) => (
+                            <a
+                                key={index}
+                                href={item.medsos}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-pink-400 transition-colors"
+                            >
+                                <img
+                                    src={`/storage/${item.icon}`}
+                                    alt="icon"
+                                    className="w-10 h-10 object-cover rounded transition-colors"
+                                />
+                            </a>
+                        ))}
                     </div>
                 </div>
 

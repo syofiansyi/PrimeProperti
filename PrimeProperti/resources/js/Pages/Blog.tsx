@@ -18,12 +18,21 @@ interface users {
     nowhatsap: string;
     maps: string;
 }
+type Medsos = {
+  icon: string; // atau mungkin JSON string
+  medsos: string; // link
+  username: string;
+   id: number;
+};
+
 interface Props {
     blog: BlogType;
      users: users[];
+      Medsos: Medsos[];
 }
 
-export default function Blog({ blog,users }: Props) {
+
+export default function Blog({ blog,users,Medsos }: Props) {
     return (
         <>
             <Header />
@@ -43,7 +52,7 @@ export default function Blog({ blog,users }: Props) {
                     </div>
                 </section><br></br>
             </main>
-              <Footer users={users} />
+              <Footer users={users} Medsos={Medsos} />
         </>
     );
 }

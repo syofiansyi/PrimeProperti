@@ -34,6 +34,13 @@ interface users {
     nowhatsap: string;
     maps: string;
 }
+type Medsos = {
+  icon: string; // atau mungkin JSON string
+  medsos: string; // link
+  username: string;
+   id: number;
+};
+
 
 interface Rating {
     id: number;
@@ -47,9 +54,10 @@ interface Props {
     users: users[];
     Blog: Blog[];
     Rating: Rating[];
+     Medsos: Medsos[];
 }
 
-export default function Welcome({ PropertiProd, users, Blog, Rating }: Props) {
+export default function Welcome({ PropertiProd, users, Blog, Rating, Medsos }: Props) {
     return (
         <div>
             <Header />
@@ -70,7 +78,7 @@ export default function Welcome({ PropertiProd, users, Blog, Rating }: Props) {
                 <Contact users={users} />
                 <RatingsSection Rating={Rating} />
             </main>
-            <Footer users={users} />
+            <Footer users={users} Medsos={Medsos} />
         </div>
     );
 }

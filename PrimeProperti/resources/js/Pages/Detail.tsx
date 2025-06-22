@@ -36,6 +36,13 @@ interface users {
     nowhatsap: string;
     maps: string;
 }
+type Medsos = {
+  icon: string; // atau mungkin JSON string
+  medsos: string; // link
+  username: string;
+   id: number;
+};
+
 interface SimilarProducts {
     id: number;
     title: string;
@@ -82,6 +89,7 @@ interface Props {
     users: users[];
     Rating: Rating[];
     Blog: Blog[];
+    Medsos: Medsos[];
 }
 
 export default function ProductDetail({
@@ -90,7 +98,10 @@ export default function ProductDetail({
     allprod,
     Rating,
     Blog,
+    Medsos,
 }: Props) {
+
+    console.log(Medsos)
     const DetailProdProp = DetailProd.map((item) => {
         return {
             id: item.id,
@@ -238,7 +249,7 @@ export default function ProductDetail({
                 <Contact users={users} />
                 <RatingsSection Rating={Rating} />
             </main>
-            <Footer users={users} />
+            <Footer users={users} Medsos={Medsos} />
         </>
     );
 }
