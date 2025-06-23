@@ -93,7 +93,7 @@ export default function ProductHighlight({ allprod }: Props) {
                 Properti Similar
             </h2>
 
-            <div className="relative">
+           <div className="relative max-w-7xl mx-auto px-4 ">
                 {/* Tombol Prev */}
                 {allProperties.length > 3 && (
                     <button

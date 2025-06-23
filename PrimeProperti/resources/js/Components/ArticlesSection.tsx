@@ -54,7 +54,7 @@ export default function ArticlesSection({ Blog }: Props) {
         Artikel & Tips Properti
       </h2>
 
-      <div className="relative">
+        <div className="relative max-w-7xl mx-auto px-4 ">
         {/* Tombol Prev */}
         <button
           onClick={() => scroll("left")}

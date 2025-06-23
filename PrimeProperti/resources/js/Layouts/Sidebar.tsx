@@ -27,7 +27,9 @@ export default function Sidebar({ open }: Props) {
       lg:block`}
     >
       <div className="h-full flex flex-col items-start p-4 space-y-4 text-left">
-        <h2 className="text-xl font-bold text-gray-800">My App</h2>
+        <h2 className="text-xl font-bold text-gray-800"><Link href="/">
+        My App
+        </Link></h2>
         <nav className="flex flex-col space-y-2 w-full">
           {menu.map((item) => (
             <Link

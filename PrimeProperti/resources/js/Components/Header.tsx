@@ -1,6 +1,7 @@
-import { Link } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
 
+import { useState, useEffect } from 'react';
+import { Link } from "@inertiajs/react";
+import { route } from "ziggy-js";
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -42,12 +43,12 @@ export default function Header() {
           `}
         >
           {[
-            { label: 'Home', href: '/' },
-            { label: 'Properti', href: '#produk' },
-            { label: 'Artikel', href: '#artikel' },
-            { label: 'Testimoni', href: '#testimoni' },
-            { label: 'Kontak', href: '#kontak' },
-             { label: 'Login', href: '/login' },
+          { label: 'Home', href: '/' },
+  { label: 'Properti', href: '#produk' },
+  { label: 'Artikel', href: '#artikel' },
+  { label: 'Testimoni', href: '#testimoni' },
+  { label: 'Kontak', href: '#kontak' },
+  { label: 'Login', href: route("dashboard") },
           ].map((item, idx) => (
             <li key={idx}>
               <Link
