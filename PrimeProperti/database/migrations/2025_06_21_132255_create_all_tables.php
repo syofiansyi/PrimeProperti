@@ -48,8 +48,8 @@ return new class extends Migration {
         // Sosmeds
         Schema::create('sosmeds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('username', 50);
-            $table->string('medsos', 50);
+            $table->text('username')->nullable();
+            $table->text('medsos')->nullable();
             $table->text('icon')->nullable();
             $table->timestamps();
         });
