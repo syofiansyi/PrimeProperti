@@ -48,7 +48,7 @@ export default function Header() {
   { label: 'Artikel', href: '#artikel' },
   { label: 'Testimoni', href: '#testimoni' },
   { label: 'Kontak', href: '#kontak' },
-  { label: 'Login', href: route("dashboard") },
+  { label: 'Login', href: route("products.index") },
           ].map((item, idx) => (
             <li key={idx}>
               <Link

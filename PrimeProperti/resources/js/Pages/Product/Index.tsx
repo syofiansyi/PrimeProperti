@@ -30,7 +30,16 @@ export default function Index({ products }: PageProps) {
     const [search, setSearch] = useState("");
     const [filteredProducts, setFilteredProducts] =
         useState<Product[]>(products);
-    const TipeProperti = ["Rumah", "Ruko", "Apartemen", "Hotel", "Villa"];
+    const TipeProperti = [
+        "Apartemen",
+        "Gudang",
+        "Hotel",
+        "Kost",
+        "Rumah",
+        "Ruko",
+        "Tanah",
+        "Villa",
+    ];
 
     const { data, setData, post, reset } = useForm({
         id: null as number | null, // ✅ tambahkan ini
@@ -334,9 +343,9 @@ export default function Index({ products }: PageProps) {
                                         onSubmit={handleSubmit}
                                         className="space-y-4"
                                     >
-                                             <div>
-  <label>Titile</label>
-                                    </div>
+                                        <div>
+                                            <label>Titile</label>
+                                        </div>
                                         <input
                                             type="text"
                                             placeholder="Title"
@@ -346,9 +355,9 @@ export default function Index({ products }: PageProps) {
                                             }
                                             className="w-full border px-4 py-2"
                                         />
-     <div>
-  <label>Tipe Location</label>
-                                    </div>
+                                        <div>
+                                            <label>Tipe Location</label>
+                                        </div>
                                         <input
                                             type="text"
                                             placeholder="Location"
@@ -361,9 +370,9 @@ export default function Index({ products }: PageProps) {
                                             }
                                             className="w-full border px-4 py-2"
                                         />
-                                             <div>
-  <label>Maps</label>
-                                    </div>
+                                        <div>
+                                            <label>Maps</label>
+                                        </div>
                                         <input
                                             type="text"
                                             placeholder="Maps"
@@ -373,9 +382,9 @@ export default function Index({ products }: PageProps) {
                                             }
                                             className="w-full border px-4 py-2"
                                         />
-                     <div>
-  <label>Deskripsi</label>
-                                    </div>                        
+                                        <div>
+                                            <label>Deskripsi</label>
+                                        </div>
                                         <input
                                             type="text"
                                             placeholder="Deskripsi"
@@ -388,9 +397,9 @@ export default function Index({ products }: PageProps) {
                                             }
                                             className="w-full border px-4 py-2"
                                         />
-     <div>
-  <label>Features</label>
-                                    </div>
+                                        <div>
+                                            <label>Features</label>
+                                        </div>
                                         {data.features.map((fet, index) => (
                                             <input
                                                 key={index}
@@ -425,9 +434,9 @@ export default function Index({ products }: PageProps) {
                                         >
                                             + Add Features
                                         </button>
-     <div>
-  <label>Badge</label>
-                                    </div>
+                                        <div>
+                                            <label>Badge</label>
+                                        </div>
                                         {data.badge.map((bad, index) => (
                                             <input
                                                 key={index}
@@ -459,9 +468,9 @@ export default function Index({ products }: PageProps) {
                                         >
                                             + Add Badge
                                         </button>
-     <div>
-  <label>Detail Properti</label>
-                                    </div>
+                                        <div>
+                                            <label>Detail Properti</label>
+                                        </div>
                                         {data.properti_detail.map(
                                             (prodet, index) => (
                                                 <input
@@ -498,9 +507,9 @@ export default function Index({ products }: PageProps) {
                                         >
                                             + Add Properti Detail
                                         </button>
-     <div>
-  <label>Pembayaran</label>
-                                    </div>
+                                        <div>
+                                            <label>Pembayaran</label>
+                                        </div>
                                         {data.properti_pembayaran.map(
                                             (propem, index) => (
                                                 <input
@@ -537,9 +546,9 @@ export default function Index({ products }: PageProps) {
                                         >
                                             + Add Properti Pembayaran
                                         </button>
-             <div>
-  <label>Fasilitas</label>
-                                    </div>                                
+                                        <div>
+                                            <label>Fasilitas</label>
+                                        </div>
                                         {data.properti_fasilitas.map(
                                             (profas, index) => (
                                                 <input
@@ -576,9 +585,9 @@ export default function Index({ products }: PageProps) {
                                         >
                                             + Add Properti Fasilitas
                                         </button>
-     <div>
-  <label>Harga</label>
-                                    </div>
+                                        <div>
+                                            <label>Harga</label>
+                                        </div>
                                         <input
                                             placeholder="Price"
                                             value={data.price}
@@ -587,9 +596,9 @@ export default function Index({ products }: PageProps) {
                                             }
                                             className="w-full border px-4 py-2"
                                         />
-           <div>
-  <label>Tipe Properti</label>
-                                    </div>                                  
+                                        <div>
+                                            <label>Tipe Properti</label>
+                                        </div>
                                         <select
                                             value={data.tipe}
                                             onChange={(e) =>
@@ -607,9 +616,9 @@ export default function Index({ products }: PageProps) {
                                                 </option>
                                             ))}
                                         </select>
-     <div>
-  <label>Gambar</label>
-                                    </div>
+                                        <div>
+                                            <label>Gambar</label>
+                                        </div>
                                         <input
                                             type="file"
                                             multiple

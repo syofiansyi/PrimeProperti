@@ -61,15 +61,15 @@ export default function ProductSection({ PropertiProd }: Props) {
         ...new Set(allProperties.map((item) => item.location)),
     ].sort((a, b) => a.localeCompare(b));
     const TipeApart = [
+        "Apartemen",
+        "Gudang",
+        "Hotel",
+        "Kost",
         "Rumah",
         "Ruko",
-        "Apartemen",
-        "Hotel",
-        "Villa",
-        "Kost",
-        "Gudang",
         "Tanah",
-    ].sort((a, b) => a.localeCompare(b));
+        "Villa",
+    ];
 
     const KamarTidur = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const Luas = [30, 36, 45, 60, 72, 90, 120, 150, 200, 300];

@@ -48,31 +48,26 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // routes/web.php
 
-Route::resource('products', ProductController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('blogs', BlogController::class);
+    Route::post('/upload-quill-image', function (Request $request) {
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('uploads', 'public');
+            return response()->json([
+                'url' => asset("storage/" . $path),
+            ]);
+        }
+
+        return response()->json(['error' => 'Upload gagal'], 400);
+    });
+    Route::get('/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+    Route::put('/blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+    Route::get('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
 
 
-Route::resource('blogs', BlogController::class);
-
-Route::post('/upload-quill-image', function (Request $request) {
-    if ($request->hasFile('image')) {
-        $path = $request->file('image')->store('uploads', 'public');
-        return response()->json([
-            'url' => asset("storage/" . $path),
-        ]);
-    }
-
-    return response()->json(['error' => 'Upload gagal'], 400);
-});
-Route::get('/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
-Route::put('/blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
-Route::get('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
-
-
-Route::resource('ratings', RatingController::class);
-Route::resource('sosmeds', SosmedController::class);
-
-
+    Route::resource('ratings', RatingController::class);
+    Route::resource('sosmeds', SosmedController::class);
 });
 Route::get('/blogsPages/{id}', [BlogController::class, 'showPages'])->name('blogsPages.show');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
