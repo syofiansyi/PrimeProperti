@@ -57,7 +57,9 @@ export default function ProductSection({ PropertiProd }: Props) {
         };
     });
 
-    const lokasi = [...new Set(allProperties.map((item) => item.location))];
+    const lokasi = [
+        ...new Set(allProperties.map((item) => item.location)),
+    ].sort((a, b) => a.localeCompare(b));
     const TipeApart = [
         "Rumah",
         "Ruko",
@@ -67,7 +69,8 @@ export default function ProductSection({ PropertiProd }: Props) {
         "Kost",
         "Gudang",
         "Tanah",
-    ];
+    ].sort((a, b) => a.localeCompare(b));
+
     const KamarTidur = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const Luas = [30, 36, 45, 60, 72, 90, 120, 150, 200, 300];
     const KamarMandi = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
