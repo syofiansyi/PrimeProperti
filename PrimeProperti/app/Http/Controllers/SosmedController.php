@@ -22,6 +22,7 @@ class SosmedController extends Controller
         $validated = $request->validate([
             'username' => 'required|string|max:255',
             'medsos' => 'required|string|max:255',
+            'kategori' => 'required|string|max:255',
             'icon.*' => 'nullable|image|mimes:png,jpg,jpeg,svg|max:2048',
         ]);
 
@@ -35,6 +36,7 @@ class SosmedController extends Controller
         Sosmed::create([
             'username' => $validated['username'],
             'medsos' => $validated['medsos'],
+            'kategori' => $validated['kategori'],
             'icon' => $iconPaths,
         ]);
 
@@ -46,6 +48,7 @@ class SosmedController extends Controller
         $validated = $request->validate([
             'username' => 'required|string|max:255',
             'medsos' => 'required|string|max:255',
+            'kategori' => 'required|string|max:255',
             'icon.*' => 'nullable|image|mimes:png,jpg,jpeg,svg|max:2048',
         ]);
 
@@ -68,6 +71,7 @@ class SosmedController extends Controller
         $sosmed->update([
             'username' => $validated['username'],
             'medsos' => $validated['medsos'],
+            'kategori' => $validated['kategori'],
             'icon' => $iconPaths,
         ]);
 

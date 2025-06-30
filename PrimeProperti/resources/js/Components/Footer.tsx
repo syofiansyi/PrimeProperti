@@ -1,9 +1,5 @@
-import {
-    FaInstagram,
-    FaTwitter,
-    FaFacebookF,
-    FaWhatsapp,
-} from "react-icons/fa";
+import { all } from "axios";
+
 
 interface users {
     id: number;
@@ -12,10 +8,11 @@ interface users {
 }
 
 type Medsos = {
-  icon: string; // atau mungkin JSON string
-  medsos: string; // link
-  username: string;
-   id: number;
+    icon: string; // atau mungkin JSON string
+    medsos: string; // link
+    username: string;
+    id: number;
+    kategori: string;
 };
 
 interface ProductInfoProps {
@@ -24,21 +21,7 @@ interface ProductInfoProps {
 }
 
 export default function Footer({ users, Medsos }: ProductInfoProps) {
-    const allMedsos = Medsos.map((item) => {
-        const imageArray =
-            typeof item.icon === "string" ? JSON.parse(item.icon) : item.icon;
-
-        return {
-            id: item.id,
-            username: item.username,
-            medsos: item.medsos,
-            icon:
-                typeof item.icon === "string"
-                    ? JSON.parse(item.icon)
-                    : item.icon,
-            image: imageArray?.[0] ? `/storage/${imageArray[0]}` : null,
-        };
-    });
+   const allFoot = Medsos.filter(item => item.kategori === "footer")
 
     return (
         <footer className="bg-[#3b2f2a] text-white text-sm" id="kontak">
@@ -63,7 +46,7 @@ export default function Footer({ users, Medsos }: ProductInfoProps) {
             </div>
 
             {/* Main Footer Content */}
-            <div className="max-w-screen-xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="max-w-screen-xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-10">
                 {/* Column 1 - About */}
                 <div>
                     <div className="text-2xl font-bold mb-4">MyProperti</div>
@@ -72,7 +55,7 @@ export default function Footer({ users, Medsos }: ProductInfoProps) {
                         next property investment with confidence and expertise.
                     </p>
                     <div className="flex gap-2 mt-6 text-2xl">
-                        {allMedsos.map((item, index) => (
+                        {allFoot.map((item, index) => (
                             <a
                                 key={index}
                                 href={item.medsos}
@@ -91,7 +74,7 @@ export default function Footer({ users, Medsos }: ProductInfoProps) {
                 </div>
 
                 {/* Column 2 - Links */}
-                <div>
+                {/* <div>
                     <h4 className="font-bold mb-4">Prime Location</h4>
                     <ul className="space-y-2 text-gray-300">
                         <li>Canggu</li>
@@ -101,7 +84,7 @@ export default function Footer({ users, Medsos }: ProductInfoProps) {
                         <li>Cliffside Villas</li>
                         <li>Beachfront</li>
                     </ul>
-                </div>
+                </div> */}
 
                 {/* Column 3 - Map */}
                 <div>

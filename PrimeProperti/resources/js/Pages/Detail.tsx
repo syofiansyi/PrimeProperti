@@ -37,10 +37,11 @@ interface users {
     maps: string;
 }
 type Medsos = {
-  icon: string; // atau mungkin JSON string
-  medsos: string; // link
-  username: string;
-   id: number;
+    icon: string; // atau mungkin JSON string
+    medsos: string; // link
+    username: string;
+    id: number;
+    kategori: string;
 };
 
 interface SimilarProducts {
@@ -100,8 +101,6 @@ export default function ProductDetail({
     Blog,
     Medsos,
 }: Props) {
-
-    console.log(Medsos)
     const DetailProdProp = DetailProd.map((item) => {
         return {
             id: item.id,
@@ -165,6 +164,21 @@ export default function ProductDetail({
             maps: item.maps,
         };
     });
+
+  const allMedsos = Medsos.map((item) => {
+    const imageArray =
+      typeof item.icon === "string" ? JSON.parse(item.icon) : item.icon;
+
+    return {
+      id: item.id,
+      username: item.username,
+      medsos: item.medsos,
+      icon: imageArray,
+      image: imageArray?.[0] ? `/storage/${imageArray[0]}` : null,
+      kategori: item.kategori, // tambahkan ini
+    };
+  });
+ 
     const [mainImage, setMainImage] = useState(DetailProdProp[0].image[0]);
     const [activeTab, setActiveTab] = useState("detail");
 
@@ -249,7 +263,7 @@ export default function ProductDetail({
                 <Contact users={users} />
                 <RatingsSection Rating={Rating} />
             </main>
-            <Footer users={users} Medsos={Medsos} />
+            <Footer users={users} Medsos={allMedsos} />
         </>
     );
 }

@@ -35,12 +35,12 @@ interface users {
     maps: string;
 }
 type Medsos = {
-  icon: string; // atau mungkin JSON string
-  medsos: string; // link
-  username: string;
-   id: number;
+    icon: string; // atau mungkin JSON string
+    medsos: string; // link
+    username: string;
+    id: number;
+    kategori: string;
 };
-
 
 interface Rating {
     id: number;
@@ -54,10 +54,31 @@ interface Props {
     users: users[];
     Blog: Blog[];
     Rating: Rating[];
-     Medsos: Medsos[];
+    Medsos: Medsos[];
 }
 
-export default function Welcome({ PropertiProd, users, Blog, Rating, Medsos }: Props) {
+export default function Welcome({
+    PropertiProd,
+    users,
+    Blog,
+    Rating,
+    Medsos,
+}: Props) {
+
+  const allMedsos = Medsos.map((item) => {
+    const imageArray =
+      typeof item.icon === "string" ? JSON.parse(item.icon) : item.icon;
+
+    return {
+      id: item.id,
+      username: item.username,
+      medsos: item.medsos,
+      icon: imageArray,
+      image: imageArray?.[0] ? `/storage/${imageArray[0]}` : null,
+      kategori: item.kategori, // tambahkan ini
+    };
+  });
+ 
     return (
         <div>
             <Header />
@@ -75,10 +96,10 @@ export default function Welcome({ PropertiProd, users, Blog, Rating, Medsos }: P
                 <HighlighProduct />
                 <ArticlesSection Blog={Blog} />
                 <About />
-                <Contact users={users} />
+                <Contact users={users}  />
                 <RatingsSection Rating={Rating} />
             </main>
-            <Footer users={users} Medsos={Medsos} />
+            <Footer users={users} Medsos={allMedsos} />
         </div>
     );
 }

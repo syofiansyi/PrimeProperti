@@ -21,6 +21,8 @@ export default function UpdateProfileInformation({
         useForm({
             name: user.name,
             email: user.email,
+            nowhatsap: user.nowhatsap,
+            maps: user.maps,
         });
 
     const submit: FormEventHandler = (e) => {
@@ -69,6 +71,36 @@ export default function UpdateProfileInformation({
                         onChange={(e) => setData('email', e.target.value)}
                         required
                         autoComplete="username"
+                    />
+
+                    <InputError className="mt-2" message={errors.email} />
+                </div>
+                <div>
+                    <InputLabel htmlFor="nowhatsap" value="nowhatsap" />
+
+                    <TextInput
+                        id="nowhatsap"
+                        type="text"
+                        className="mt-1 block w-full"
+                        value={data.nowhatsap}
+                        onChange={(e) => setData('nowhatsap', e.target.value)}
+                        required
+                        autoComplete="nowhatsap"
+                    />
+
+                    <InputError className="mt-2" message={errors.email} />
+                </div>
+                      <div>
+                    <InputLabel htmlFor="maps" value="maps" />
+
+                    <TextInput
+                        id="maps"
+                        type="text"
+                        className="mt-1 block w-full"
+                        value={data.maps}
+                        onChange={(e) => setData('maps', e.target.value)}
+                        required
+                        autoComplete="maps"
                     />
 
                     <InputError className="mt-2" message={errors.email} />

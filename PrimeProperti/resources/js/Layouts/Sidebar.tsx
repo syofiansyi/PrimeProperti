@@ -17,7 +17,7 @@ export default function Sidebar({ open }: Props) {
     { name: 'Products', href: '/products' },
     { name: 'Blogs', href: '/blogs' },
        { name: 'Rating', href: '/ratings' },
-         { name: 'Sosmed', href: '/sosmeds' },
+         { name: 'Icons', href: '/sosmeds' },
   ];
 
   return (

@@ -113,7 +113,7 @@ export default function Form({ blog }: BlogProps) {
           <ReactQuill
             ref={quillRef}
             value={data.content}
-            onChange={(val) => setData('content', val)}
+            onChange={(val: string) => setData('content', val)}
             theme="snow"
             modules={modules}
             className="bg-white"

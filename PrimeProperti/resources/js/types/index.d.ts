@@ -1,4 +1,6 @@
 export interface User {
+    nowhatsap: string;
+    maps: string;
     id: number;
     name: string;
     email: string;

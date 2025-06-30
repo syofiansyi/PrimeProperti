@@ -51,6 +51,7 @@ return new class extends Migration {
             $table->text('username')->nullable();
             $table->text('medsos')->nullable();
             $table->text('icon')->nullable();
+            $table->text('kategori')->nullable();
             $table->timestamps();
         });
 

@@ -9,7 +9,7 @@ class Sosmed extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['username', 'medsos', 'icon'];
+    protected $fillable = ['username', 'medsos', 'icon','kategori'];
     protected $casts = [
         'icon' => 'array',
        

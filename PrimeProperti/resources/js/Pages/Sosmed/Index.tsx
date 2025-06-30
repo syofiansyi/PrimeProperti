@@ -7,6 +7,7 @@ interface Sosmed {
   id: number;
   username: string;
   medsos: string;
+  kategori: string;
   icon: string[];
 }
 
@@ -20,6 +21,7 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
     id: null as number | null,
     username: '',
     medsos: '',
+    kategori: 'footer',
     icon: [] as File[],
   });
 
@@ -37,6 +39,7 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
     const formData = new FormData();
     formData.append('username', data.username);
     formData.append('medsos', data.medsos);
+    formData.append('kategori', data.kategori);
     data.icon.forEach((file, i) => {
       formData.append(`icon[${i}]`, file);
     });
@@ -57,6 +60,7 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
       id: sosmed.id,
       username: sosmed.username,
       medsos: sosmed.medsos,
+      kategori: sosmed.kategori,
       icon: [],
     });
     setPreviewIcon(sosmed.icon ?? []);
@@ -65,7 +69,7 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
   };
 
   const deleteData = (id: number) => {
-    if (confirm('Yakin ingin menghapus sosmed ini?')) {
+    if (confirm('Yakin ingin menghapus icons ini?')) {
       router.delete(`/sosmeds/${id}`);
     }
   };
@@ -77,14 +81,15 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
 
   const columns = [
     {
-      name: 'Username',
+      name: 'Name',
       selector: (row: Sosmed) => row.username,
       sortable: true,
     },
     {
-      name: 'Medsos',
+      name: 'Link',
       selector: (row: Sosmed) => row.medsos,
     },
+    
     {
       name: 'Icon',
       cell: (row: Sosmed) => (
@@ -125,19 +130,19 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
     <AppLayout>
       <div className="p-4">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-2xl font-bold">Daftar Sosmed</h1>
+          <h1 className="text-2xl font-bold">Daftar Icons</h1>
           <button
             onClick={openModal}
             className="bg-green-600 text-white px-4 py-2 rounded"
           >
-            + Sosmed
+            + Icons
           </button>
         </div>
 
         {/* Search */}
         <input
           type="text"
-          placeholder="Cari username / medsos..."
+          placeholder="Cari name/ icons..."
           className="w-full max-w-md border rounded px-4 py-2 mb-4"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -161,7 +166,7 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
               </h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block font-medium">Username</label>
+                  <label className="block font-medium">Nama</label>
                   <input
                     type="text"
                     value={data.username}
@@ -171,7 +176,7 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
                   />
                 </div>
                 <div>
-                  <label className="block font-medium">Medsos</label>
+                  <label className="block font-medium">Link</label>
                   <input
                     type="text"
                     value={data.medsos}
@@ -179,6 +184,9 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
                     className="w-full border p-2 rounded"
                     required
                   />
+                </div>
+                 <div>
+                
                 </div>
                 <div>
                   <label className="block font-medium">Icon</label>
