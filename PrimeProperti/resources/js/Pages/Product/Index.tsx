@@ -385,18 +385,13 @@ export default function Index({ products }: PageProps) {
                                         <div>
                                             <label>Deskripsi</label>
                                         </div>
-                                        <input
-                                            type="text"
-                                            placeholder="Deskripsi"
-                                            value={data.deskripsi}
-                                            onChange={(e) =>
-                                                setData(
-                                                    "deskripsi",
-                                                    e.target.value
-                                                )
-                                            }
-                                            className="w-full border px-4 py-2"
-                                        />
+                                        <textarea
+    placeholder="Deskripsi"
+    value={data.deskripsi}
+    onChange={(e) => setData("deskripsi", e.target.value)}
+    className="w-full border px-4 py-2"
+/>
+
                                         <div>
                                             <label>Features</label>
                                         </div>
