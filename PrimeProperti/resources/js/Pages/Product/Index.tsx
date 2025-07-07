@@ -659,7 +659,7 @@ export default function Index({ products }: PageProps) {
                                 onChange={(e) => setSearch(e.target.value)}
                             />
 
-                            <div className="min-w-[1000px]">
+                            <div className="">
                                 <DataTable
                                     columns={columns}
                                     data={filteredProducts}

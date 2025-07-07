@@ -2,8 +2,13 @@ import { useState, useEffect } from "react";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 
-// Komponen MenuItem modular
-function MenuItem({ label, href, onClick }) {
+interface MenuItemProps {
+  label: React.ReactNode;
+  href: string;
+  onClick?: () => void;
+}
+
+function MenuItem({ label, href, onClick }: MenuItemProps) {
   const isHashLink = href.startsWith("#");
 
   return isHashLink ? (
@@ -30,7 +35,6 @@ export default function Header() {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // Tutup menu ketika ukuran layar >= 768px
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -41,7 +45,6 @@ export default function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Kunci scroll body saat menu terbuka
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
@@ -51,20 +54,18 @@ export default function Header() {
 
   const menuItems = [
     { label: "Home", href: "/" },
-    { label: "Properti", href: "#produk" },
+    { label: "Property", href: "#produk" },
     { label: "Artikel", href: "#artikel" },
-    { label: "Testimoni", href: "#testimoni" },
-    { label: "Kontak", href: "#kontak" },
+    { label: "Article", href: "#testimoni" },
+    { label: "Contact", href: "#kontak" },
     { label: "Login", href: route("products.index") },
   ];
 
   return (
     <header className="bg-black fixed top-0 left-0 w-full z-50 shadow-md">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="text-2xl font-bold text-[#f7f5f5]">MyProperty</div>
+        <div className="text-2xl font-bold text-[#f7f5f5]">Balimeridianproperty.com</div>
 
-        {/* Hamburger Button */}
         <button
           onClick={toggleMenu}
           aria-label="Toggle navigation"
@@ -74,7 +75,6 @@ export default function Header() {
           {menuOpen ? "✖" : "☰"}
         </button>
 
-        {/* Menu */}
         <ul
           className={`
             md:flex md:flex-row md:items-center gap-6 text-sm font-medium

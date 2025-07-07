@@ -33,7 +33,7 @@ export default function RatingsSection({ Rating }: Props) {
     return (
         <section id="testimoni" className="py-16 bg-gray-50">
             <h2 className="text-2xl sm:text-3xl font-bold mb-10 text-center text-gray-800">
-                Apa Kata Client Kami
+               What Our Clients Say
             </h2>
 
             <div className="relative max-w-7xl mx-auto px-4 ">

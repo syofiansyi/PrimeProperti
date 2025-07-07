@@ -23,7 +23,7 @@ export default function Contact({ users }: ProductInfoProps) {
       <div className="relative z-10 text-center px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Enjoy Your Day</h2>
         <p className="text-base md:text-lg mb-6">
-          Hubungi kami untuk layanan properti terbaik di Bali
+        Contact us for the best property services in Bali
         </p>
         <a
           href={`https://wa.me/${users[0].nowhatsap}?text=Halo, saya tertarik dengan layanan Anda`}
@@ -31,7 +31,7 @@ export default function Contact({ users }: ProductInfoProps) {
           rel="noopener noreferrer"
           className="inline-block bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full text-sm font-medium transition duration-300"
         >
-          📞 Hubungi Kami via WhatsApp
+          📞 Contact us via WhatsApp
         </a>
       </div>
     </section>

@@ -38,7 +38,7 @@ export default function ProductInfo({ users }: ProductInfoProps) {
     rel="noopener noreferrer"
     className="inline-block bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full shadow transition duration-300 m-2"
   >
-    Hubungi via WhatsApp
+    Contact via WhatsApp
   </a>
 
 

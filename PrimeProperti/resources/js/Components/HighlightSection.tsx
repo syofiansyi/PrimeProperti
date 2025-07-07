@@ -15,18 +15,18 @@ export default function HighlightSection() {
       {/* Konten */}
       <div className="relative max-w-4xl mx-auto space-y-6">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-          Temukan Rumah Impian Anda
+         Find Your Dream Property
         </h1>
         <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-          Kami menyediakan properti berkualitas dengan harga terbaik di lokasi strategis.
-          Mulai perjalanan properti Anda bersama kami.
+        We provide quality properties at the best prices in strategic locations.
+Start your property journey with us.
         </p>
           <Link
             href='/#produk'
           className="inline-block bg-white text-[#8B5E4D] font-semibold px-6 py-3 rounded-full shadow hover:bg-gray-100 transition duration-300"
             
 
-          >          Lihat Properti
+          >          View Properties
 </Link>
         
       </div>

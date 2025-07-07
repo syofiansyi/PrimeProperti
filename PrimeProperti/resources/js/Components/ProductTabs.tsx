@@ -31,7 +31,6 @@ export default function ProductTabs({
     const PropertiDetail = JSON.parse(DetailProd[0].properti_detail);
     const PropertiFasilitas = JSON.parse(DetailProd[0].properti_fasilitas);
     const PropertiPembayaran = JSON.parse(DetailProd[0].properti_pembayaran);
-    console.log(PropertiDetail);
     return (
         <div className="w-full max-w-5xl mx-auto px-4 py-8">
             {/* Tabs Header */}
@@ -44,7 +43,7 @@ export default function ProductTabs({
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                 >
-                    Detail Properti
+                    Property Details
                 </button>
                 <button
                     onClick={() => openTab("fasilitas")}
@@ -54,7 +53,7 @@ export default function ProductTabs({
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                 >
-                    Fasilitas Sekitar
+                    Surrounding Facilities
                 </button>
                 <button
                     onClick={() => openTab("pembayaran")}
@@ -64,7 +63,7 @@ export default function ProductTabs({
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                 >
-                    Cara Pembayaran
+                  Payment method
                 </button>
             </div>
 
@@ -73,7 +72,7 @@ export default function ProductTabs({
                 {activeTab === "detail" && (
                     <div>
                         <h3 className="text-xl font-semibold mb-2">
-                            Deskripsi Lengkap
+                           Complete Description
                         </h3>
                         <p className="mb-3">{DetailProd[0].deskripsi}</p>
 
@@ -91,7 +90,7 @@ export default function ProductTabs({
                 {activeTab === "fasilitas" && (
                     <div>
                         <h3 className="text-xl font-semibold mb-4">
-                            Fasilitas Sekitar
+                            Surrounding Facilities
                         </h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             {[PropertiFasilitas].map((item, idx) => (
@@ -109,7 +108,7 @@ export default function ProductTabs({
                 {activeTab === "pembayaran" && (
                     <div>
                         <h3 className="text-xl font-semibold mb-2">
-                            Opsi Pembayaran
+                            Payment Method
                         </h3>
 
                         {PropertiPembayaran.map(
@@ -125,7 +124,7 @@ export default function ProductTabs({
 
                         <p className="text-sm text-gray-600">
                             <br></br>
-                            Hubungi kami via WhatsApp untuk info lebih lanjut.
+                           Contact us via WhatsApp for more info.
                         </p>
                     </div>
                 )}

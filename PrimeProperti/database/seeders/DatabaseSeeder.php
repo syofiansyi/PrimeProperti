@@ -114,7 +114,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti A',
                 'location' => 'Jakarta Selatan',
                 'deskripsi' => 'Deskripsi properti A',
-                'image' => 'produk1.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
                 'popular' => true,
@@ -133,7 +133,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti B',
                 'location' => 'Bandung',
                 'deskripsi' => 'Deskripsi properti B',
-                'image' => 'produk2.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -153,7 +153,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti C',
                 'location' => 'Surabaya',
                 'deskripsi' => 'Deskripsi properti C',
-                'image' => 'produk3.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -175,7 +175,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti 21',
                 'location' => 'Depok',
                 'deskripsi' => 'Deskripsi properti 21',
-                'image' => 'produk21.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -195,7 +195,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti 22',
                 'location' => 'Bogor',
                 'deskripsi' => 'Deskripsi properti 22',
-                'image' => 'produk22.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -215,7 +215,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti 23',
                 'location' => 'Tangerang',
                 'deskripsi' => 'Deskripsi properti 23',
-                'image' => 'produk23.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -235,7 +235,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti 24',
                 'location' => 'Bekasi',
                 'deskripsi' => 'Deskripsi properti 24',
-                'image' => 'produk24.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -255,7 +255,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti 25',
                 'location' => 'Yogyakarta',
                 'deskripsi' => 'Deskripsi properti 25',
-                'image' => 'produk25.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -276,7 +276,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti 26',
                 'location' => 'Malang',
                 'deskripsi' => 'Deskripsi properti 26',
-                'image' => 'produk26.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -296,7 +296,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti 27',
                 'location' => 'Semarang',
                 'deskripsi' => 'Deskripsi properti 27',
-                'image' => 'produk27.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -316,7 +316,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti 28',
                 'location' => 'Makassar',
                 'deskripsi' => 'Deskripsi properti 28',
-                'image' => 'produk28.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -336,7 +336,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti 29',
                 'location' => 'Palembang',
                 'deskripsi' => 'Deskripsi properti 29',
-                'image' => 'produk29.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -356,7 +356,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti 30',
                 'location' => 'Cirebon',
                 'deskripsi' => 'Deskripsi properti 30',
-                'image' => 'produk30.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -376,7 +376,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Properti 31',
                 'location' => 'Bali',
                 'deskripsi' => 'Deskripsi properti 31',
-                'image' => 'produk31.jpg',
+                'image' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
                 'badge' => json_encode(['Baru, Promo']),
                 'features' => json_encode(['1', '3', '4', '5']),
 
@@ -465,22 +465,24 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Sosmeds
-        DB::table('sosmeds')->insert([
-            [
-                'username' => '@syofian',
-                'medsos' => 'https://x.com/',
-                'icon' => 'fab fa-instagram',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'username' => '@syofianfb',
-                'medsos' => 'https://x.com/',
-                'icon' => 'fab fa-facebook',
-                'kategori' => 'footer',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
-        ]);
+       DB::table('sosmeds')->insert([
+    [
+        'icon' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
+        'medsos' => 'https://x.com/',
+        'username' => '@syofian',
+        'kategori' => 'footer',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ],
+    [
+        'icon' => json_encode(["icons\/OZx8Q1bVdTUZ09hCOU1xslEA8MFRZK0Y49Badbf1.jpg"]),
+        'medsos' => 'https://x.com/',
+        'username' => '@syofianfb',
+         'kategori' => 'footer',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ],
+]);
+
     }
 }

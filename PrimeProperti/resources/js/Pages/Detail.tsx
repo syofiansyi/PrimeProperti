@@ -209,7 +209,7 @@ export default function ProductDetail({
                 >
                     <div className="max-w-6xl mx-auto">
                         <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-10">
-                            Detail Properti
+                           Property Details
                         </h2>
 
                         <div className="flex flex-wrap gap-2 mb-4">
