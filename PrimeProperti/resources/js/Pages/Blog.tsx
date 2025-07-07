@@ -33,20 +33,20 @@ interface Props {
 }
 
 export default function Blog({ blog, users, Medsos }: Props) {
-     const allMedsos = Medsos.map((item) => {
-    const imageArray =
-      typeof item.icon === "string" ? JSON.parse(item.icon) : item.icon;
+    const allMedsos = Medsos.map((item) => {
+        const imageArray =
+            typeof item.icon === "string" ? JSON.parse(item.icon) : item.icon;
 
-    return {
-      id: item.id,
-      username: item.username,
-      medsos: item.medsos,
-      icon: imageArray,
-      image: imageArray?.[0] ? `/storage/${imageArray[0]}` : null,
-      kategori: item.kategori, // tambahkan ini
-    };
-  });
-  
+        return {
+            id: item.id,
+            username: item.username,
+            medsos: item.medsos,
+            icon: imageArray,
+            image: imageArray?.[0] ? `/storage/${imageArray[0]}` : null,
+            kategori: item.kategori, // tambahkan ini
+        };
+    });
+
     return (
         <>
             <Header />
@@ -54,17 +54,43 @@ export default function Blog({ blog, users, Medsos }: Props) {
                 <HighlightSection />
 
                 {/* Blog Section */}
-                <section className=" mx-auto px-4 py-12 bg-white mt-6 rounded-2xl shadow-md">
+                <section className="mx-auto px-4 py-12 bg-white mt-6 rounded-2xl shadow-md">
                     <div className="mb-8">
-                        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-                            {blog.title}
-                        </h2>
                         <div
-                            className="space-y-6 text-gray-700 leading-relaxed text-justify"
+                            className="
+    space-y-6 text-gray-700 leading-relaxed
+    [&_h1]:text-3xl
+    [&_h2]:text-2xl
+    [&_h3]:text-xl
+    [&_h4]:text-lg
+    [&_p]:mb-4
+    [&_ol]:list-decimal [&_ol]:pl-6
+    [&_ul]:list-disc [&_ul]:pl-6
+    [&_.ql-align-center]:text-center
+    [&_.ql-align-right]:text-right
+    [&_.ql-align-justify]:text-justify
+    [&_.ql-direction-rtl]:rtl
+    [&_.ql-size-small]:text-sm
+    [&_.ql-size-large]:text-xl
+    [&_.ql-size-huge]:text-3xl
+    [&_.ql-font-monospace]:font-mono
+    [&_.ql-font-serif]:font-serif
+    [&_.ql-font-sansserif]:font-sans
+    [&_.ql-indent-1]:ml-4
+    [&_.ql-indent-2]:ml-8
+    [&_.ql-indent-3]:ml-12
+    [&_.ql-indent-4]:ml-16
+    [&_.ql-indent-5]:ml-20
+    [&_blockquote]:border-l-4 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-gray-500
+    [&_pre]:bg-gray-100 [&_pre]:p-4 [&_pre]:rounded [&_pre]:overflow-x-auto
+    [&_code]:bg-gray-200 [&_code]:px-1 [&_code]:py-0.5 [&_code]:rounded
+    [&_a]:text-blue-600 [&_a]:underline
+    "
                             dangerouslySetInnerHTML={{ __html: blog.content }}
                         />
                     </div>
                 </section>
+
                 <br></br>
             </main>
             <Footer users={users} Medsos={allMedsos} />
