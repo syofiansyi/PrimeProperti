@@ -241,7 +241,7 @@ export default function ProductDetail({
                             </div>
 
                             <div className="w-full lg:w-1/2">
-                                <ProductInfo users={users} />
+                                <ProductInfo users={users} DetailProd={DetailProd} />
                             </div>
                         </div>
 

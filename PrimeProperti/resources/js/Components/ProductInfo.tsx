@@ -4,12 +4,18 @@ interface users {
     maps:string;
 }
 
-interface ProductInfoProps {
-   users: users[];
+interface DetailProd {
+  id: number;
+  maps?: any;
 }
 
-export default function ProductInfo({ users }: ProductInfoProps) {
 
+interface ProductInfoProps {
+   users: users[];
+   DetailProd: DetailProd[];
+}
+
+export default function ProductInfo({ users, DetailProd }: ProductInfoProps) {
 
   return (
     <section className="w-full ">
@@ -18,7 +24,7 @@ export default function ProductInfo({ users }: ProductInfoProps) {
          
           <iframe
            
-            src={users[0].maps}
+            src={DetailProd[0].maps}
             width="100%"
             height="100%"
             loading="lazy"
