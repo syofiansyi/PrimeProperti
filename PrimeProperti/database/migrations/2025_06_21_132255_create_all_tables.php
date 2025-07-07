@@ -5,7 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up(): void {
+    public function up(): void
+    {
         // Blogs
         Schema::create('blogs', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -68,9 +69,17 @@ return new class extends Migration {
             $table->string('nowhatsap')->nullable();
             $table->text('maps')->nullable();
         });
+       Schema::create('contents', function (Blueprint $table) {
+    $table->id();
+    $table->string('kategori');
+    $table->json('content');
+    $table->timestamps();
+});
+
     }
 
-    public function down(): void {
+    public function down(): void
+    {
         Schema::dropIfExists('users');
         Schema::dropIfExists('sosmeds');
         Schema::dropIfExists('ratings');

@@ -26,13 +26,19 @@ type Medsos = {
     kategori: string;
 };
 
+interface Content {
+    id: number;
+    kategori: string;
+    content: string[]; // array of link
+}
 interface Props {
     blog: BlogType;
     users: users[];
     Medsos: Medsos[];
+    Content: Content[];
 }
 
-export default function Blog({ blog, users, Medsos }: Props) {
+export default function Blog({ blog, users, Medsos, Content }: Props) {
     const allMedsos = Medsos.map((item) => {
         const imageArray =
             typeof item.icon === "string" ? JSON.parse(item.icon) : item.icon;
@@ -46,12 +52,22 @@ export default function Blog({ blog, users, Medsos }: Props) {
             kategori: item.kategori, // tambahkan ini
         };
     });
+ const allContent = Content.map((item) => {
 
+        return {
+            id: item.id,
+            kategori: item.kategori,
+            content:
+                typeof item.content === "string"
+                    ? JSON.parse(item.content)
+                    : item.content,
+        };
+    });
     return (
         <>
             <Header />
             <main className="pt-20">
-                <HighlightSection />
+              <HighlightSection Content={allContent} />
 
                 {/* Blog Section */}
                 <section className="mx-auto px-4 py-12 bg-white mt-6 rounded-2xl shadow-md">

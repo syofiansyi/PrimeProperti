@@ -49,12 +49,19 @@ interface Rating {
     total_rate: number;
 }
 
+interface Content {
+    id: number;
+    kategori: string;
+    content: string[]; // array of link
+}
+
 interface Props {
     PropertiProd: PropertiProd[];
     users: users[];
     Blog: Blog[];
     Rating: Rating[];
     Medsos: Medsos[];
+    Content: Content[];
 }
 
 export default function Welcome({
@@ -63,22 +70,31 @@ export default function Welcome({
     Blog,
     Rating,
     Medsos,
+    Content,
 }: Props) {
+    const allMedsos = Medsos.map((item) => {
+        const imageArray =
+            typeof item.icon === "string" ? JSON.parse(item.icon) : item.icon;
 
-  const allMedsos = Medsos.map((item) => {
-    const imageArray =
-      typeof item.icon === "string" ? JSON.parse(item.icon) : item.icon;
-
-    return {
-      id: item.id,
-      username: item.username,
-      medsos: item.medsos,
-      icon: imageArray,
-      image: imageArray?.[0] ? `/storage/${imageArray[0]}` : null,
-      kategori: item.kategori, // tambahkan ini
-    };
-  });
- 
+        return {
+            id: item.id,
+            username: item.username,
+            medsos: item.medsos,
+            icon: imageArray,
+            image: imageArray?.[0] ? `/storage/${imageArray[0]}` : null,
+            kategori: item.kategori, // tambahkan ini
+        };
+    });
+    const allContent = Content.map((item) => {
+        return {
+            id: item.id,
+            kategori: item.kategori,
+            content:
+                typeof item.content === "string"
+                    ? JSON.parse(item.content)
+                    : item.content,
+        };
+    });
     return (
         <div>
             <Header />
@@ -91,12 +107,12 @@ export default function Welcome({
                 >
                     <FaWhatsapp size={24} />
                 </a>
-                <HighlightSection />
+                <HighlightSection Content={allContent} />
                 <ProductSection PropertiProd={PropertiProd} />
                 <HighlighProduct />
                 <ArticlesSection Blog={Blog} />
                 <About />
-                <Contact users={users}  />
+                <Contact users={users} />
                 <RatingsSection Rating={Rating} />
             </main>
             <Footer users={users} Medsos={allMedsos} />

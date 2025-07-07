@@ -484,5 +484,18 @@ class DatabaseSeeder extends Seeder
     ],
 ]);
 
+ DB::table('contents')->insert([
+    [
+        'content' => json_encode([
+            "Find Your Dream Property",
+            "We provide quality properties at the best prices in strategic locations. Start your property journey with us.",
+            "View Properties"
+        ]),
+        'kategori' => 'HighlightSection',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ],
+]);
+
     }
 }

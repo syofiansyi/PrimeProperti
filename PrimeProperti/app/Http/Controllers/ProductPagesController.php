@@ -15,17 +15,19 @@ class ProductPagesController extends Controller
      */
     public function index()
     {
-         $Users = DB::table('users')->get();
+        $Users = DB::table('users')->get();
         $Medsos = DB::table('sosmeds')->get();
-         $Blog = DB::table('blogs')->get();
-         $Rating = DB::table('ratings')->get();
-         $PropertiProd = DB::table('products')->get();
+        $Blog = DB::table('blogs')->get();
+        $Rating = DB::table('ratings')->get();
+        $PropertiProd = DB::table('products')->get();
+        $Content = DB::table('contents')->get();
         return Inertia::render('Welcome', [
             'PropertiProd' => $PropertiProd,
-             'users' => $Users,
+            'users' => $Users,
             'Blog' => $Blog,
             'Rating' => $Rating,
             'Medsos' => $Medsos,
+            'Content' => $Content,
         ]);
     }
 
@@ -42,26 +44,28 @@ class ProductPagesController extends Controller
      */
     public function show(string $id)
     {
-       
 
- $Medsos = DB::table('sosmeds')->get();
-        $DetailProd = DB::table('products')->where('id',$id)->get();
-         $location = $DetailProd[0]->location;
+
+        $Medsos = DB::table('sosmeds')->get();
+        $DetailProd = DB::table('products')->where('id', $id)->get();
+        $location = $DetailProd[0]->location;
         $allprod =   DB::table('products')
-    ->where('location', $location)
-    ->where('id', '!=', $id)
-    ->get();
+            ->where('location', $location)
+            ->where('id', '!=', $id)
+            ->get();
         $Blog = DB::table('blogs')->get();
         $Users = DB::table('users')->get();
-         $Rating = DB::table('ratings')->get();
-         $PropertiProd = DB::table('products')->get();
+        $Rating = DB::table('ratings')->get();
+        $PropertiProd = DB::table('products')->get();
+          $Content = DB::table('contents')->get();
         return Inertia::render('Detail', [
             'DetailProd' => $DetailProd,
             'users' => $Users,
-            'allprod' =>$allprod,
+            'allprod' => $allprod,
             'Blog' => $Blog,
             'Rating' => $Rating,
-             'Medsos' => $Medsos,
+            'Medsos' => $Medsos,
+             'Content' => $Content,
         ]);
     }
 

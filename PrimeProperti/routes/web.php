@@ -9,6 +9,8 @@ use App\Http\Controllers\ProductPagesController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SosmedController;
+use App\Http\Controllers\ContentController;
+
 
 
 
@@ -70,6 +72,7 @@ Route::get('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
 
 Route::resource('ratings', RatingController::class);
 Route::resource('sosmeds', SosmedController::class);
+Route::resource('content', ContentController::class);
 
 
 });

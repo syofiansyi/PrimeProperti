@@ -84,6 +84,12 @@ interface Blog {
     thumbnail?: string;
 }
 
+interface Content {
+    id: number;
+    kategori: string;
+    content: string[]; // array of link
+}
+
 interface Props {
     DetailProd: DetailProd[]; // <- array!
     allprod: SimilarProducts[];
@@ -91,6 +97,7 @@ interface Props {
     Rating: Rating[];
     Blog: Blog[];
     Medsos: Medsos[];
+     Content: Content[];
 }
 
 export default function ProductDetail({
@@ -100,6 +107,7 @@ export default function ProductDetail({
     Rating,
     Blog,
     Medsos,
+    Content,
 }: Props) {
     const DetailProdProp = DetailProd.map((item) => {
         return {
@@ -178,6 +186,16 @@ export default function ProductDetail({
       kategori: item.kategori, // tambahkan ini
     };
   });
+   const allContent = Content.map((item) => {
+        return {
+            id: item.id,
+            kategori: item.kategori,
+            content:
+                typeof item.content === "string"
+                    ? JSON.parse(item.content)
+                    : item.content,
+        };
+    });
  
     const [mainImage, setMainImage] = useState(DetailProdProp[0].image[0]);
     const [activeTab, setActiveTab] = useState("detail");
@@ -202,7 +220,7 @@ export default function ProductDetail({
                 >
                     <FaWhatsapp size={24} />
                 </a>
-                <HighlightSection />
+                <HighlightSection Content={allContent} />
                 <section
                     id="produk"
                     className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50"

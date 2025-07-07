@@ -58,11 +58,12 @@ Blog::create($validated);
     {        $Users = DB::table('users')->get();
         $blog = DB::table('blogs')->where('id', $id)->first();
  $Medsos = DB::table('sosmeds')->get();
-
+  $Content = DB::table('contents')->get();
         return Inertia::render('Blog', [
             'blog' => $blog,
              'users' => $Users,
               'Medsos' => $Medsos,
+              'Content' => $Content,
         ]);
 
      
