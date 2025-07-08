@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->text('content')->nullable();
+            $table->longText('content')->nullable(); // ✅ TANPA change()
             $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
@@ -69,13 +69,12 @@ return new class extends Migration {
             $table->string('nowhatsap')->nullable();
             $table->text('maps')->nullable();
         });
-       Schema::create('contents', function (Blueprint $table) {
-    $table->id();
-    $table->string('kategori');
-    $table->text('content')->nullable();
-    $table->timestamps();
-});
-
+        Schema::create('contents', function (Blueprint $table) {
+            $table->id();
+            $table->string('kategori');
+            $table->text('content')->nullable();
+            $table->timestamps();
+        });
     }
 
     public function down(): void
