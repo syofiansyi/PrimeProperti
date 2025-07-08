@@ -142,7 +142,7 @@ export default function Footer({ users, Medsos,Content }: ProductInfoProps) {
                 {/* Column 3 - Map */}
                 <div>
                     <h2 className="text-2xl font-semibold text-center mb-4">
-                       {allCont[0].content[2]}
+                       {allCont[0].content[5]}
                     </h2>
                     <div>
                         <iframe
