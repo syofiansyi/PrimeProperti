@@ -14,15 +14,24 @@ type Medsos = {
     kategori: string;
 };
 
+interface Content {
+    id: number;
+    kategori: string;
+    content: string[]; // array of link
+}
+
 interface ProductInfoProps {
     users: users[];
     Medsos: Medsos[];
+     Content: Content[];
 }
 
-export default function Footer({ users, Medsos }: ProductInfoProps) {
+export default function Footer({ users, Medsos,Content }: ProductInfoProps) {
     const [isLoading, setIsLoading] = useState(true);
-    const allFoot = Medsos.filter(item => item.kategori === "footer");
-
+    const ImgFoot = Medsos.filter(item => item.kategori === "Footer");
+ const allCont = Content.filter(
+        (item) => item.kategori === "Footer"
+    );
     useEffect(() => {
         // Simulate loading delay
         const timer = setTimeout(() => {
@@ -87,11 +96,10 @@ export default function Footer({ users, Medsos }: ProductInfoProps) {
             {/* CTA Section */}
             <div className="text-center py-10 border-b border-[#4e413b] px-4">
                 <h3 className="text-xl font-semibold mb-2">
-                    Get personalized service
+                  {allCont[0].content[0]}
                 </h3>
                 <p className="max-w-xl mx-auto text-gray-300 mb-4">
-                    You will receive prompt support and guidance. Our expert
-                    team will provide top-notch assistance.
+                 {allCont[0].content[1]}
                 </p>
                 <a
                     href={`https://wa.me/${users[0]?.nowhatsap}?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20properti%20Anda.`}
@@ -99,7 +107,7 @@ export default function Footer({ users, Medsos }: ProductInfoProps) {
                     rel="noopener noreferrer"
                 >
                     <button className="bg-white text-[#3b2f2a] font-semibold py-2 px-5 rounded-md hover:bg-gray-200 transition">
-                        REQUEST NOW
+                       {allCont[0].content[2]}
                     </button>
                 </a>
             </div>
@@ -108,13 +116,12 @@ export default function Footer({ users, Medsos }: ProductInfoProps) {
             <div className="max-w-screen-xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-10">
                 {/* Column 1 - About */}
                 <div>
-                    <div className="text-2xl font-bold mb-4">Balimeridianproperty.com</div>
+                    <div className="text-2xl font-bold mb-4">{allCont[0].content[3]}</div>
                     <p className="text-gray-300 leading-relaxed">
-                        At Balimeridianproperty.com Real Estate, we guide you through your
-                        next property investment with confidence and expertise.
+                       {allCont[0].content[4]}
                     </p>
                     <div className="flex gap-2 mt-6 text-2xl">
-                        {allFoot.map((item, index) => (
+                        {ImgFoot.map((item, index) => (
                             <a
                                 key={index}
                                 href={item.medsos}
@@ -135,7 +142,7 @@ export default function Footer({ users, Medsos }: ProductInfoProps) {
                 {/* Column 3 - Map */}
                 <div>
                     <h2 className="text-2xl font-semibold text-center mb-4">
-                        Visit Us
+                       {allCont[0].content[2]}
                     </h2>
                     <div>
                         <iframe

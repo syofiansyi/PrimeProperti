@@ -67,7 +67,7 @@ export default function Blog({ blog, users, Medsos, Content }: Props) {
         <>
             <Header />
             <main className="pt-20">
-              <HighlightSection Content={allContent} />
+              <HighlightSection Content={allContent} Medsos={allMedsos}/>
 
                 {/* Blog Section */}
                 <section className="mx-auto px-4 py-12 bg-white mt-6 rounded-2xl shadow-md">
@@ -109,7 +109,7 @@ export default function Blog({ blog, users, Medsos, Content }: Props) {
 
                 <br></br>
             </main>
-            <Footer users={users} Medsos={allMedsos} />
+          <Footer users={users} Medsos={allMedsos} Content={allContent} />
         </>
     );
 }

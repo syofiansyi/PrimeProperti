@@ -21,7 +21,7 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
     id: null as number | null,
     username: '',
     medsos: '',
-    kategori: 'footer',
+    kategori: '',
     icon: [] as File[],
   });
 
@@ -104,6 +104,10 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
           ))}
         </div>
       ),
+    },
+     {
+      name: 'Kategori',
+      selector: (row: Sosmed) => row.kategori,
     },
     {
       name: 'Aksi',
@@ -212,6 +216,57 @@ export default function Index({ sosmeds }: { sosmeds: Sosmed[] }) {
                     </div>
                   )}
                 </div>
+              <div>
+                                        <label className="block font-medium">
+                                            Kategori
+                                        </label>
+                                        <select
+                                            value={data.kategori}
+                                            onChange={(e) =>
+                                                setData("kategori", e.target.value)
+                                            }
+                                            className="w-full border p-2 rounded"
+                                            required
+                                        >
+                                            <option value="">
+                                                -- Pilih kategori --
+                                            </option>
+                                             <option value="Contact">Contact</option>
+                                            <option value="Header">Header</option>
+                                            <option value="HighlightSection">
+                                                HighlightSection
+                                            </option>
+                                            <option value="ProductHiglight">
+                                                ProductHiglight
+                                            </option>
+                                            <option value="ArticlesSection">
+                                                ArticlesSection
+                                            </option>
+                                            <option value="RatingsSection">
+                                                RatingsSection
+                                            </option>
+                                            <option value="ProductGallery">
+                                                ProductGallery
+                                            </option>
+                                            <option value="ProductInfo">
+                                                ProductInfo
+                                            </option>
+                                            <option value="ProductTabs">
+                                                ProductTabs
+                                            </option>
+                                            <option value="ProductTabs">
+                                                ProductTabs
+                                            </option>
+                                            <option value="About">About</option>
+                                            <option value="HighlighProduct">
+                                                HighlighProduct
+                                            </option>
+                                            <option value="ProductSection">
+                                                ProductSection
+                                            </option>
+                                            <option value="Footer">Footer</option>
+                                        </select>
+                                    </div>
                 <div className="flex justify-end gap-2">
                   <button
                     type="button"

@@ -1,18 +1,33 @@
-export default function HighlightProduct() {
+import { Link } from "@inertiajs/react";
+import { route } from "ziggy-js";
+
+interface Content {
+    id: number;
+    kategori: string;
+    content: string[]; // array of link
+}
+
+interface Props {
+    Content: Content[];
+}
+export default function HighlightProduct({ Content }: Props) {
+   const allCont = Content.filter(
+        (item) => item.kategori === "HighlighProduct"
+    );
   const stats = [
-    { label: "Canggu", value: "120+" },
-    { label: "Ubud", value: "95+" },
-    { label: "Sanur", value: "80+" },
-    { label: "Jimbaran", value: "60+" },
+    { label:  `${allCont[0].content[0]}`, value: `${allCont[0].content[1]}` },
+    { label:  `${allCont[0].content[2]}`, value: `${allCont[0].content[3]}` },
+    { label:  `${allCont[0].content[4]}`, value: `${allCont[0].content[5]}` },
+    { label:  `${allCont[0].content[6]}`, value: `${allCont[0].content[7]}` },
   ];
 
   return (
     <section className="py-10 px-4 bg-white text-center">
       <h1 className="text-2xl md:text-3xl font-bold text-black mb-3">
-        EXPLORE THE HOT INVESTMENT AREAS IN BALI
+        {allCont[0].content[8]}
       </h1>
       <p className="text-sm md:text-base text-gray-600 mb-8">
-        Explore Our Available Villas In Bali's Most Developing Areas
+         {allCont[0].content[9]}
       </p>
 
       <div className="flex flex-wrap justify-center gap-4">

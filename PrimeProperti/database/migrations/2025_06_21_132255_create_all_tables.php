@@ -26,7 +26,7 @@ return new class extends Migration {
             $table->text('image')->nullable();
             $table->text('badge')->nullable();
             $table->text('features')->nullable();
-            $table->boolean('popular')->nullable();
+            $table->text('popular')->nullable();
             $table->date('date')->nullable();
             $table->string('tipe')->nullable();
             $table->text('maps')->nullable();

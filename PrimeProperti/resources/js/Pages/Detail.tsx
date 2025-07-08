@@ -97,7 +97,7 @@ interface Props {
     Rating: Rating[];
     Blog: Blog[];
     Medsos: Medsos[];
-     Content: Content[];
+    Content: Content[];
 }
 
 export default function ProductDetail({
@@ -173,20 +173,20 @@ export default function ProductDetail({
         };
     });
 
-  const allMedsos = Medsos.map((item) => {
-    const imageArray =
-      typeof item.icon === "string" ? JSON.parse(item.icon) : item.icon;
+    const allMedsos = Medsos.map((item) => {
+        const imageArray =
+            typeof item.icon === "string" ? JSON.parse(item.icon) : item.icon;
 
-    return {
-      id: item.id,
-      username: item.username,
-      medsos: item.medsos,
-      icon: imageArray,
-      image: imageArray?.[0] ? `/storage/${imageArray[0]}` : null,
-      kategori: item.kategori, // tambahkan ini
-    };
-  });
-   const allContent = Content.map((item) => {
+        return {
+            id: item.id,
+            username: item.username,
+            medsos: item.medsos,
+            icon: imageArray,
+            image: imageArray?.[0] ? `/storage/${imageArray[0]}` : null,
+            kategori: item.kategori, // tambahkan ini
+        };
+    });
+    const allContent = Content.map((item) => {
         return {
             id: item.id,
             kategori: item.kategori,
@@ -196,7 +196,7 @@ export default function ProductDetail({
                     : item.content,
         };
     });
- 
+
     const [mainImage, setMainImage] = useState(DetailProdProp[0].image[0]);
     const [activeTab, setActiveTab] = useState("detail");
 
@@ -220,14 +220,14 @@ export default function ProductDetail({
                 >
                     <FaWhatsapp size={24} />
                 </a>
-                <HighlightSection Content={allContent} />
+                <HighlightSection Content={allContent} Medsos={allMedsos} />
                 <section
                     id="produk"
                     className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50"
                 >
                     <div className="max-w-6xl mx-auto">
                         <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-10">
-                           Property Details
+                            Property Details
                         </h2>
 
                         <div className="flex flex-wrap gap-2 mb-4">
@@ -259,7 +259,10 @@ export default function ProductDetail({
                             </div>
 
                             <div className="w-full lg:w-1/2">
-                                <ProductInfo users={users} DetailProd={DetailProd} />
+                                <ProductInfo
+                                    users={users}
+                                    DetailProd={DetailProd}
+                                />
                             </div>
                         </div>
 
@@ -274,14 +277,18 @@ export default function ProductDetail({
 
                 <ProductHiglight allprod={SimilarProd} />
 
-                <About />
+                <About Content={allContent} Medsos={allMedsos} />
                 {/* Komponen Lain */}
 
                 <ArticlesSection Blog={Blog} />
-                <Contact users={users} />
+                <Contact
+                    users={users}
+                    Content={allContent}
+                    Medsos={allMedsos}
+                />
                 <RatingsSection Rating={Rating} />
             </main>
-            <Footer users={users} Medsos={allMedsos} />
+            <Footer users={users} Medsos={allMedsos} Content={allContent} />
         </>
     );
 }

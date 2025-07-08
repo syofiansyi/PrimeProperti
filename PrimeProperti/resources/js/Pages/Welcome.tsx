@@ -107,15 +107,19 @@ export default function Welcome({
                 >
                     <FaWhatsapp size={24} />
                 </a>
-                <HighlightSection Content={allContent} />
+                <HighlightSection Content={allContent} Medsos={allMedsos} />
                 <ProductSection PropertiProd={PropertiProd} />
-                <HighlighProduct />
+                <HighlighProduct Content={allContent} />
                 <ArticlesSection Blog={Blog} />
-                <About />
-                <Contact users={users} />
+                <About Content={allContent} Medsos={allMedsos} />
+                <Contact
+                    users={users}
+                    Content={allContent}
+                    Medsos={allMedsos}
+                />
                 <RatingsSection Rating={Rating} />
             </main>
-            <Footer users={users} Medsos={allMedsos} />
+            <Footer users={users} Medsos={allMedsos} Content={allContent} />
         </div>
     );
 }

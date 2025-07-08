@@ -10,6 +10,7 @@ interface Product {
     location: string;
     maps: string;
     deskripsi: string;
+    popular: any;
     features: string[] | string;
     badge: string[] | string;
     price: number;
@@ -47,6 +48,7 @@ export default function Index({ products }: PageProps) {
         location: "",
         maps: "",
         deskripsi: "",
+        popular: false as boolean,
         features: [""],
         badge: [""],
         properti_detail: [""],
@@ -77,6 +79,7 @@ export default function Index({ products }: PageProps) {
                 location: product.location,
                 maps: product.maps,
                 deskripsi: product.deskripsi,
+                popular: product.popular === "1",
                 features: Array.isArray(product.features)
                     ? product.features
                     : [product.features],
@@ -115,6 +118,7 @@ export default function Index({ products }: PageProps) {
             location: "",
             maps: "",
             deskripsi: "",
+            popular: false, // ✅ diperbaiki
             features: [""],
             badge: [""],
             properti_detail: [""],
@@ -135,6 +139,8 @@ export default function Index({ products }: PageProps) {
         formData.append("location", data.location);
         formData.append("maps", data.maps);
         formData.append("deskripsi", data.deskripsi);
+        formData.append("popular", data.popular ? "1" : "0");
+
         formData.append("price", data.price);
         formData.append("tipe", data.tipe);
 
@@ -386,11 +392,16 @@ export default function Index({ products }: PageProps) {
                                             <label>Deskripsi</label>
                                         </div>
                                         <textarea
-    placeholder="Deskripsi"
-    value={data.deskripsi}
-    onChange={(e) => setData("deskripsi", e.target.value)}
-    className="w-full border px-4 py-2"
-/>
+                                            placeholder="Deskripsi"
+                                            value={data.deskripsi}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "deskripsi",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className="w-full border px-4 py-2"
+                                        />
 
                                         <div>
                                             <label>Features</label>
@@ -584,6 +595,7 @@ export default function Index({ products }: PageProps) {
                                             <label>Harga</label>
                                         </div>
                                         <input
+                                            type="number"
                                             placeholder="Price"
                                             value={data.price}
                                             onChange={(e) =>
@@ -591,6 +603,7 @@ export default function Index({ products }: PageProps) {
                                             }
                                             className="w-full border px-4 py-2"
                                         />
+
                                         <div>
                                             <label>Tipe Properti</label>
                                         </div>
@@ -628,6 +641,22 @@ export default function Index({ products }: PageProps) {
                                                 }
                                             }}
                                         />
+                                        <div>
+                                            <label className="flex items-center space-x-2">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={data.popular}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "popular",
+                                                            e.target.checked
+                                                        )
+                                                    }
+                                                    className="w-4 h-4"
+                                                />
+                                                <span>Popular</span>
+                                            </label>
+                                        </div>
 
                                         <div className="flex gap-2 justify-end mt-4">
                                             <button

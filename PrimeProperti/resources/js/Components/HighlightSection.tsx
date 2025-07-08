@@ -6,20 +6,29 @@ interface Content {
     kategori: string;
     content: string[]; // array of link
 }
+type Medsos = {
+    icon: string;
+    medsos: string;
+    username: string;
+    id: number;
+    kategori: string;
+};
 
 interface Props {
     Content: Content[];
+    Medsos: Medsos[];
 }
-export default function HighlightSection({ Content }: Props) {
+export default function HighlightSection({ Content, Medsos }: Props) {
     const allCont = Content.filter(
         (item) => item.kategori === "HighlightSection"
     );
+    const ImgHse = Medsos.filter((item) => item.kategori === "HiglightSection");
+
     return (
         <section
             className="relative bg-cover bg-center text-white py-20 px-4 sm:px-6 lg:px-8 text-center"
             style={{
-                backgroundImage:
-                    "url('https://plus.unsplash.com/premium_photo-1661929519129-7a76946c1d38?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aG90ZWx8ZW58MHx8MHx8fDA%3D')",
+                backgroundImage: `url( /storage/${ImgHse[0].icon})`,
             }}
         >
             {/* Overlay gradasi gelap */}

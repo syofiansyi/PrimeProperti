@@ -147,140 +147,151 @@ export default function Index({ contents }: { contents: Content[] }) {
 
                 {/* Modal */}
                 {showModal && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                        <div className="bg-white p-6 w-full max-w-md rounded shadow relative">
-                            <h2 className="text-lg font-bold mb-4">
-                                {editing ? "Edit Content" : "Tambah Content"}
-                            </h2>
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div>
-                                    <label className="block font-medium">
-                                        Kategori
-                                    </label>
-                                    <select
-                                        value={data.kategori}
-                                        onChange={(e) =>
-                                            setData("kategori", e.target.value)
-                                        }
-                                        className="w-full border p-2 rounded"
-                                        required
-                                    >
-                                        <option value="">
-                                            -- Pilih kategori --
-                                        </option>
-                                        <option value="header">Header</option>
-                                        <option value="HighlightSection">
-                                            HighlightSection
-                                        </option>
-                                        <option value="ProductHiglight">
-                                            ProductHiglight
-                                        </option>
-                                        <option value="ArticlesSection">
-                                            ArticlesSection
-                                        </option>
-                                        <option value="RatingsSection">
-                                            RatingsSection
-                                        </option>
-                                        <option value="ProductGallery">
-                                            ProductGallery
-                                        </option>
-                                        <option value="ProductInfo">
-                                            ProductInfo
-                                        </option>
-                                        <option value="ProductTabs">
-                                            ProductTabs
-                                        </option>
-                                        <option value="ProductTabs">
-                                            ProductTabs
-                                        </option>
-                                        <option value="About">About</option>
-                                        <option value="HighlighProduct">
-                                            HighlighProduct
-                                        </option>
-                                        <option value="ProductSection">
-                                            ProductSection
-                                        </option>
-                                        <option value="footer">Footer</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label className="block font-medium">
-                                        Content (link)
-                                    </label>
-                                    <div className="space-y-2">
-                                        {data.content.map((link, index) => (
-                                            <div
-                                                key={index}
-                                                className="flex gap-2"
-                                            >
-                                                <input
-                                                    type="text"
-                                                    value={link}
-                                                    onChange={(e) => {
-                                                        const newContent = [
-                                                            ...data.content,
-                                                        ];
-                                                        newContent[index] =
-                                                            e.target.value;
-                                                        setData(
-                                                            "content",
-                                                            newContent
-                                                        );
-                                                    }}
-                                                    className="w-full border p-2 rounded"
-                                                    required
-                                                />
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        const newContent =
-                                                            data.content.filter(
-                                                                (_, i) =>
-                                                                    i !== index
-                                                            );
-                                                        setData(
-                                                            "content",
-                                                            newContent
-                                                        );
-                                                    }}
-                                                    className="bg-red-500 text-white px-2 rounded"
-                                                >
-                                                    Hapus
-                                                </button>
-                                            </div>
-                                        ))}
-                                        <button
-                                            type="button"
-                                            onClick={() =>
-                                                setData("content", [
-                                                    ...data.content,
-                                                    "",
-                                                ])
+                    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                        <div 
+                            className="bg-white rounded shadow relative"
+                            style={{
+                                width: "500px",
+                                maxHeight: "400px",
+                                display: "flex",
+                                flexDirection: "column"
+                            }}
+                        >
+                            <div className="p-6 flex-1 overflow-y-auto">
+                                <h2 className="text-lg font-bold mb-4">
+                                    {editing ? "Edit Content" : "Tambah Content"}
+                                </h2>
+                                <form onSubmit={handleSubmit} className="space-y-4">
+                                    <div>
+                                        <label className="block font-medium">
+                                            Kategori
+                                        </label>
+                                        <select
+                                            value={data.kategori}
+                                            onChange={(e) =>
+                                                setData("kategori", e.target.value)
                                             }
-                                            className="bg-green-600 text-white px-2 py-1 rounded"
+                                            className="w-full border p-2 rounded"
+                                            required
                                         >
-                                            + Tambah Baris
-                                        </button>
+                                            <option value="">
+                                                -- Pilih kategori --
+                                            </option>
+                                             <option value="Contact">Contact</option>
+                                            <option value="Header">Header</option>
+                                            <option value="HighlightSection">
+                                                HighlightSection
+                                            </option>
+                                            <option value="ProductHiglight">
+                                                ProductHiglight
+                                            </option>
+                                            <option value="ArticlesSection">
+                                                ArticlesSection
+                                            </option>
+                                            <option value="RatingsSection">
+                                                RatingsSection
+                                            </option>
+                                            <option value="ProductGallery">
+                                                ProductGallery
+                                            </option>
+                                            <option value="ProductInfo">
+                                                ProductInfo
+                                            </option>
+                                            <option value="ProductTabs">
+                                                ProductTabs
+                                            </option>
+                                            <option value="ProductTabs">
+                                                ProductTabs
+                                            </option>
+                                            <option value="About">About</option>
+                                            <option value="HighlighProduct">
+                                                HighlighProduct
+                                            </option>
+                                            <option value="ProductSection">
+                                                ProductSection
+                                            </option>
+                                            <option value="Footer">Footer</option>
+                                        </select>
                                     </div>
-                                </div>
 
-                                <div className="flex justify-end gap-2">
-                                    <button
-                                        type="button"
-                                        onClick={closeModal}
-                                        className="px-4 py-2 bg-gray-300 rounded"
-                                    >
-                                        Batal
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        className="px-4 py-2 bg-blue-600 text-white rounded"
-                                    >
-                                        {editing ? "Update" : "Simpan"}
-                                    </button>
-                                </div>
-                            </form>
+                                    <div>
+                                        <label className="block font-medium">
+                                            Content (link)
+                                        </label>
+                                        <div className="space-y-2">
+                                            {data.content.map((link, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="flex gap-2"
+                                                >
+                                                    <input
+                                                        type="text"
+                                                        value={link}
+                                                        onChange={(e) => {
+                                                            const newContent = [
+                                                                ...data.content,
+                                                            ];
+                                                            newContent[index] =
+                                                                e.target.value;
+                                                            setData(
+                                                                "content",
+                                                                newContent
+                                                            );
+                                                        }}
+                                                        className="w-full border p-2 rounded"
+                                                        required
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            const newContent =
+                                                                data.content.filter(
+                                                                    (_, i) =>
+                                                                        i !== index
+                                                                );
+                                                            setData(
+                                                                "content",
+                                                                newContent
+                                                            );
+                                                        }}
+                                                        className="bg-red-500 text-white px-2 rounded"
+                                                    >
+                                                        Hapus
+                                                    </button>
+                                                </div>
+                                            ))}
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    setData("content", [
+                                                        ...data.content,
+                                                        "",
+                                                    ])
+                                                }
+                                                className="bg-green-600 text-white px-2 py-1 rounded"
+                                            >
+                                                + Tambah Baris
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="p-4 border-t flex justify-end gap-2">
+                                <button
+                                    type="button"
+                                    onClick={closeModal}
+                                    className="px-4 py-2 bg-gray-300 rounded"
+                                >
+                                    Batal
+                                </button>
+                                <button
+                                    type="submit"
+                                    onClick={handleSubmit}
+                                    className="px-4 py-2 bg-blue-600 text-white rounded"
+                                >
+                                    {editing ? "Update" : "Simpan"}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 )}

@@ -35,6 +35,7 @@ class ProductController extends Controller
             'deskripsi' => 'required|string',
             'price' => 'required|int',
             'images.*' => 'nullable|image|max:2048',
+            'popular' => 'required|string',
         ]);
 
         $imagePaths = [];
@@ -97,9 +98,10 @@ class ProductController extends Controller
             'deskripsi' => 'required|string',
             'price' => 'required|int',
             'images.*' => 'nullable|image|max:2048',
+              'popular' => 'required|string',
         ]);
 
-        $data = $request->only(['title', 'price', 'location','maps', 'features','badge','properti_detail','properti_pembayaran','properti_fasilitas','tipe','tipe','deskripsi']);
+        $data = $request->only(['title', 'price', 'location','maps', 'features','badge','properti_detail','properti_pembayaran','properti_fasilitas','tipe','tipe','deskripsi','popular']);
         
         //Ini untuk Update Hapus Image Lama
         // 🔁 Hapus gambar lama kalau ada file baru

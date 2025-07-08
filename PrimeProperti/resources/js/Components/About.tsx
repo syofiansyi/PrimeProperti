@@ -1,16 +1,38 @@
-export default function AgencyExpertiseSection() {
+import { Link } from "@inertiajs/react";
+import { route } from "ziggy-js";
+
+interface Content {
+    id: number;
+    kategori: string;
+    content: string[]; // array of link
+}
+
+type Medsos = {
+    icon: string;
+    medsos: string;
+    username: string;
+    id: number;
+    kategori: string;
+};
+
+interface Props {
+    Content: Content[];
+    Medsos: Medsos[];
+}
+
+export default function AgencyExpertiseSection({ Content, Medsos }: Props) {
+    const allCont = Content.filter((item) => item.kategori === "About");
+    const ImgAbout = Medsos.filter((item) => item.kategori === "About");
+    console.log(ImgAbout);
     return (
         <section className="bg-gray-50 py-12 px-4">
             <div className="max-w-6xl mx-auto space-y-12">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto space-y-4">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-                        Our Property Agency Expertise
+                        {allCont[0].content[0]}
                     </h2>
-                    <p className="text-gray-600">
-                        We offer expert advice, dedicated service and unique
-                        insights into the Bali real estate market.{" "}
-                    </p>
+                    <p className="text-gray-600">{allCont[0].content[1]}</p>
                 </div>
 
                 {/* Content */}
@@ -18,7 +40,7 @@ export default function AgencyExpertiseSection() {
                     {/* Image */}
                     <div className="w-full lg:w-1/2">
                         <img
-                            src="https://media.istockphoto.com/id/1019219898/photo/real-estate-or-property-investment-home-mortgage-loan-rate-saving-money-for-retirement.webp?a=1&b=1&s=612x612&w=0&k=20&c=ZaOpdD6_mEBEqI4pU2py_7sSeLItzMi2Rz2XEFlSLbQ="
+                            src={`/storage/${ImgAbout[0].icon[0]}`}
                             alt="Agency Room"
                             className="rounded-lg shadow-md w-full object-cover"
                         />
@@ -28,20 +50,20 @@ export default function AgencyExpertiseSection() {
                     <div className="w-full lg:w-1/2 space-y-6">
                         {[
                             {
-                                title: "🏦 Investment Strategy",
-                                text: "Get a customized investment plan with ROI projections and location insights.",
+                                title: `🏦 ${allCont[0].content[2]}`,
+                                text: `${allCont[0].content[3]}`,
                             },
                             {
-                                title: "📊 Market Analysis",
-                                text: "We provide up-to-date research on Bali's ever-growing property market.",
+                                title: `📊 ${allCont[0].content[4]}`,
+                                text: `${allCont[0].content[5]}`,
                             },
                             {
-                                title: "📈 ROI Analysis",
-                                text: "Measure your profits based on historical data and demand trends.",
+                                title: `📈 ${allCont[0].content[6]}`,
+                                text: `${allCont[0].content[7]}`,
                             },
                             {
-                                title: "🛋️ Advice for Architects & Designers",
-                                text: "Make sure your villa is attractive to investors and guests with successful design tips.",
+                                title: `🛋️ ${allCont[0].content[8]}`,
+                                text: `${allCont[0].content[9]}`,
                             },
                         ].map((item, i) => (
                             <div key={i}>
@@ -57,21 +79,21 @@ export default function AgencyExpertiseSection() {
                 {/* Services */}
                 <div className="space-y-6">
                     <h3 className="text-2xl font-bold text-center text-gray-800">
-                        Our Agency Services
+                        {allCont[0].content[10]}
                     </h3>
                     <div className="grid md:grid-cols-3 gap-6">
                         {[
                             {
-                                title: "🏘️ Sales of villas and land",
-                                text: "We help you find and buy property with full legal support.",
+                                title: `🏘️ ${allCont[0].content[12]}`,
+                                text: `${allCont[0].content[11]}`,
                             },
                             {
-                                title: "🤝 Service support to clients",
-                                text: "Ongoing consultation and assistance through the purchasing process.",
+                                title: `🤝 ${allCont[0].content[14]}`,
+                                text: `${allCont[0].content[13]}`,
                             },
                             {
-                                title: "🔧Villa Management",
-                                text: "Property maintenance and guest-ready services after purchase.",
+                                title: `🔧 ${allCont[0].content[16]}`,
+                                text: `${allCont[0].content[15]}`,
                             },
                         ].map((item, i) => (
                             <div
@@ -92,10 +114,22 @@ export default function AgencyExpertiseSection() {
                 {/* Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                     {[
-                        { value: "450+", label: "Property Sold" },
-                        { value: "1200+", label: "Client" },
-                        { value: "16%", label: "Average ROI" },
-                        { value: "91%", label: "Client Satisfaction" },
+                        {
+                            value: ` ${allCont[0].content[17]}+`,
+                            label: `${allCont[0].content[18]}`,
+                        },
+                        {
+                            value: ` ${allCont[0].content[19]}+`,
+                            label: `${allCont[0].content[20]}`,
+                        },
+                        {
+                            value: ` ${allCont[0].content[21]}+`,
+                            label: `${allCont[0].content[22]}`,
+                        },
+                        {
+                            value: ` ${allCont[0].content[23]}+`,
+                            label: `${allCont[0].content[24]}`,
+                        },
                     ].map((item, i) => (
                         <div key={i}>
                             <p className="text-3xl font-bold text-blue-600">
