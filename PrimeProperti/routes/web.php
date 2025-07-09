@@ -71,8 +71,9 @@ Route::get('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
 
 
 Route::resource('ratings', RatingController::class);
-Route::resource('sosmeds', SosmedController::class);
-Route::resource('content', ContentController::class);
+
+// Route::resource('sosmeds', SosmedController::class);
+// Route::resource('content', ContentController::class);
 
 
 });

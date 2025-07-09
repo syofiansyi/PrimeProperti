@@ -121,13 +121,13 @@ export default function ProductSection({ PropertiProd }: Props) {
         ...new Set(allProperties.map((item) => item.location)),
     ].sort((a, b) => a.localeCompare(b));
     const TipeApart = [
-        "Apartemen",
-        "Gudang",
+        "Apartment",
+        "Warehouse",
         "Hotel",
-        "Kost",
-        "Rumah",
-        "Ruko",
-        "Tanah",
+        "Boarding House",
+        "House",
+        "Shophouse",
+        "Land",
         "Villa",
     ];
     const KamarTidur = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -243,7 +243,8 @@ export default function ProductSection({ PropertiProd }: Props) {
                 ) : (
                     <div className="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-md">
                         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
-Find Your Dream Property                        </h2>
+                            Find Your Dream Property{" "}
+                        </h2>
                         <form
                             onSubmit={handleSearch}
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
@@ -299,7 +300,7 @@ Find Your Dream Property                        </h2>
                             {/* Rentang Harga */}
                             <div className="flex flex-col">
                                 <label className="text-sm font-medium mb-1">
-                                   Price Range ($)
+                                    Price Range ($)
                                 </label>
                                 <div className="flex gap-2">
                                     <input
@@ -408,7 +409,7 @@ Find Your Dream Property                        </h2>
                                     type="submit"
                                     className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded transition"
                                 >
-                                   Search Properties
+                                    Search Properties
                                 </button>
                             </div>
                         </form>
@@ -439,7 +440,8 @@ Find Your Dream Property                        </h2>
                 ) : (
                     <>
                         <h2 className="text-2xl font-bold text-center mb-6">
-Our Featured Properties                        </h2>
+                            Our Featured Properties{" "}
+                        </h2>
                         <div className="flex flex-wrap gap-4 justify-center mb-8">
                             <div className="flex items-center gap-2">
                                 <label htmlFor="sort" className="font-medium">
@@ -457,11 +459,9 @@ Our Featured Properties                        </h2>
                                     <option value="latest">Latest</option>
                                     <option value="price-asc">
                                         Lowest Price
-
                                     </option>
                                     <option value="price-desc">
                                         Highest Price
-
                                     </option>
                                     <option value="popular">
                                         Most Popular

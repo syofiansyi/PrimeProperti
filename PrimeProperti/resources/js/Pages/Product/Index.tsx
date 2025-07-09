@@ -32,13 +32,13 @@ export default function Index({ products }: PageProps) {
     const [filteredProducts, setFilteredProducts] =
         useState<Product[]>(products);
     const TipeProperti = [
-        "Apartemen",
-        "Gudang",
+        "Apartment",
+        "Warehouse",
         "Hotel",
-        "Kost",
-        "Rumah",
-        "Ruko",
-        "Tanah",
+        "Boarding House",
+        "House",
+        "Shophouse",
+        "Land",
         "Villa",
     ];
 
