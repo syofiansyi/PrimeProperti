@@ -57,7 +57,7 @@ export default function Index({ products }: PageProps) {
         properti_fasilitas: [""],
         tipe: "",
         price: "",
-        satuan:"",
+        satuan: "",
         images: [] as File[],
     });
 
@@ -98,7 +98,7 @@ export default function Index({ products }: PageProps) {
                     ? product.properti_fasilitas
                     : [product.properti_fasilitas],
                 tipe: product.tipe,
-                 satuan: product.satuan,
+                satuan: product.satuan,
                 price: String(product.price), // ✅ ubah jadi string
                 images: [],
             });
@@ -147,7 +147,7 @@ export default function Index({ products }: PageProps) {
 
         formData.append("price", data.price);
         formData.append("tipe", data.tipe);
-         formData.append("satuan", data.satuan);
+        formData.append("satuan", data.satuan);
 
         data.features.forEach((fet, i) => {
             formData.append(`features[${i}]`, fet);
@@ -355,7 +355,9 @@ export default function Index({ products }: PageProps) {
                                         className="space-y-4"
                                     >
                                         <div>
-                                            <label>Title</label>
+                                            <label className="font-semibold block mb-2">
+                                                Title
+                                            </label>
                                         </div>
                                         <input
                                             type="text"
@@ -367,7 +369,9 @@ export default function Index({ products }: PageProps) {
                                             className="w-full border px-4 py-2"
                                         />
                                         <div>
-                                            <label>Location</label>
+                                            <label className="font-semibold block mb-2">
+                                                Lokasi
+                                            </label>
                                         </div>
                                         <input
                                             type="text"
@@ -382,7 +386,9 @@ export default function Index({ products }: PageProps) {
                                             className="w-full border px-4 py-2"
                                         />
                                         <div>
-                                            <label>Maps</label>
+                                            <label className="font-semibold block mb-2">
+                                                Maps
+                                            </label>
                                         </div>
                                         <input
                                             type="text"
@@ -394,7 +400,9 @@ export default function Index({ products }: PageProps) {
                                             className="w-full border px-4 py-2"
                                         />
                                         <div>
-                                            <label>Deskripsi</label>
+                                            <label className="font-semibold block mb-2">
+                                                Deskripsi
+                                            </label>
                                         </div>
                                         <textarea
                                             placeholder="Deskripsi"
@@ -408,221 +416,387 @@ export default function Index({ products }: PageProps) {
                                             className="w-full border px-4 py-2"
                                         />
 
-                                        <div>
-                                            <label>Features</label>
-                                        </div>
-                                        {data.features.map((fet, index) => (
-                                            <input
-                                                key={index}
-                                                type="text"
-                                                value={fet}
-                                                onChange={(e) => {
-                                                    const newFets = [
+                                        {/* Features */}
+                                        <div className="mb-4">
+                                            <label className="font-semibold block mb-2">
+                                                Features
+                                            </label>
+                                            {data.features.map((fet, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="flex items-center gap-2 mb-2"
+                                                >
+                                                    <input
+                                                        type="text"
+                                                        value={fet}
+                                                        onChange={(e) => {
+                                                            const newFets = [
+                                                                ...data.features,
+                                                            ];
+                                                            newFets[index] =
+                                                                e.target.value;
+                                                            setData(
+                                                                "features",
+                                                                newFets
+                                                            );
+                                                        }}
+                                                        className="w-full border px-2 py-1"
+                                                        placeholder={`Feature ${
+                                                            index + 1
+                                                        }`}
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            setData(
+                                                                "features",
+                                                                data.features.filter(
+                                                                    (_, i) =>
+                                                                        i !==
+                                                                        index
+                                                                )
+                                                            )
+                                                        }
+                                                        className="text-red-500 text-sm px-2"
+                                                        title="Hapus fitur"
+                                                    >
+                                                        🗑
+                                                    </button>
+                                                </div>
+                                            ))}
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    setData("features", [
                                                         ...data.features,
-                                                    ];
-                                                    newFets[index] =
-                                                        e.target.value;
-                                                    setData(
-                                                        "features",
-                                                        newFets
-                                                    );
-                                                }}
-                                                className="w-full border px-2 py-1 mb-2"
-                                                placeholder={`Features ${
-                                                    index + 1
-                                                }`}
-                                            />
-                                        ))}
-                                        <button
-                                            type="button"
-                                            onClick={() =>
-                                                setData("features", [
-                                                    ...data.features,
-                                                    "",
-                                                ])
-                                            }
-                                            className="text-blue-600 text-sm"
-                                        >
-                                            + Add Features
-                                        </button>
-                                        <div>
-                                            <label>Badge</label>
+                                                        "",
+                                                    ])
+                                                }
+                                                className="text-blue-600 text-sm"
+                                            >
+                                                + Add Feature
+                                            </button>
                                         </div>
-                                        {data.badge.map((bad, index) => (
-                                            <input
-                                                key={index}
-                                                type="text"
-                                                value={bad}
-                                                onChange={(e) => {
-                                                    const newBads = [
+
+                                        {/* Badge */}
+                                        <div className="mb-4">
+                                            <label className="font-semibold block mb-2">
+                                                Badge
+                                            </label>
+                                            {data.badge.map((bad, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="flex items-center gap-2 mb-2"
+                                                >
+                                                    <input
+                                                        type="text"
+                                                        value={bad}
+                                                        onChange={(e) => {
+                                                            const newBads = [
+                                                                ...data.badge,
+                                                            ];
+                                                            newBads[index] =
+                                                                e.target.value;
+                                                            setData(
+                                                                "badge",
+                                                                newBads
+                                                            );
+                                                        }}
+                                                        className="w-full border px-2 py-1"
+                                                        placeholder={`Badge ${
+                                                            index + 1
+                                                        }`}
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            setData(
+                                                                "badge",
+                                                                data.badge.filter(
+                                                                    (_, i) =>
+                                                                        i !==
+                                                                        index
+                                                                )
+                                                            )
+                                                        }
+                                                        className="text-red-500 text-sm px-2"
+                                                        title="Hapus badge"
+                                                    >
+                                                        🗑
+                                                    </button>
+                                                </div>
+                                            ))}
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    setData("badge", [
                                                         ...data.badge,
-                                                    ];
-                                                    newBads[index] =
-                                                        e.target.value;
-                                                    setData("badge", newBads);
-                                                }}
-                                                className="w-full border px-2 py-1 mb-2"
-                                                placeholder={`Badge ${
-                                                    index + 1
-                                                }`}
-                                            />
-                                        ))}
-                                        <button
-                                            type="button"
-                                            onClick={() =>
-                                                setData("badge", [
-                                                    ...data.badge,
-                                                    "",
-                                                ])
-                                            }
-                                            className="text-blue-600 text-sm"
-                                        >
-                                            + Add Badge
-                                        </button>
-                                        <div>
-                                            <label>Detail Properti</label>
+                                                        "",
+                                                    ])
+                                                }
+                                                className="text-blue-600 text-sm"
+                                            >
+                                                + Add Badge
+                                            </button>
                                         </div>
-                                        {data.properti_detail.map(
-                                            (prodet, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    value={prodet}
-                                                    onChange={(e) => {
-                                                        const newProdet = [
-                                                            ...data.properti_detail,
-                                                        ];
-                                                        newProdet[index] =
-                                                            e.target.value;
-                                                        setData(
-                                                            "properti_detail",
-                                                            newProdet
-                                                        );
-                                                    }}
-                                                    className="w-full border px-2 py-1 mb-2"
-                                                    placeholder={`Properti Detail ${
-                                                        index + 1
-                                                    }`}
-                                                />
-                                            )
-                                        )}
-                                        <button
-                                            type="button"
-                                            onClick={() =>
-                                                setData("properti_detail", [
-                                                    ...data.properti_detail,
-                                                    "",
-                                                ])
-                                            }
-                                            className="text-blue-600 text-sm"
-                                        >
-                                            + Add Properti Detail
-                                        </button>
-                                        <div>
-                                            <label>Pembayaran</label>
+
+                                        {/* Properti Detail */}
+                                        <div className="mb-4">
+                                            <label className="font-semibold block mb-2">
+                                                Detail Properti
+                                            </label>
+                                            {data.properti_detail.map(
+                                                (prodet, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="flex items-center gap-2 mb-2"
+                                                    >
+                                                        <input
+                                                            type="text"
+                                                            value={prodet}
+                                                            onChange={(e) => {
+                                                                const newProdet =
+                                                                    [
+                                                                        ...data.properti_detail,
+                                                                    ];
+                                                                newProdet[
+                                                                    index
+                                                                ] =
+                                                                    e.target.value;
+                                                                setData(
+                                                                    "properti_detail",
+                                                                    newProdet
+                                                                );
+                                                            }}
+                                                            className="w-full border px-2 py-1"
+                                                            placeholder={`Properti Detail ${
+                                                                index + 1
+                                                            }`}
+                                                        />
+                                                        <button
+                                                            type="button"
+                                                            onClick={() =>
+                                                                setData(
+                                                                    "properti_detail",
+                                                                    data.properti_detail.filter(
+                                                                        (
+                                                                            _,
+                                                                            i
+                                                                        ) =>
+                                                                            i !==
+                                                                            index
+                                                                    )
+                                                                )
+                                                            }
+                                                            className="text-red-500 text-sm px-2"
+                                                            title="Hapus properti detail"
+                                                        >
+                                                            🗑
+                                                        </button>
+                                                    </div>
+                                                )
+                                            )}
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    setData("properti_detail", [
+                                                        ...data.properti_detail,
+                                                        "",
+                                                    ])
+                                                }
+                                                className="text-blue-600 text-sm"
+                                            >
+                                                + Add Properti Detail
+                                            </button>
                                         </div>
-                                        {data.properti_pembayaran.map(
-                                            (propem, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    value={propem}
-                                                    onChange={(e) => {
-                                                        const newPropem = [
+
+                                        {/* Properti Pembayaran */}
+                                        <div className="mb-4">
+                                            <label className="font-semibold block mb-2">
+                                                Pembayaran
+                                            </label>
+                                            {data.properti_pembayaran.map(
+                                                (propem, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="flex items-center gap-2 mb-2"
+                                                    >
+                                                        <input
+                                                            type="text"
+                                                            value={propem}
+                                                            onChange={(e) => {
+                                                                const newPropem =
+                                                                    [
+                                                                        ...data.properti_pembayaran,
+                                                                    ];
+                                                                newPropem[
+                                                                    index
+                                                                ] =
+                                                                    e.target.value;
+                                                                setData(
+                                                                    "properti_pembayaran",
+                                                                    newPropem
+                                                                );
+                                                            }}
+                                                            className="w-full border px-2 py-1"
+                                                            placeholder={`Properti Pembayaran ${
+                                                                index + 1
+                                                            }`}
+                                                        />
+                                                        <button
+                                                            type="button"
+                                                            onClick={() =>
+                                                                setData(
+                                                                    "properti_pembayaran",
+                                                                    data.properti_pembayaran.filter(
+                                                                        (
+                                                                            _,
+                                                                            i
+                                                                        ) =>
+                                                                            i !==
+                                                                            index
+                                                                    )
+                                                                )
+                                                            }
+                                                            className="text-red-500 text-sm px-2"
+                                                            title="Hapus properti pembayaran"
+                                                        >
+                                                            🗑
+                                                        </button>
+                                                    </div>
+                                                )
+                                            )}
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    setData(
+                                                        "properti_pembayaran",
+                                                        [
                                                             ...data.properti_pembayaran,
-                                                        ];
-                                                        newPropem[index] =
-                                                            e.target.value;
-                                                        setData(
-                                                            "properti_pembayaran",
-                                                            newPropem
-                                                        );
-                                                    }}
-                                                    className="w-full border px-2 py-1 mb-2"
-                                                    placeholder={`Properti Pembayaran ${
-                                                        index + 1
-                                                    }`}
-                                                />
-                                            )
-                                        )}
-                                        <button
-                                            type="button"
-                                            onClick={() =>
-                                                setData("properti_pembayaran", [
-                                                    ...data.properti_pembayaran,
-                                                    "",
-                                                ])
-                                            }
-                                            className="text-blue-600 text-sm"
-                                        >
-                                            + Add Properti Pembayaran
-                                        </button>
-                                        <div>
-                                            <label>Fasilitas</label>
+                                                            "",
+                                                        ]
+                                                    )
+                                                }
+                                                className="text-blue-600 text-sm"
+                                            >
+                                                + Add Properti Pembayaran
+                                            </button>
                                         </div>
-                                        {data.properti_fasilitas.map(
-                                            (profas, index) => (
-                                                <input
-                                                    key={index}
-                                                    type="text"
-                                                    value={profas}
-                                                    onChange={(e) => {
-                                                        const newProfas = [
+
+                                        {/* Properti Fasilitas */}
+                                        <div className="mb-4">
+                                            <label className="font-semibold block mb-2">
+                                                Fasilitas
+                                            </label>
+                                            {data.properti_fasilitas.map(
+                                                (profas, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="flex items-center gap-2 mb-2"
+                                                    >
+                                                        <input
+                                                            type="text"
+                                                            value={profas}
+                                                            onChange={(e) => {
+                                                                const newProfas =
+                                                                    [
+                                                                        ...data.properti_fasilitas,
+                                                                    ];
+                                                                newProfas[
+                                                                    index
+                                                                ] =
+                                                                    e.target.value;
+                                                                setData(
+                                                                    "properti_fasilitas",
+                                                                    newProfas
+                                                                );
+                                                            }}
+                                                            className="w-full border px-2 py-1"
+                                                            placeholder={`Properti Fasilitas ${
+                                                                index + 1
+                                                            }`}
+                                                        />
+                                                        <button
+                                                            type="button"
+                                                            onClick={() =>
+                                                                setData(
+                                                                    "properti_fasilitas",
+                                                                    data.properti_fasilitas.filter(
+                                                                        (
+                                                                            _,
+                                                                            i
+                                                                        ) =>
+                                                                            i !==
+                                                                            index
+                                                                    )
+                                                                )
+                                                            }
+                                                            className="text-red-500 text-sm px-2"
+                                                            title="Hapus properti fasilitas"
+                                                        >
+                                                            🗑
+                                                        </button>
+                                                    </div>
+                                                )
+                                            )}
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    setData(
+                                                        "properti_fasilitas",
+                                                        [
                                                             ...data.properti_fasilitas,
-                                                        ];
-                                                        newProfas[index] =
-                                                            e.target.value;
-                                                        setData(
-                                                            "properti_fasilitas",
-                                                            newProfas
-                                                        );
-                                                    }}
-                                                    className="w-full border px-2 py-1 mb-2"
-                                                    placeholder={`Properti Fasilitas ${
-                                                        index + 1
-                                                    }`}
-                                                />
-                                            )
-                                        )}
-                                        <button
-                                            type="button"
-                                            onClick={() =>
-                                                setData("properti_fasilitas", [
-                                                    ...data.properti_fasilitas,
-                                                    "",
-                                                ])
-                                            }
-                                            className="text-blue-600 text-sm"
-                                        >
-                                            + Add Properti Fasilitas
-                                        </button>
-                                        <div>
-                                            <label>Harga</label>
+                                                            "",
+                                                        ]
+                                                    )
+                                                }
+                                                className="text-blue-600 text-sm"
+                                            >
+                                                + Add Properti Fasilitas
+                                            </button>
                                         </div>
-                                        <input
-                                            type="number"
-                                            placeholder="Price"
-                                            value={data.price}
-                                            onChange={(e) =>
-                                                setData("price", e.target.value)
-                                            }
-                                            className="w-full border px-4 py-2"
-                                        />
- <div>
-                                            <label>Satuan</label>
+
+                                        {/* Harga */}
+                                        <div className="mb-4">
+                                            <label className="font-semibold block mb-2">
+                                                Harga
+                                            </label>
+                                            <input
+                                                type="number"
+                                                value={data.price}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "price",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                className="w-full border px-4 py-2"
+                                                placeholder="Masukkan harga"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="font-semibold block mb-2">
+                                                Satuan
+                                            </label>
                                         </div>
                                         <input
                                             type="text"
                                             placeholder="Satuan"
                                             value={data.satuan}
                                             onChange={(e) =>
-                                                setData("satuan", e.target.value)
+                                                setData(
+                                                    "satuan",
+                                                    e.target.value
+                                                )
                                             }
                                             className="w-full border px-4 py-2"
                                         />
                                         <div></div>
                                         <div>
-                                            <label>Tipe Properti</label>
+                                            <label className="font-semibold block mb-2">
+                                                Tipe Properti
+                                            </label>
                                         </div>
                                         <select
                                             value={data.tipe}
@@ -642,7 +816,9 @@ export default function Index({ products }: PageProps) {
                                             ))}
                                         </select>
                                         <div>
-                                            <label>Gambar</label>
+                                            <label className="font-semibold block mb-2">
+                                                Gambar
+                                            </label>
                                         </div>
                                         <input
                                             type="file"
@@ -671,7 +847,9 @@ export default function Index({ products }: PageProps) {
                                                     }
                                                     className="w-4 h-4"
                                                 />
-                                                <span>Popular</span>
+                                                <span className="font-semibold block mb-2">
+                                                    Popular
+                                                </span>
                                             </label>
                                         </div>
 
