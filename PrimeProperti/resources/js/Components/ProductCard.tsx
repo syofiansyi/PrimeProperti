@@ -115,7 +115,10 @@ function ProductCardItem({ item, icons }: { item: ProductCardProps; icons: JSX.E
             {features.map((f: string, i: number) => (
               <div key={i} className="flex items-center gap-1">
                 <span className="text-blue-500">{icons[i % icons.length]}</span>
-                <span>{f}</span>
+                <span>
+        {f}
+        {(i === 2 || i === 3) && 'm²'}
+      </span>
               </div>
             ))}
           </div>

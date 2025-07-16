@@ -247,26 +247,21 @@ export default function ProductHighlight({ allprod }: Props) {
 
                                           <hr className="h-1" />
 
-                                          <div className="flex justify-between gap-2 mt-2">
-                                              {item.features.map(
-                                                  (f: string, i: number) => (
-                                                      <div
-                                                          key={i}
-                                                          className="flex items-center gap-2 text-sm text-gray-600"
-                                                      >
-                                                          <span>
-                                                              {
-                                                                  icons[
-                                                                      i %
-                                                                          icons.length
-                                                                  ]
-                                                              }
-                                                          </span>
-                                                          <span>{f}</span>
-                                                      </div>
-                                                  )
-                                              )}
-                                          </div>
+                                         <div className="flex justify-between gap-2 mt-2">
+  {item.features.map((f: string, i: number) => (
+    <div
+      key={i}
+      className="flex items-center gap-2 text-sm text-gray-600"
+    >
+      <span>{icons[i % icons.length]}</span>
+      <span>
+        {f}
+        {(i === 2 || i === 3) && 'm²'}
+      </span>
+    </div>
+  ))}
+</div>
+
                                       </div>
                                   </div>
                               );
