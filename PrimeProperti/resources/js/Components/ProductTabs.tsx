@@ -63,7 +63,7 @@ export default function ProductTabs({
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                 >
-                  Payment method
+                    Payment method
                 </button>
             </div>
 
@@ -72,18 +72,20 @@ export default function ProductTabs({
                 {activeTab === "detail" && (
                     <div>
                         <h3 className="text-xl font-semibold mb-2">
-                           Complete Description
+                            Complete Description
                         </h3>
                         <p className="mb-3">{DetailProd[0].deskripsi}</p>
 
-                        {PropertiDetail.map((item: string, index: number) => (
-                            <ul
-                                key={index}
-                                className="list-disc pl-5 space-y-1"
-                            >
-                                <li key={index}>{item}</li>
-                            </ul>
-                        ))}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                            {PropertiDetail.map((item: any, idx: any) => (
+                                <div
+                                    key={idx}
+                                    className="bg-gray-100 text-gray-700 rounded-lg p-3 text-center shadow-sm"
+                                >
+                                    {item}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )}
 
@@ -93,14 +95,14 @@ export default function ProductTabs({
                             Surrounding Facilities
                         </h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                            {PropertiFasilitas.map((item: string, index: number) => (
-                            <ul
-                                key={index}
-                                className="list-disc pl-5 space-y-1"
-                            >
-                                <li key={index}>{item}</li>
-                            </ul>
-                        ))}
+                            {PropertiFasilitas.map((item: any, idx: any) => (
+                                <div
+                                    key={idx}
+                                    className="bg-gray-100 text-gray-700 rounded-lg p-3 text-center shadow-sm"
+                                >
+                                    {item}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 )}
@@ -111,20 +113,20 @@ export default function ProductTabs({
                             Payment Method
                         </h3>
 
-                        {PropertiPembayaran.map(
-                            (item: string, index: number) => (
-                                <ul
-                                    key={index}
-                                    className="list-disc pl-5 space-y-1"
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                            {PropertiPembayaran.map((item: any, idx: any) => (
+                                <div
+                                    key={idx}
+                                    className="bg-gray-100 text-gray-700 rounded-lg p-3 text-center shadow-sm"
                                 >
-                                    <li key={index}>{item}</li>
-                                </ul>
-                            )
-                        )}
+                                    {item}
+                                </div>
+                            ))}
+                        </div>
 
                         <p className="text-sm text-gray-600">
                             <br></br>
-                           Contact us via WhatsApp for more info.
+                            Contact us via WhatsApp for more info.
                         </p>
                     </div>
                 )}

@@ -242,10 +242,10 @@ export default function ProductHighlight({ allprod }: Props) {
                                                   {typeof item.price ===
                                                   "number"
                                                       ? item.price.toLocaleString(
-                                                            "en-US",
+                                                            "id-ID",
                                                             {
                                                                 style: "currency",
-                                                                currency: "USD",
+                                                                currency: "IDR",
                                                             }
                                                         )
                                                       : item.price}

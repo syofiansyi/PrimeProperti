@@ -300,7 +300,7 @@ export default function ProductSection({ PropertiProd }: Props) {
                             {/* Rentang Harga */}
                             <div className="flex flex-col">
                                 <label className="text-sm font-medium mb-1">
-                                    Price Range ($)
+                                    Price Range (Rp)
                                 </label>
                                 <div className="flex gap-2">
                                     <input

@@ -102,14 +102,15 @@ function ProductCardItem({ item, icons }: { item: ProductCardProps; icons: JSX.E
               <FaMapMarkerAlt className="text-blue-500" />
               <span className="line-clamp-1" title={item.location}>{item.location}</span>
             </span>
-           <span className="font-semibold text-blue-600 text-sm whitespace-nowrap">
+          <span className="font-semibold text-blue-600 text-sm whitespace-nowrap">
   {typeof item.price === "number"
-    ? item.price.toLocaleString("en-US", {
+    ? item.price.toLocaleString("id-ID", {
         style: "currency",
-        currency: "USD",
+        currency: "IDR",
       })
     : item.price}
 </span>
+
 
           </div>
 
