@@ -93,14 +93,14 @@ export default function ProductTabs({
                             Surrounding Facilities
                         </h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                            {[PropertiFasilitas].map((item, idx) => (
-                                <div
-                                    key={idx}
-                                    className="bg-gray-100 text-gray-700 rounded-lg p-3 text-center shadow-sm"
-                                >
-                                    {item}
-                                </div>
-                            ))}
+                            {PropertiFasilitas.map((item: string, index: number) => (
+                            <ul
+                                key={index}
+                                className="list-disc pl-5 space-y-1"
+                            >
+                                <li key={index}>{item}</li>
+                            </ul>
+                        ))}
                         </div>
                     </div>
                 )}
