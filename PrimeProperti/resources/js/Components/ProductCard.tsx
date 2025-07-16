@@ -15,6 +15,7 @@ interface ProductCardProps {
   popular: boolean;
   date: string;
   tipe: string;
+  satuan: string;
 }
 
 interface Props {
@@ -103,7 +104,7 @@ function ProductCardItem({ item, icons }: { item: ProductCardProps; icons: JSX.E
               <span className="line-clamp-1" title={item.location}>{item.location}</span>
             </span>
           <span className="font-semibold text-blue-600 text-sm whitespace-nowrap">
-  Rp {item.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+  Rp {item.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}{item.satuan}
 </span>
 
 

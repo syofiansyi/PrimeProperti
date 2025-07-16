@@ -19,6 +19,7 @@ interface Product {
     properti_pembayaran: string[] | string;
     properti_fasilitas: string[] | string;
     tipe: string;
+    satuan: string;
 }
 
 interface PageProps {
@@ -56,6 +57,7 @@ export default function Index({ products }: PageProps) {
         properti_fasilitas: [""],
         tipe: "",
         price: "",
+        satuan:"",
         images: [] as File[],
     });
 
@@ -96,6 +98,7 @@ export default function Index({ products }: PageProps) {
                     ? product.properti_fasilitas
                     : [product.properti_fasilitas],
                 tipe: product.tipe,
+                 satuan: product.satuan,
                 price: String(product.price), // ✅ ubah jadi string
                 images: [],
             });
@@ -125,6 +128,7 @@ export default function Index({ products }: PageProps) {
             properti_pembayaran: [""],
             properti_fasilitas: [""],
             tipe: "",
+            satuan: "",
             price: "",
             images: [],
         });
@@ -143,6 +147,7 @@ export default function Index({ products }: PageProps) {
 
         formData.append("price", data.price);
         formData.append("tipe", data.tipe);
+         formData.append("satuan", data.satuan);
 
         data.features.forEach((fet, i) => {
             formData.append(`features[${i}]`, fet);
@@ -350,7 +355,7 @@ export default function Index({ products }: PageProps) {
                                         className="space-y-4"
                                     >
                                         <div>
-                                            <label>Titile</label>
+                                            <label>Title</label>
                                         </div>
                                         <input
                                             type="text"
@@ -362,7 +367,7 @@ export default function Index({ products }: PageProps) {
                                             className="w-full border px-4 py-2"
                                         />
                                         <div>
-                                            <label>Tipe Location</label>
+                                            <label>Location</label>
                                         </div>
                                         <input
                                             type="text"
@@ -603,7 +608,19 @@ export default function Index({ products }: PageProps) {
                                             }
                                             className="w-full border px-4 py-2"
                                         />
-
+ <div>
+                                            <label>Satuan</label>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Satuan"
+                                            value={data.satuan}
+                                            onChange={(e) =>
+                                                setData("satuan", e.target.value)
+                                            }
+                                            className="w-full border px-4 py-2"
+                                        />
+                                        <div></div>
                                         <div>
                                             <label>Tipe Properti</label>
                                         </div>

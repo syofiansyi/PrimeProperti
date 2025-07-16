@@ -13,6 +13,7 @@ interface PropertiProd {
     popular: boolean;
     date: string;
     tipe: string;
+    satuan:string;
 }
 
 type SearchFilters = {
@@ -114,6 +115,7 @@ export default function ProductSection({ PropertiProd }: Props) {
             popular: !!item.popular,
             date: item.date,
             tipe: item.tipe,
+            satuan:item.satuan,
         };
     });
 

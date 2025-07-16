@@ -87,6 +87,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 1500000000,
+                'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -107,6 +108,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 900000000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -127,6 +129,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 2000000000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -149,6 +152,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 1750000000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -169,6 +173,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 950000000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -189,6 +194,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 230000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -209,6 +215,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 30000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -229,6 +236,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 2750000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -250,6 +258,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 1200000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -270,6 +279,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 2500000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -290,6 +300,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 1000000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -310,6 +321,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 1600000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -330,6 +342,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 11000000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -350,6 +363,7 @@ class DatabaseSeeder extends Seeder
                 'properti_pembayaran' => json_encode(["Cash", "KPR", "Bank"]),
 
                 'price' => 350000000,
+                 'satuan' => 'm2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

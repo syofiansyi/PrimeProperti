@@ -23,12 +23,12 @@ interface DetailProd {
     popular: boolean;
     date: string;
     tipe: string;
-
     maps?: any;
     properti_detail?: any;
     properti_pembayaran?: any;
     properti_fasilitas?: any;
     deskripsi?: string;
+    satuan:string;
 }
 
 interface users {
@@ -55,12 +55,12 @@ interface SimilarProducts {
     popular: boolean;
     date: string;
     tipe: string;
-
     maps?: any;
     properti_detail?: any;
     properti_pembayaran?: any;
     properti_fasilitas?: any;
     deskripsi?: string;
+    satuan:string;
 }
 
 interface users {
@@ -130,6 +130,7 @@ export default function ProductDetail({
             popular: !!item.popular,
             date: item.date,
             tipe: item.tipe,
+            satuan: item.satuan,
         };
     });
 
@@ -148,6 +149,7 @@ export default function ProductDetail({
             popular: item.popular,
             date: item.date,
             tipe: item.tipe,
+            satuan: item.satuan,
             image: imageArray?.map((img: string) => `/storage/${img}`) ?? [],
             features:
                 typeof item.features === "string"

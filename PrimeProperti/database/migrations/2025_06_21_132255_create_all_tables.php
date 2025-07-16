@@ -34,6 +34,7 @@ return new class extends Migration {
             $table->text('properti_fasilitas')->nullable();
             $table->text('properti_pembayaran')->nullable();
             $table->bigInteger('price')->nullable();
+            $table->text('satuan');
             $table->timestamps();
         });
 

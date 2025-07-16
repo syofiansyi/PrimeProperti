@@ -33,6 +33,7 @@ interface SimilarProducts {
     properti_pembayaran?: any;
     properti_fasilitas?: any;
     deskripsi?: string;
+    satuan:string;
 }
 
 interface Props {
@@ -96,6 +97,7 @@ export default function ProductHighlight({ allprod }: Props) {
             popular: !!item.popular,
             date: item.date,
             tipe: item.tipe,
+            satuan: item.satuan,
         };
     });
 
@@ -239,7 +241,7 @@ export default function ProductHighlight({ allprod }: Props) {
                                                   {item.location}
                                               </span>
                                          <span className="font-semibold text-blue-600 text-sm whitespace-nowrap">
-  Rp {item.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+  Rp {item.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}{item.satuan}
 </span>
 
 

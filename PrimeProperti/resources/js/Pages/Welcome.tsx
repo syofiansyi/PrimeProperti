@@ -20,6 +20,7 @@ interface PropertiProd {
     popular: boolean;
     date: string;
     tipe: string;
+    satuan:string;
 }
 
 interface Blog {
