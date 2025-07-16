@@ -238,14 +238,10 @@ export default function ProductHighlight({ allprod }: Props) {
                                                   <FaMapMarkerAlt />
                                                   {item.location}
                                               </span>
-                                           <span className="font-semibold text-blue-600 text-sm whitespace-nowrap">
-  {typeof item.price === "number"
-    ? (item.price.toLocaleString?.("id-ID", {
-        style: "currency",
-        currency: "IDR",
-      }) ?? `Rp${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`)
-    : item.price}
+                                         <span className="font-semibold text-blue-600 text-sm whitespace-nowrap">
+  Rp {item.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
 </span>
+
 
                                           </div>
 
