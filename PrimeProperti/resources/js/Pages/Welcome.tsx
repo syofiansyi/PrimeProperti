@@ -21,6 +21,7 @@ interface PropertiProd {
     date: string;
     tipe: string;
     satuan:string;
+    currency:string;
 }
 
 interface Blog {

@@ -29,6 +29,7 @@ interface DetailProd {
     properti_fasilitas?: any;
     deskripsi?: string;
     satuan:string;
+    currency:string;
 }
 
 interface users {
@@ -61,6 +62,7 @@ interface SimilarProducts {
     properti_fasilitas?: any;
     deskripsi?: string;
     satuan:string;
+    currency:string;
 }
 
 interface users {
@@ -131,6 +133,7 @@ export default function ProductDetail({
             date: item.date,
             tipe: item.tipe,
             satuan: item.satuan,
+            currency: item.currency,
         };
     });
 
@@ -150,6 +153,7 @@ export default function ProductDetail({
             date: item.date,
             tipe: item.tipe,
             satuan: item.satuan,
+            currency: item.currency,
             image: imageArray?.map((img: string) => `/storage/${img}`) ?? [],
             features:
                 typeof item.features === "string"

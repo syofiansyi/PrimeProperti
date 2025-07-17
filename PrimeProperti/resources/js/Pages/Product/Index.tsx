@@ -20,6 +20,7 @@ interface Product {
     properti_fasilitas: string[] | string;
     tipe: string;
     satuan: string;
+    currency: string;
 }
 
 interface PageProps {
@@ -58,6 +59,7 @@ export default function Index({ products }: PageProps) {
         tipe: "",
         price: "",
         satuan: "",
+        currency: "",
         images: [] as File[],
     });
 
@@ -99,6 +101,7 @@ export default function Index({ products }: PageProps) {
                     : [product.properti_fasilitas],
                 tipe: product.tipe,
                 satuan: product.satuan,
+                currency: product.currency,
                 price: String(product.price), // ✅ ubah jadi string
                 images: [],
             });
@@ -129,6 +132,7 @@ export default function Index({ products }: PageProps) {
             properti_fasilitas: [""],
             tipe: "",
             satuan: "",
+            currency: "",
             price: "",
             images: [],
         });
@@ -148,6 +152,7 @@ export default function Index({ products }: PageProps) {
         formData.append("price", data.price);
         formData.append("tipe", data.tipe);
         formData.append("satuan", data.satuan);
+        formData.append("currency", data.currency);
 
         data.features.forEach((fet, i) => {
             formData.append(`features[${i}]`, fet);
@@ -792,7 +797,23 @@ export default function Index({ products }: PageProps) {
                                             }
                                             className="w-full border px-4 py-2"
                                         />
-                                        <div></div>
+                                       <div>
+                                            <label className="font-semibold block mb-2">
+                                                Currency
+                                            </label>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            placeholder="Currency"
+                                            value={data.currency}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "currency",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className="w-full border px-4 py-2"
+                                        />
                                         <div>
                                             <label className="font-semibold block mb-2">
                                                 Tipe Properti

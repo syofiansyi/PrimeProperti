@@ -57,7 +57,7 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'popular' => 'required|string',
             'satuan' => 'required|string',
-
+            'currency' => 'required|string',
             'images' => 'nullable|array',
             'images.*' => 'nullable|image|max:2048',
         ]);
@@ -66,7 +66,7 @@ class ProductController extends Controller
         $data = $request->only([
             'title', 'price', 'location', 'maps', 'features', 'badge',
             'properti_detail', 'properti_pembayaran', 'properti_fasilitas',
-            'tipe', 'deskripsi', 'popular', 'satuan'
+            'tipe', 'deskripsi', 'popular', 'satuan','currency'
         ]);
 
         // 4. Proses upload gambar
@@ -133,7 +133,7 @@ public function update(Request $request, Product $product)
             'price' => 'required|integer',
             'popular' => 'required|string',
             'satuan' => 'required|string',
-
+            'currency' => 'required|string',
             'images' => 'nullable|array',
             'images.*' => 'nullable|image|max:2048',
         ]);
@@ -142,7 +142,7 @@ public function update(Request $request, Product $product)
         $data = $request->only([
             'title', 'price', 'location', 'maps', 'features', 'badge',
             'properti_detail', 'properti_pembayaran', 'properti_fasilitas',
-            'tipe', 'deskripsi', 'popular', 'satuan'
+            'tipe', 'deskripsi', 'popular', 'satuan','currency'
         ]);
 
         // 4. Simpan gambar lama jika ada

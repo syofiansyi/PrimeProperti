@@ -34,6 +34,7 @@ interface SimilarProducts {
     properti_fasilitas?: any;
     deskripsi?: string;
     satuan:string;
+    currency:string;
 }
 
 interface Props {
@@ -98,6 +99,7 @@ export default function ProductHighlight({ allprod }: Props) {
             date: item.date,
             tipe: item.tipe,
             satuan: item.satuan,
+            currency: item.currency,
         };
     });
 
@@ -241,7 +243,7 @@ export default function ProductHighlight({ allprod }: Props) {
                                                   {item.location}
                                               </span>
                                          <span className="font-semibold text-blue-600 text-sm whitespace-nowrap">
-  Rp {item.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}{item.satuan}
+  {item.currency} {item.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}{item.satuan}
 </span>
 
 

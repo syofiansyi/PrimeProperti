@@ -13,7 +13,8 @@ interface PropertiProd {
     popular: boolean;
     date: string;
     tipe: string;
-    satuan:string;
+    satuan: string;
+    currency: string;
 }
 
 type SearchFilters = {
@@ -25,6 +26,7 @@ type SearchFilters = {
     large: string;
     minPrice: string;
     maxPrice: string;
+    currency: string;
 };
 
 interface Props {
@@ -80,6 +82,7 @@ export default function ProductSection({ PropertiProd }: Props) {
         large: "",
         minPrice: "",
         maxPrice: "",
+        currency: "",
     });
     const [appliedFilters, setAppliedFilters] = useState(searchFilters);
 
@@ -115,13 +118,19 @@ export default function ProductSection({ PropertiProd }: Props) {
             popular: !!item.popular,
             date: item.date,
             tipe: item.tipe,
-            satuan:item.satuan,
+            satuan: item.satuan,
+            currency: item.currency,
         };
     });
 
     const lokasi = [
         ...new Set(allProperties.map((item) => item.location)),
     ].sort((a, b) => a.localeCompare(b));
+
+    const currency = [
+        ...new Set(allProperties.map((item) => item.currency)),
+    ].sort((a, b) => a.localeCompare(b));
+
     const TipeApart = [
         "Apartment",
         "Warehouse",
@@ -159,6 +168,11 @@ export default function ProductSection({ PropertiProd }: Props) {
             p.location
                 .toLowerCase()
                 .includes(appliedFilters.location.toLowerCase());
+        const currencyMatch =
+            !appliedFilters.currency ||
+            p.currency
+                .toLowerCase()
+                .includes(appliedFilters.currency.toLowerCase());
         const typeMatch =
             !appliedFilters.tipe ||
             p.tipe.toLowerCase().includes(appliedFilters.tipe.toLowerCase());
@@ -183,7 +197,8 @@ export default function ProductSection({ PropertiProd }: Props) {
             priceMatch &&
             bedroomMatch &&
             largeMatch &&
-            KamarMandiMatch
+            KamarMandiMatch &&
+            currencyMatch
         );
     });
 
@@ -302,7 +317,7 @@ export default function ProductSection({ PropertiProd }: Props) {
                             {/* Rentang Harga */}
                             <div className="flex flex-col">
                                 <label className="text-sm font-medium mb-1">
-                                    Price Range (Rp)
+                                    Price Range
                                 </label>
                                 <div className="flex gap-2">
                                     <input
@@ -331,6 +346,22 @@ export default function ProductSection({ PropertiProd }: Props) {
                                         placeholder="Maximum"
                                         className="w-full border border-gray-300 rounded px-3 py-2"
                                     />
+                                    <div className="w-full">
+                                        <select
+                                            id="currency"
+                                            name="currency"
+                                            value={searchFilters.currency}
+                                            onChange={handleFilterChange}
+                                            className="border border-gray-300 rounded px-3 py-2 w-full"
+                                        >
+                                            <option value="">All</option>
+                                            {currency.map((i) => (
+                                                <option key={i} value={i}>
+                                                    {i.toUpperCase()}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 
@@ -387,7 +418,7 @@ export default function ProductSection({ PropertiProd }: Props) {
                                     htmlFor="large"
                                     className="text-sm font-medium mb-1"
                                 >
-                                    Building area
+                                    Land area
                                 </label>
                                 <select
                                     id="large"
