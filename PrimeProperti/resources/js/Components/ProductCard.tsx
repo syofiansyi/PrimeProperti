@@ -112,17 +112,20 @@ function ProductCardItem({ item, icons }: { item: ProductCardProps; icons: JSX.E
 
           <hr className="border-gray-200" />
 
-          <div className="flex flex-wrap justify-between gap-4 text-gray-600 text-sm mt-2">
-            {features.map((f: string, i: number) => (
-              <div key={i} className="flex items-center gap-1">
-                <span className="text-blue-500">{icons[i % icons.length]}</span>
-                <span>
-        {f}
-        {(i === 2 || i === 3) && 'm²'}
-      </span>
-              </div>
-            ))}
-          </div>
+       <div className="flex flex-wrap justify-between gap-4 text-gray-600 text-sm mt-2 min-h-[32px]">
+  {features.length > 0 &&
+    features.map((f: string, i: number) => (
+      <div key={i} className="flex items-center gap-1">
+        <span className="text-blue-500">{icons[i % icons.length]}</span>
+        <span>
+          {f}
+          {(i === 2 || i === 3) && 'm²'}
+        </span>
+      </div>
+    ))}
+</div>
+
+
         </div>
       </div>
     </div>
