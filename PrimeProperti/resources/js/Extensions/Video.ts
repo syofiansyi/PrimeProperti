@@ -1,50 +1,35 @@
-import { Node, mergeAttributes } from '@tiptap/core'
+import { Node, mergeAttributes } from "@tiptap/core";
 
-export const Video = Node.create({
-  name: 'video',
-
-  group: 'block',
-
-  selectable: true,
-  draggable: true,
-
+const Video = Node.create({
+  name: "video",
+  group: "block",
   atom: true,
+  selectable: true,
 
   addAttributes() {
     return {
-      src: {
-        default: null,
-      },
-      controls: {
-        default: true,
-      },
-      width: {
-        default: '100%',
-      },
-    }
+      src: { default: null },
+      controls: { default: true },
+    };
   },
 
   parseHTML() {
-    return [
-      {
-        tag: 'video',
-      },
-    ]
+    return [{ tag: "video" }];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['video', mergeAttributes(HTMLAttributes), 0]
+    return ["video", mergeAttributes(HTMLAttributes)];
   },
 
   addNodeView() {
     return ({ node }) => {
-      const video = document.createElement('video')
-      video.src = node.attrs.src
-      video.controls = true
-      video.style.maxWidth = '100%'
-      return {
-        dom: video,
-      }
-    }
+      const video = document.createElement("video");
+      video.src = node.attrs.src;
+      video.controls = true;
+      video.style.maxWidth = "100%";
+      return { dom: video };
+    };
   },
-})
+});
+
+export default Video;
