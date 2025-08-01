@@ -30,7 +30,7 @@ class BlogController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'content' => 'required|string',
-            'thumbnail' => 'nullable|file|mimes:jpeg,png,jpg,gif,mp4,webm,ogg|max:10240', // 10MB max
+            'thumbnail' => 'nullable|file|mimes:jpeg,png,jpg,gif,mp4,webm,ogg|max:50240', // 10MB max
 
         ]);
 
